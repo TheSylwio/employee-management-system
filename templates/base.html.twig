@@ -6,7 +6,9 @@
         {{ encore_entry_link_tags('app') }}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {{ encore_entry_script_tags('app') }}
     </body>
 </html>

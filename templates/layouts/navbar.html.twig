@@ -1,0 +1,8 @@
+<nav class="navbar navbar-light bg-transparent justify-content-between">
+    <a class="navbar-brand" href="{{ path('index') }}">ESM</a>
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('app_logout') }}">Wyloguj</a>
+    {% else %}
+        <a class="btn btn-outline-primary my-2 my-sm-0" href="{{ path('app_login') }}">Zaloguj</a>
+    {% endif %}
+</nav>
