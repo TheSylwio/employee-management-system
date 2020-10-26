@@ -3,7 +3,11 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
+    {{ include('layouts/navbar.html.twig') }}
     <div class="row">
-        Strona główna :)
+        <div class="col text-center">
+            <h1>Strona główna</h1>
+            <p>🔥 TODO 🔥</p>
+        </div>
     </div>
 {% endblock %}
