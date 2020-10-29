@@ -25,7 +25,7 @@ class Employee
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $surName;
+    private $surname;
 
     /**
      * @ORM\Column(type="date")
@@ -47,60 +47,60 @@ class Employee
         return $this->id;
     }
 
-    public function getfirstName(): ?string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    public function setfirstName(string $firstName): self
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getsurName(): ?string
+    public function getSurname(): ?string
     {
-        return $this->surName;
+        return $this->surname;
     }
 
-    public function setsurName(string $surName): self
+    public function setSurname(string $surname): self
     {
-        $this->surName = $surName;
+        $this->surname = $surname;
 
         return $this;
     }
 
-    public function getdateOfBirth(): ?\DateTimeInterface
+    public function getDateOfBirth(): ?\DateTimeInterface
     {
         return $this->dateOfBirth;
     }
 
-    public function setdateOfBirth(\DateTimeInterface $dateOfBirth): self
+    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
-    public function getpesel(): ?string
+    public function getPesel(): ?string
     {
         return $this->pesel;
     }
 
-    public function setpesel(string $pesel): self
+    public function setPesel(string $pesel): self
     {
         $this->pesel = $pesel;
 
         return $this;
     }
 
-    public function getaddress(): ?string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    public function setaddress(string $address): self
+    public function setAddress(string $address): self
     {
         $this->address = $address;
 
