@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EventsRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,57 +19,57 @@ class Events
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    private $StartDate;
+    private $startDate;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $EndDate;
+    private $endDate;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $Description;
+    private $description;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartDate(): ?DateTimeInterface
     {
-        return $this->StartDate;
+        return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $StartDate): self
+    public function setStartDate(DateTimeInterface $StartDate): self
     {
-        $this->StartDate = $StartDate;
+        $this->startDate = $StartDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndDate(): ?DateTimeInterface
     {
-        return $this->EndDate;
+        return $this->endDate;
     }
 
-    public function setEndDate(?\DateTimeInterface $EndDate): self
+    public function setEndDate(?DateTimeInterface $EndDate): self
     {
-        $this->EndDate = $EndDate;
+        $this->endDate = $EndDate;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
     public function setDescription(string $Description): self
     {
-        $this->Description = $Description;
+        $this->description = $Description;
 
         return $this;
     }

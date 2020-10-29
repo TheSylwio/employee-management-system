@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Events;
-use phpDocumentor\Reflection\Types\AbstractList;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EventsController extends AbstractController
@@ -20,6 +18,5 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig',[
             'events'=>$events
         ]);
-
     }
 }
