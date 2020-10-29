@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Events;
+use App\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,10 +13,10 @@ class EventsController extends AbstractController
      */
     public function index()
     {
-        $repo=$this->getDoctrine()->getRepository(Events::class);
-        $events=$repo->findAll();
-        return $this->render('events/index.html.twig',[
-            'events'=>$events
+        $repo = $this->getDoctrine()->getRepository(Event::class);
+
+        return $this->render('events/index.html.twig', [
+            'events' => $repo->findAll(),
         ]);
     }
 }
