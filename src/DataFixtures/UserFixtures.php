@@ -39,7 +39,8 @@ class UserFixtures extends Fixture
         $manager->flush();
     }
 
-    private function getUsersData() {
+    private function getUsersData()
+    {
         return [
             ['pracownik@emp.pl', 'admin123'],
             ['asystent@emp.pl', 'admin123'],

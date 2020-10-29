@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wydarzenia{% endblock %}
+
+{% block body %}
+    <table class="table table-striped table-dark">
+        <tr>
+            <th scope="col">Data rozpoczęcia wydarzenia</th>
+            <th scope="col">Data zakończenia wydarzenia</th>
+            <th scope="col">Opis</th>
+        </tr>
+        {% for events in events %}
+            <tr>
+                <!-- dodać osobne kolumny na daty -->
+                <th>{{ events.StartDate|date('d-m-Y') }}</th>
+                <th>{{ events.EndDate|date('d-m-Y') }}</th>
+                <th>{{ events.description }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="#" class="btn btn-dark" role="button">Dodaj wydarzenie</a>
+{% endblock %}
