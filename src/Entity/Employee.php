@@ -20,89 +20,89 @@ class Employee
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $FirstName;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $SurName;
+    private $surName;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $DateOfBirth;
+    private $dateOfBirth;
 
     /**
      * @ORM\Column(type="string", length=11)
      */
-    private $PESEL;
+    private $pesel;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Address;
+    private $address;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFirstName(): ?string
+    public function getfirstName(): ?string
     {
-        return $this->FirstName;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $FirstName): self
+    public function setfirstName(string $firstName): self
     {
-        $this->FirstName = $FirstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getSurName(): ?string
+    public function getsurName(): ?string
     {
-        return $this->SurName;
+        return $this->surName;
     }
 
-    public function setSurName(string $SurName): self
+    public function setsurName(string $surName): self
     {
-        $this->SurName = $SurName;
+        $this->surName = $surName;
 
         return $this;
     }
 
-    public function getDateOfBirth(): ?\DateTimeInterface
+    public function getdateOfBirth(): ?\DateTimeInterface
     {
-        return $this->DateOfBirth;
+        return $this->dateOfBirth;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $DateOfBirth): self
+    public function setdateOfBirth(\DateTimeInterface $dateOfBirth): self
     {
-        $this->DateOfBirth = $DateOfBirth;
+        $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
-    public function getPESEL(): ?string
+    public function getpesel(): ?string
     {
-        return $this->PESEL;
+        return $this->pesel;
     }
 
-    public function setPESEL(string $PESEL): self
+    public function setpesel(string $pesel): self
     {
-        $this->PESEL = $PESEL;
+        $this->pesel = $pesel;
 
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getaddress(): ?string
     {
-        return $this->Address;
+        return $this->address;
     }
 
-    public function setAddress(string $Address): self
+    public function setaddress(string $address): self
     {
-        $this->Address = $Address;
+        $this->address = $address;
 
         return $this;
     }
