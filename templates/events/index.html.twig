@@ -17,6 +17,13 @@
                 <th>{{ events.description }}</th>
             </tr>
         {% endfor %}
+
     </table>
-    <a href="#" class="btn btn-dark" role="button">Dodaj wydarzenie</a>
+    <a href="{{ path('eventsadd') }}" class="btn btn-dark" role="button" aria-pressed="true">Dodaj wydarzenie</a>
+    <a href="{{ path('index') }}" class="btn btn-dark" role="button" aria-pressed="true">Wróć na stronę główną</a>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% endblock %}
