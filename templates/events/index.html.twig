@@ -12,13 +12,15 @@
         <tr>
             <th scope="col">Data rozpoczęcia wydarzenia</th>
             <th scope="col">Data zakończenia wydarzenia</th>
+            <th scope="col">Pracownik</th>
             <th scope="col">Opis</th>
         </tr>
-        {% for events in events %}
+        {% for event in events %}
             <tr>
-                <td>{{ events.startDate|date('d.m.Y') }}</td>
-                <td>{{ events.endDate|date('d.m.Y') }}</td>
-                <td>{{ events.description }}</td>
+                <td>{{ event.startDate|date('d.m.Y') }}</td>
+                <td>{{ event.endDate|date('d.m.Y') }}</td>
+                <td>{{ event.employee }}</td>
+                <td>{{ event.description }}</td>
             </tr>
         {% endfor %}
     </table>

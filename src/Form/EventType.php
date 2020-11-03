@@ -14,7 +14,8 @@ class EventType extends AbstractType
         $builder
             ->add('startDate')
             ->add('endDate')
-            ->add('description');
+            ->add('description')
+            ->add('employee');
     }
 
     public function configureOptions(OptionsResolver $resolver)

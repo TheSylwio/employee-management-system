@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,22 @@ class Employee
      * @ORM\Column(type="string", length=255)
      */
     private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="employee")
+     */
+    private $events;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="employee")
+     */
+    private $tasks;
+
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,5 +123,69 @@ class Employee
         $this->address = $address;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getEmployee() === $this) {
+                $event->setEmployee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->removeElement($task)) {
+            // set the owning side to null (unless already changed)
+            if ($task->getEmployee() === $this) {
+                $task->setEmployee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->firstName . ' ' . $this->surname;
     }
 }
