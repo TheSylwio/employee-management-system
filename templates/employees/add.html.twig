@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodawanie pracownika{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.surname) }}
+    {{ form_row(form.dateOfBirth) }}
+    {{ form_row(form.pesel) }}
+    {{ form_row(form.address) }}
+    <button type="submit" class="btn btn-primary">Dodaj Pracownika</button>
+    {{ form_end(form) }}
+{% endblock %}

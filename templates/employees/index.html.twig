@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pracownicy{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped table-dark">
+                <tr>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">PESEL</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Data urodzenia</th>
+                </tr>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.firstName }}</td>
+                        <td>{{ employee.surname }}</td>
+                        <td>{{ employee.pesel }}</td>
+                        <td>{{ employee.address }}</td>
+                        <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ path('employees_add') }}" class="btn btn-dark">Dodaj pracownika</a>
+        </div>
+    </div>
+{% endblock %}
