@@ -38,7 +38,7 @@ class EventsController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-            $this->addFlash('success', 'wydarzenie dodane');
+            $this->addFlash('success', 'Pomyślnie dodano wydarzenie');
 
             return $this->redirectToRoute('events');
         }
