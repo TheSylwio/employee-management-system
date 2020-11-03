@@ -3,6 +3,11 @@
 {% block title %}Wydarzenia{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <table class="table table-striped table-dark">
         <tr>
             <th scope="col">Data rozpoczęcia wydarzenia</th>
@@ -11,19 +16,12 @@
         </tr>
         {% for events in events %}
             <tr>
-                <!-- dodać osobne kolumny na daty -->
-                <th>{{ events.StartDate|date('d-m-Y') }}</th>
-                <th>{{ events.EndDate|date('d-m-Y') }}</th>
-                <th>{{ events.description }}</th>
+                <td>{{ events.startDate|date('d.m.Y') }}</td>
+                <td>{{ events.endDate|date('d.m.Y') }}</td>
+                <td>{{ events.description }}</td>
             </tr>
         {% endfor %}
-
     </table>
-    <a href="{{ path('eventsadd') }}" class="btn btn-dark" role="button" aria-pressed="true">Dodaj wydarzenie</a>
-    <a href="{{ path('index') }}" class="btn btn-dark" role="button" aria-pressed="true">Wróć na stronę główną</a>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+    <a href="{{ path('events_add') }}" class="btn btn-dark">Dodaj wydarzenie</a>
+    <a href="{{ path('index') }}" class="btn btn-secondary">Wróć na stronę główną</a>
 {% endblock %}

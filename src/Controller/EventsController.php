@@ -24,7 +24,7 @@ class EventsController extends AbstractController
     }
 
     /**
-     * @Route("/events/add", name="eventsadd")
+     * @Route("/events/add", name="events_add")
      * @param Request $request
      * @return Response
      */
@@ -33,13 +33,16 @@ class EventsController extends AbstractController
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
             $this->addFlash('success', 'wydarzenie dodane');
+
             return $this->redirectToRoute('events');
         }
+
         return $this->render('events/add.html.twig', [
             'form' => $form->createView(),
         ]);
