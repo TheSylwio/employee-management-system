@@ -12,11 +12,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmployeeController extends AbstractController
 {
     /**
-     * @Route("/employee", name="employee")
+     * @Route("/employees", name="employees")
+     * @return Response
+     */
+    public function index(): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Employee::class);
+
+        return $this->render('employees/index.html.twig', [
+            'employees' => $repo->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/employees/add", name="employees_add")
      * @param $request
      * @return Response
      */
-    public function index(Request $request): Response
+    public function add(Request $request): Response
     {
         $employee = new Employee();
         $form = $this->createForm(EmployeeType::class, $employee);
@@ -26,9 +39,12 @@ class EmployeeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
             $em->flush();
+
+            return $this->redirectToRoute('employees');
         }
-        return $this->render('employee/index.html.twig', [
-            'form' => $form->createView()
+
+        return $this->render('employees/add.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
