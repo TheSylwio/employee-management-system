@@ -18,9 +18,10 @@ class Task
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $employeeId;
+    private $employee;
 
     /**
      * @ORM\Column(type="datetime")
@@ -42,14 +43,14 @@ class Task
         return $this->id;
     }
 
-    public function getEmployeeId(): ?int
+    public function getEmployee(): ?Employee
     {
-        return $this->employeeId;
+        return $this->employee;
     }
 
-    public function setEmployeeId(int $employeeId): self
+    public function setEmployee(?Employee $employee): self
     {
-        $this->employeeId = $employeeId;
+        $this->employee = $employee;
 
         return $this;
     }

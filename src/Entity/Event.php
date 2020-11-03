@@ -33,6 +33,12 @@ class Event
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $employee;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +76,18 @@ class Event
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?Employee $employee): self
+    {
+        $this->employee = $employee;
 
         return $this;
     }
