@@ -17,10 +17,10 @@ class EventsController extends AbstractController
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Event::class);
-
         return $this->render('events/index.html.twig', [
-            'events' => $repo->findAll(),
-        ]);
+            'events' => $repo->findAll()]
+            // 'events' => $repo->findOneBy(['startDate'|date('d')=>'now'|date('d')])
+        );
     }
 
     /**

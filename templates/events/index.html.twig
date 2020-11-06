@@ -15,11 +15,25 @@
             <th scope="col">Opis</th>
         </tr>
         {% for event in events %}
-            <tr>
-                <td>{{ event.startDate|date('d.m.Y') }}</td>
-                <td>{{ event.endDate|date('d.m.Y') }}</td>
-                <td>{{ event.description }}</td>
-            </tr>
+            {% if "now"|date('d') == event.startDate|date('d') %}
+                <tr class="rowFilter" name="today">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% elseif ("now"|date('d')-event.startDate|date('d')>=-7)and ("now"|date('d')-event.startDate|date('d')<=0) %}
+                <tr class="rowFilter" name="sevenDays">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% else %}
+                <tr class="rowFilter" name="others">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
     </table>
     <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
