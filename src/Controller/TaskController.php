@@ -16,12 +16,13 @@ class TaskController extends AbstractController
      */
     public function index(): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Task::class );
+        $repo = $this->getDoctrine()->getRepository(Task::class);
 
         return $this->render('tasks/index.html.twig', [
             'tasks' => $repo->findAll(),
         ]);
     }
+
     /**
      * @Route("/tasks/add", name="tasks_add")
      * @param Request $request

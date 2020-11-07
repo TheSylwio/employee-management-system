@@ -7,7 +7,7 @@
         <div class="col">
             <table class="table table-striped table-dark">
                 <tr>
-                    <th scope="col">EmployeeID</th>
+                    <th scope="col">Pracownik</th>
                     <th scope="col">Data wystawienia</th>
                     <th scope="col">Termin realizacji</th>
                     <th scope="col">Opis</th>
@@ -16,12 +16,12 @@
                     <tr>
                         <td>{{ tasks.employee }}</td>
                         <td>{{ tasks.creationDate|date('d.m.Y H:i') }}</td>
-                        <td>{{ tasks.deadline |date('d.m.Y H:i')}}</td>
+                        <td>{{ tasks.deadline |date('d.m.Y H:i') }}</td>
                         <td>{{ tasks.description }}</td>
                     </tr>
                 {% endfor %}
             </table>
-            <a href="{{ path('tasks_add') }}" class="btn btn-dark">Dodaj zadanie</a>
+            <a href="{{ path('tasks_add') }}" class="btn btn-primary">Dodaj zadanie</a>
         </div>
     </div>
 {% endblock %}
