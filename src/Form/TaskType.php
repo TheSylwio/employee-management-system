@@ -12,8 +12,7 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('employeeId')
-            ->add('creationDate')
+            ->add('employee')
             ->add('deadline')
             ->add('description')
         ;
