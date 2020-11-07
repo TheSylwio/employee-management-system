@@ -14,14 +14,14 @@
                 </tr>
                 {% for tasks in tasks %}
                     <tr>
-                        <td>{{ tasks.employeeId }}</td>
-                        <td>{{ tasks.creationDate|date('d.m.Y') }}</td>
-                        <td>{{ tasks.deadline |date('d.m.Y')}}</td>
+                        <td>{{ tasks.employee }}</td>
+                        <td>{{ tasks.creationDate|date('d.m.Y H:i') }}</td>
+                        <td>{{ tasks.deadline |date('d.m.Y H:i')}}</td>
                         <td>{{ tasks.description }}</td>
                     </tr>
                 {% endfor %}
             </table>
-            <a href="{{ path('/tasks/add') }}" class="btn btn-dark">Dodaj zadanie</a>
+            <a href="{{ path('tasks_add') }}" class="btn btn-dark">Dodaj zadanie</a>
         </div>
     </div>
 {% endblock %}
