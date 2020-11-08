@@ -54,6 +54,12 @@ class Employee
      */
     private $tasks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="employees")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
@@ -187,5 +193,17 @@ class Employee
 
     public function __toString() {
         return $this->firstName . ' ' . $this->surname;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
     }
 }
