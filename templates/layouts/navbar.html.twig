@@ -4,9 +4,11 @@
         <li class="nav-item">
             <a href="{{ path('events') }}" class="nav-link">Wydarzenia</a>
         </li>
-        <li class="nav-item">
-            <a href="{{ path('employees') }}" class="nav-link">Pracownicy</a>
-        </li>
+        {% if is_granted("ROLE_EMPLOYER") %}
+            <li class="nav-item">
+                <a href="{{ path('employees') }}" class="nav-link">Pracownicy</a>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a href="{{ path('tasks') }}" class="nav-link">Zadania</a>
         </li>
