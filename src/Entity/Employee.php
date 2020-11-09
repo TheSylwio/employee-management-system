@@ -45,11 +45,6 @@ class Employee
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="employee")
-     */
-    private $events;
-
-    /**
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="employee")
      */
     private $tasks;
@@ -62,7 +57,6 @@ class Employee
 
     public function __construct()
     {
-        $this->events = new ArrayCollection();
         $this->tasks = new ArrayCollection();
     }
 
@@ -127,36 +121,6 @@ class Employee
     public function setAddress(string $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Event[]
-     */
-    public function getEvents(): Collection
-    {
-        return $this->events;
-    }
-
-    public function addEvent(Event $event): self
-    {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->setEmployee($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): self
-    {
-        if ($this->events->removeElement($event)) {
-            // set the owning side to null (unless already changed)
-            if ($event->getEmployee() === $this) {
-                $event->setEmployee(null);
-            }
-        }
 
         return $this;
     }

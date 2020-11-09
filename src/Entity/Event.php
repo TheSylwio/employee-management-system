@@ -34,10 +34,10 @@ class Event
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="events")
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="events")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $employee;
+    private $company;
 
     public function getId(): ?int
     {
@@ -80,14 +80,14 @@ class Event
         return $this;
     }
 
-    public function getEmployee(): ?Employee
+    public function getCompany(): ?Company
     {
-        return $this->employee;
+        return $this->company;
     }
 
-    public function setEmployee(?Employee $employee): self
+    public function setCompany(?Company $company): self
     {
-        $this->employee = $employee;
+        $this->company = $company;
 
         return $this;
     }
