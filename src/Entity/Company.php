@@ -34,9 +34,15 @@ class Company
      */
     private $employees;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="company")
+     */
+    private $events;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +98,36 @@ class Company
             // set the owning side to null (unless already changed)
             if ($employee->getCompany() === $this) {
                 $employee->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getCompany() === $this) {
+                $event->setCompany(null);
             }
         }
 

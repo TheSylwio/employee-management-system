@@ -28,11 +28,11 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     private function loadUsers(ObjectManager $manager)
     {
         $i = 0;
-        foreach ($this->getUsersData() as [$email, $password]) {
+        foreach ($this->getUsersData() as [$email, $role, $password]) {
             $user = new User();
             $user
                 ->setEmail($email)
-                ->setRoles([])
+                ->setRoles([$role])
                 ->setPassword($this->encoder->encodePassword($user, $password))
                 ->setEmployee($this->getReference('employee_' . $i++));
 
@@ -45,9 +45,9 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     private function getUsersData()
     {
         return [
-            ['pracownik@emp.pl', 'admin123'],
-            ['asystent@emp.pl', 'admin123'],
-            ['ksiegowy@emp.pl', 'admin123'],
+            ['pracownik@emp.pl', 'ROLE_EMPLOYEE', 'admin123'],
+            ['asystent@emp.pl', 'ROLE_ASSISTANT', 'admin123'],
+            ['ksiegowy@emp.pl', 'ROLE_ACCOUNTANT', 'admin123'],
         ];
     }
 
