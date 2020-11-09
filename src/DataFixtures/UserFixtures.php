@@ -45,6 +45,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     private function getUsersData()
     {
         return [
+            ['pracodawca@emp.pl', 'ROLE_EMPLOYER', 'admin123'],
             ['pracownik@emp.pl', 'ROLE_EMPLOYEE', 'admin123'],
             ['asystent@emp.pl', 'ROLE_ASSISTANT', 'admin123'],
             ['ksiegowy@emp.pl', 'ROLE_ACCOUNTANT', 'admin123'],
