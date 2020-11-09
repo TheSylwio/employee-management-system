@@ -35,6 +35,7 @@ class EventsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $event->setCompany($this->getUser()->getEmployee()->getCompany()); // FIXME: Use helper
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
