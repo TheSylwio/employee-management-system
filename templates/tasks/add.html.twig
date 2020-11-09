@@ -8,7 +8,8 @@
     {{ form_row(form.employee) }}
     {{ form_row(form.deadline) }}
     {{ form_row(form.description) }}
-    <button type="submit" class="btn btn-dark">Dodaj</button>
+    <button type="submit" class="btn btn-primary">Dodaj zadanie</button>
+    <a href="{{ path('tasks') }}" class="btn btn-secondary">Wróć do listy zadań</a>
     {{ form_end(form) }}
 {% endblock %}
 

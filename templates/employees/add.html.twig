@@ -10,5 +10,6 @@
     {{ form_row(form.pesel) }}
     {{ form_row(form.address) }}
     <button type="submit" class="btn btn-primary">Dodaj Pracownika</button>
+    <a href="{{ path('employees') }}" class="btn btn-secondary">Wróć do listy pracowników</a>
     {{ form_end(form) }}
 {% endblock %}
