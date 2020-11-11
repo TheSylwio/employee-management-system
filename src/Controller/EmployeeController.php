@@ -22,7 +22,6 @@ class EmployeeController extends AbstractController
     public function index(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Employee::class);
-
         return $this->render('employees/index.html.twig', [
             'employees' => $repo->findAll(),
         ]);
@@ -43,7 +42,6 @@ class EmployeeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
             $em->flush();
-
             return $this->redirectToRoute('employees');
         }
 
@@ -51,4 +49,26 @@ class EmployeeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/employees/edit/{id}", name="edit_employee")
+     * Method({"GET", "POST"})
+     * @param $request
+     * @return Response
+     */
+    public function edit(Request $request, $id)
+    {
+        $employee = $this->getDoctrine()->getRepository(Employee::class)->find($id);
+        $form = $this->createForm(EmployeeType::class, $employee);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            return $this->redirectToRoute('employees');
+        }
+        return $this->render('employees/edit.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
 }
