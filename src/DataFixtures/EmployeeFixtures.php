@@ -17,7 +17,7 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
     private function loadEmployees(ObjectManager $manager)
     {
         $i = 0;
-        
+
         foreach ($this->getEmployeesData() as [$firstName, $surname, $dateOfBirth, $pesel, $address]) {
             $employee = new Employee();
             $employee
@@ -27,7 +27,7 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
                 ->setPesel($pesel)
                 ->setAddress($address)
                 ->setCompany($this->getReference('company_1'))
-            ;
+                ->setTeam($this->getReference('team_1'));
 
             $manager->persist($employee);
             $this->addReference('employee_' . $i++, $employee);
@@ -50,6 +50,7 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             CompanyFixtures::class,
+            TeamFixtures::class,
         ];
     }
 }
