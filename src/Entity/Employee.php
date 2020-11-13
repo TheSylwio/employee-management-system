@@ -55,6 +55,12 @@ class Employee
      */
     private $company;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="employees")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $team;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -167,6 +173,18 @@ class Employee
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }
