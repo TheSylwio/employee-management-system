@@ -51,14 +51,14 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/employees/edit/{id}", name="edit_employee")
+     * @Route("/employees/edit/{employee}", name="edit_employee")
      * Method({"GET", "POST"})
-     * @param $request
+     * @param Request $request
+     * @param Employee $employee
      * @return Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, Employee $employee)
     {
-        $employee = $this->getDoctrine()->getRepository(Employee::class)->find($id);
         $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,9 +66,10 @@ class EmployeeController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('employees');
         }
-        return $this->render('employees/edit.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render('employees/edit.html.twig', [
+                'form' => $form->createView()
+            ]
+        );
     }
 
 }
