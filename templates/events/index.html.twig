@@ -8,6 +8,11 @@
             {{ message }}
         </div>
     {% endfor %}
+    <div class="btn-group btn-group" role="group" aria-label="eventsFilter">
+        <button id="today" class="btn btn-dark">dzisiaj</button>
+        <button id="sevenDays" class="btn btn-dark">7 dni</button>
+        <button id="all" class="btn btn-dark">wszystkie</button>
+    </div>
     <table class="table table-striped">
         <tr>
             <th scope="col">Data rozpoczęcia wydarzenia</th>
@@ -15,11 +20,25 @@
             <th scope="col">Opis</th>
         </tr>
         {% for event in events %}
-            <tr>
-                <td>{{ event.startDate|date('d.m.Y') }}</td>
-                <td>{{ event.endDate|date('d.m.Y') }}</td>
-                <td>{{ event.description }}</td>
-            </tr>
+            {% if "now"|date('d') == event.startDate|date('d') %}
+                <tr class="eventRow" name="today">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% elseif ("now"|date('d')-event.startDate|date('d')>=-7)and ("now"|date('d')-event.startDate|date('d')<=0) %}
+                <tr class="eventRow" name="sevenDays">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% else %}
+                <tr class="eventRow" name="others">
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
     </table>
     <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
