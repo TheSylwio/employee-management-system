@@ -24,9 +24,9 @@ class TaskType extends AbstractType
             ])
             ->add ('status',ChoiceType::class, [
                 'choices'=>[
-                    'Zrobione'=>'done',
-                    'Nie zrobione'=>'undo',
-                    'W realizacji'=>'in progress'
+                    'Zrobione'=>'Zrobione',
+                    'Nie zrobione'=>'Nie zrobione',
+                    'W realizacji'=>'W realizacji'
                 ],
                     'label'=>'status zadania',
                 ]
