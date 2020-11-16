@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Task;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,16 @@ class TaskType extends AbstractType
             ])
             ->add('description', null, [
                 'label' => 'Opis zadania',
-            ]);
+            ])
+            ->add ('status',ChoiceType::class, [
+                'choices'=>[
+                    'Zrobione'=>'done',
+                    'Nie zrobione'=>'undo',
+                    'W realizacji'=>'in progress'
+                ],
+                    'label'=>'status zadania',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
