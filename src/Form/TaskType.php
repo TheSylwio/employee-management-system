@@ -28,7 +28,7 @@ class TaskType extends AbstractType
                     'Nie zrobione'=>'Nie zrobione',
                     'W realizacji'=>'W realizacji'
                 ],
-                    'label'=>'status zadania',
+                    'label'=>'Status zadania',
                 ]
             );
     }
