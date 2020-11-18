@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Zadania{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row((form.employee)) }}
+    {{ form_row((form.deadline)) }}
+    {{ form_row((form.description)) }}
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a href="{{ path('tasks') }}" class="btn btn-secondary">Wróć do listy zadań</a>
+    {{ form_end(form) }}
+{% endblock %}

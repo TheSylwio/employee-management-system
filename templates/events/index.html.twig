@@ -33,8 +33,7 @@
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
-                    <td><a href="/events/edit/{{ event.id }}" class="btn btn-primary" id="{{ event.id }}">Edytuj</a>
-                    </td>
+                    <td><a href="/events/edit/{{ event.id }}" class="btn btn-primary" id="{{ event.id }}">Edytuj</a></td>
                 </tr>
             {% else %}
                 <tr class="eventRow" name="others">
