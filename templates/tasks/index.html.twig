@@ -11,6 +11,7 @@
                     <th scope="col">Data wystawienia</th>
                     <th scope="col">Termin realizacji</th>
                     <th scope="col">Opis</th>
+                    <th></th>
                 </tr>
                 {% for tasks in tasks %}
                     <tr>
@@ -18,6 +19,7 @@
                         <td>{{ tasks.creationDate|date('d.m.Y H:i') }}</td>
                         <td>{{ tasks.deadline |date('d.m.Y H:i') }}</td>
                         <td>{{ tasks.description }}</td>
+                        <td><a href="/tasks/edit/{{ tasks.id }}" class="btn btn-primary" id="{{ tasks.id }}">Edytuj</a></td>
                     </tr>
                 {% endfor %}
             </table>
