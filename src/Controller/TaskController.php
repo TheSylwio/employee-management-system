@@ -50,7 +50,7 @@ class TaskController extends AbstractController
         ]);
     }
     /**
-     * @Route("/tasks/editz/{task}", name="edit_task")
+     * @Route("/tasks/edit/{task}", name="edit_task")
      * Method({"GET", "POST"})
      * @param Request $request
      * @param Task $task
