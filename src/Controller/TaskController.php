@@ -63,6 +63,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
+            $this->addFlash('success', 'Pomyślnie zmieniono zadanie');
             return $this->redirectToRoute('tasks');
         }
         return $this->render('tasks/edit.html.twig', [

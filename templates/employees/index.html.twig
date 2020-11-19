@@ -3,6 +3,11 @@
 {% block title %}Pracownicy{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="row">
         <div class="col">
             <table class="table table-striped table-dark">
