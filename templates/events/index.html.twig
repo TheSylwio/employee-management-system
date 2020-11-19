@@ -29,7 +29,7 @@
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
                     {% if is_granted('ROLE_EMPLOYER') %}
-                        <td><a href="events/edit/{{ event.id }}" class="btn btn-primary" id="{{ event.id }}">Edytuj</a>
+                        <td><a href="events/edit/{{ event.id }}" class="btn btn-primary" id="{{ event.id }}">Edytuj</a>L
                         </td>
                     {% endif %}
                 </tr>
@@ -57,7 +57,7 @@
         {% endfor %}
     </table>
     {% if is_granted('ROLE_EMPLOYER') %}
-    <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
+        <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
     {% endif %}
     <a href="{{ path('index') }}" class="btn btn-secondary">Wróć na stronę główną</a>
 {% endblock %}

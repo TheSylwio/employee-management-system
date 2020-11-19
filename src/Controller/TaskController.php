@@ -52,6 +52,7 @@ class TaskController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     /**
      *
      * @IsGranted("ROLE_EMPLOYER")
@@ -63,7 +64,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task)
     {
-        $form = $this->createForm(TaskType::class,$task);
+        $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
