@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,8 @@ class TaskController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/tasks/add", name="tasks_add")
      * @param Request $request
      * @return Response
@@ -50,6 +53,8 @@ class TaskController extends AbstractController
         ]);
     }
     /**
+     *
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/tasks/edit/{task}", name="edit_task")
      * Method({"GET", "POST"})
      * @param Request $request

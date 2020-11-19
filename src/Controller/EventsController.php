@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,8 @@ class EventsController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/events/add", name="events_add")
      * @param Request $request
      * @return Response
@@ -50,6 +53,8 @@ class EventsController extends AbstractController
     }
 
     /**
+     *
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/events/edit/{event}", name="edit_event")
      * Method({"GET", "POST"})
      * @param Request $request
