@@ -7,6 +7,14 @@
         <div class="col text-center">
             <h1>Strona główna</h1>
             <p>🔥 TODO 🔥</p>
+            {% for post in posts %}
+                <div class="card">
+                    <div class="card-body">
+                        <header class="font-weight-bold text-left">{{ post.topic }}</header>
+                        <p class="text-left">{{ post.post }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
