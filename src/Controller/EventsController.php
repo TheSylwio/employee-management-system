@@ -63,6 +63,7 @@ class EventsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
+            $this->addFlash('success', 'Pomyślnie zmieniono wydarzenie');
             return $this->redirectToRoute('events');
         }
         return $this->render('events/edit.html.twig', [
