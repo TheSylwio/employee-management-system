@@ -16,7 +16,9 @@
                     <th scope="col">Data wystawienia</th>
                     <th scope="col">Termin realizacji</th>
                     <th scope="col">Opis</th>
+                    {% if is_granted('ROLE_EMPLOYER') %}
                     <th></th>
+                    {% endif %}
                 </tr>
                 {% for tasks in tasks %}
                     <tr>
@@ -24,11 +26,15 @@
                         <td>{{ tasks.creationDate|date('d.m.Y H:i') }}</td>
                         <td>{{ tasks.deadline |date('d.m.Y H:i') }}</td>
                         <td>{{ tasks.description }}</td>
+                        {% if is_granted('ROLE_EMPLOYER') %}
                         <td><a href="/tasks/edit/{{ tasks.id }}" class="btn btn-primary" id="{{ tasks.id }}">Edytuj</a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
+            {% if is_granted('ROLE_EMPLOYER') %}
             <a href="{{ path('tasks_add') }}" class="btn btn-primary">Dodaj zadanie</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
