@@ -6,9 +6,10 @@ namespace App\DataFixtures;
 use App\Entity\Event;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class EventFixtures extends Fixture
+class EventFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -23,6 +24,7 @@ class EventFixtures extends Fixture
         }
         $manager->flush();
     }
+
     private function getEventData()
     {
         return [
@@ -32,6 +34,7 @@ class EventFixtures extends Fixture
             [DateTime::createFromFormat('d.m.Y', '11.02.2020'), DateTime::createFromFormat('d.m.Y', '26.11.2020'),'opis4'],
         ];
     }
+
     public function getDependencies()
     {
         return [
