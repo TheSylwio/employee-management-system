@@ -62,16 +62,15 @@ class EmployeeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
             $this->addFlash('success', 'Pomyślnie zmieniono dane pracownika');
 
             return $this->redirectToRoute('employees');
         }
 
         return $this->render('employees/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
-
 }

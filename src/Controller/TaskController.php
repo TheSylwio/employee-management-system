@@ -25,7 +25,6 @@ class TaskController extends AbstractController
     }
 
     /**
-     *
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/tasks/add", name="tasks_add")
      * @param Request $request
@@ -57,7 +56,6 @@ class TaskController extends AbstractController
      *
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/tasks/edit/{task}", name="edit_task")
-     * Method({"GET", "POST"})
      * @param Request $request
      * @param Task $task
      * @return Response
@@ -66,15 +64,17 @@ class TaskController extends AbstractController
     {
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             $this->addFlash('success', 'Pomyślnie zmieniono zadanie');
+
             return $this->redirectToRoute('tasks');
         }
+
         return $this->render('tasks/edit.html.twig', [
-                'form' => $form->createView()
-            ]
-        );
+            'form' => $form->createView(),
+        ]);
     }
 }

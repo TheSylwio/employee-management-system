@@ -19,13 +19,11 @@ class EventsController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Event::class);
         return $this->render('events/index.html.twig', [
-                'events' => $repo->findAll()]
-        // 'events' => $repo->findOneBy(['startDate'|date('d')=>'now'|date('d')])
-        );
+            'events' => $repo->findAll(),
+        ]);
     }
 
     /**
-     *
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/events/add", name="events_add")
      * @param Request $request
@@ -39,6 +37,7 @@ class EventsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setCompany($this->getUser()->getEmployee()->getCompany()); // FIXME: Use helper
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
@@ -53,10 +52,8 @@ class EventsController extends AbstractController
     }
 
     /**
-     *
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/events/edit/{event}", name="edit_event")
-     * Method({"GET", "POST"})
      * @param Request $request
      * @param Event $event
      * @return Response
@@ -65,15 +62,17 @@ class EventsController extends AbstractController
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
             $this->addFlash('success', 'Pomyślnie zmieniono wydarzenie');
+
             return $this->redirectToRoute('events');
         }
+
         return $this->render('events/edit.html.twig', [
-                'form' => $form->createView()
-            ]
-        );
+            'form' => $form->createView(),
+        ]);
     }
 }
