@@ -39,10 +39,16 @@ class Company
      */
     private $events;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="company")
+     */
+    private $posts;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +134,36 @@ class Company
             // set the owning side to null (unless already changed)
             if ($event->getCompany() === $this) {
                 $event->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getCompany() === $this) {
+                $post->setCompany(null);
             }
         }
 

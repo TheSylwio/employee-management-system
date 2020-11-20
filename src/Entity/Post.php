@@ -23,9 +23,15 @@ class Post
     private $topic;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $post;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
 
     public function getId(): ?int
     {
@@ -52,6 +58,18 @@ class Post
     public function setPost(string $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }
