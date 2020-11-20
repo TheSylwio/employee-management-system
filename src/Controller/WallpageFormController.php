@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\WallpagePosts;
+use App\Entity\Post;
 use App\Form\WallpageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ class WallpageFormController extends AbstractController
 
     public function add(Request $request): Response
     {
-        $wallpagePost = new WallpagePosts();
+        $wallpagePost = new Post();
         $form = $this->createForm(WallpageType::class, $wallpagePost);
         $form->handleRequest($request);
 
