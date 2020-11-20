@@ -53,7 +53,7 @@ class EventsController extends AbstractController
 
     /**
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/events/edit/{event}", name="edit_event")
+     * @Route("/events/edit/{event}", name="event_edit")
      * @param Request $request
      * @param Event $event
      * @return Response

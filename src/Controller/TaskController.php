@@ -55,7 +55,7 @@ class TaskController extends AbstractController
     /**
      *
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/tasks/edit/{task}", name="edit_task")
+     * @Route("/tasks/edit/{task}", name="task_edit")
      * @param Request $request
      * @param Task $task
      * @return Response

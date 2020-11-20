@@ -51,7 +51,7 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/employees/edit/{employee}", name="edit_employee")
+     * @Route("/employees/edit/{employee}", name="employee_edit")
      * @param Request $request
      * @param Employee $employee
      * @return Response
