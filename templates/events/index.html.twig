@@ -18,6 +18,9 @@
             <th scope="col">Data rozpoczęcia wydarzenia</th>
             <th scope="col">Data zakończenia wydarzenia</th>
             <th scope="col">Opis</th>
+            {% if is_granted('ROLE_EMPLOYER') %}
+                <th scope="col"></th>
+            {% endif %}
         </tr>
         {% for event in events %}
             {% if "now"|date('d') == event.startDate|date('d') %}
@@ -25,22 +28,39 @@
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <td>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% elseif ("now"|date('d')-event.startDate|date('d')>=-7)and ("now"|date('d')-event.startDate|date('d')<=0) %}
                 <tr class="eventRow" name="sevenDays">
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <td>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% else %}
                 <tr class="eventRow" name="others">
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <td>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endif %}
         {% endfor %}
     </table>
-    <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
+    {% endif %}
     <a href="{{ path('index') }}" class="btn btn-secondary">Wróć na stronę główną</a>
 {% endblock %}

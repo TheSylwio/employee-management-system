@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edycja wydarzenia{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.startDate) }}
+    {{ form_row(form.endDate) }}
+    {{ form_row(form.description) }}
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a href="{{ path('events') }}" class="btn btn-secondary">Wróć do listy wydarzeń</a>
+    {{ form_end(form) }}
+{% endblock %}
