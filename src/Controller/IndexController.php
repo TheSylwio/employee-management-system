@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,7 @@ class IndexController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/post/add", name="post_add")
      * @param Request $request
      * @return Response

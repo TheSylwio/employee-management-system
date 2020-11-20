@@ -5,16 +5,18 @@
 {% block body %}
     <div class="row">
         <div class="col">
-            <h1 class="my-3">Posty</h1>
-            {% for post in posts %}
-                <div class="card">
-                    <div class="card-body">
-                        <header class="font-weight-bold">{{ post.topic }}</header>
-                        <small>{{ post.author }}</small>
-                        <p>{{ post.post }}</p>
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <h1 class="my-3">Posty</h1>
+                {% for post in posts %}
+                    <div class="card">
+                        <div class="card-body">
+                            <header class="font-weight-bold">{{ post.topic }}</header>
+                            <small>{{ post.author }}</small>
+                            <p>{{ post.post }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
