@@ -9,24 +9,23 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WallpageType extends AbstractType
+class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('topic', TextType::class, [
+                'label' => 'Temat',
                 'attr' => [
-                    'placeholder' => 'Temat',
-                    'class' => 'custom_class'
-                    ]
-                ])
-            ->add('post', TextareaType::class,[
-                'attr' => [
-                    'placeholder' => 'Opis',
-                    'class' => 'custom_class'
+                    'placeholder' => 'O czym chcesz napisać?',
                 ]
             ])
-        ;
+            ->add('post', TextareaType::class, [
+                'label' => 'Treść',
+                'attr' => [
+                    'placeholder' => 'Wpisz treść posta',
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
