@@ -9,9 +9,10 @@
             <p>🔥 TODO 🔥</p>
             {% for post in posts %}
                 <div class="card">
-                    <div class="card-body">
-                        <header class="font-weight-bold text-left">{{ post.topic }}</header>
-                        <p class="text-left">{{ post.post }}</p>
+                    <div class="card-body text-left">
+                        <header class="font-weight-bold">{{ post.topic }}</header>
+                        <small>{{ post.author }}</small>
+                        <p>{{ post.post }}</p>
                     </div>
                 </div>
             {% endfor %}
