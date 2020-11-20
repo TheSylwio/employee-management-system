@@ -25,7 +25,7 @@ class Post
     /**
      * @ORM\Column(type="text")
      */
-    private $post;
+    private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="posts")
@@ -56,14 +56,14 @@ class Post
         return $this;
     }
 
-    public function getPost(): ?string
+    public function getContent(): ?string
     {
-        return $this->post;
+        return $this->content;
     }
 
-    public function setPost(string $post): self
+    public function setContent(string $post): self
     {
-        $this->post = $post;
+        $this->content = $post;
 
         return $this;
     }

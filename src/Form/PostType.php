@@ -20,7 +20,7 @@ class PostType extends AbstractType
                     'placeholder' => 'O czym chcesz napisać?',
                 ]
             ])
-            ->add('post', TextareaType::class, [
+            ->add('content', TextareaType::class, [
                 'label' => 'Treść',
                 'attr' => [
                     'placeholder' => 'Wpisz treść posta',
