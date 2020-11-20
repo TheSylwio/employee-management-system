@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodawanie postu{% endblock %}
+
+{% block body %}
+     {{ form_start(form) }}
+     {{ form_row(form.topic) }}
+     {{ form_row(form.content) }}
+     <button type="submit" class="btn btn-primary">Dodaj</button>
+     {{ form_end(form) }}
+
+{% endblock %}
