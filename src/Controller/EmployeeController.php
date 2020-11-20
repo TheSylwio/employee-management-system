@@ -52,7 +52,6 @@ class EmployeeController extends AbstractController
 
     /**
      * @Route("/employees/edit/{employee}", name="edit_employee")
-     * Method({"GET", "POST"})
      * @param Request $request
      * @param Employee $employee
      * @return Response
@@ -61,16 +60,18 @@ class EmployeeController extends AbstractController
     {
         $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             $this->addFlash('success', 'Pomyślnie zmieniono dane pracownika');
+
             return $this->redirectToRoute('employees');
         }
+
         return $this->render('employees/edit.html.twig', [
-                'form' => $form->createView()
-            ]
-        );
+            'form' => $form->createView()
+        ]);
     }
 
 }
