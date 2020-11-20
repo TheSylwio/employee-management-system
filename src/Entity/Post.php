@@ -33,6 +33,12 @@ class Post
      */
     private $company;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +76,18 @@ class Post
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Employee
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Employee $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
