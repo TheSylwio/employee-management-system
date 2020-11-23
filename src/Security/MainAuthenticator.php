@@ -94,6 +94,14 @@ class MainAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+        /** @var User $user */
+        $user = $token->getUser();
+        $ref = $user->getEmployee();
+
+        $session = $request->getSession();
+        $session->set('company', $ref->getCompany());
+        $session->set('employee', $ref);
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
