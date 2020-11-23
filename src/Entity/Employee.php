@@ -57,7 +57,7 @@ class Employee
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="employees")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $team;
 

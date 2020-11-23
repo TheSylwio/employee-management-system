@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,18 +29,18 @@ class IndexController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/post/add", name="post_add")
      * @param Request $request
+     * @param Helper $helper
      * @return Response
      */
-    public function addPost(Request $request)
+    public function addPost(Request $request, Helper $helper)
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $employee = $this->getUser()->getEmployee();
-            $post->setCompany($employee->getCompany()); //FIXME: Use helper
-            $post->setAuthor($employee);
+            $post->setCompany($helper->getCompany());
+            $post->setAuthor($helper->getEmployee());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);

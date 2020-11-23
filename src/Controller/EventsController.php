@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,16 +28,17 @@ class EventsController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/events/add", name="events_add")
      * @param Request $request
+     * @param Helper $helper
      * @return Response
      */
-    public function add(Request $request)
+    public function add(Request $request, Helper $helper)
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setCompany($this->getUser()->getEmployee()->getCompany()); // FIXME: Use helper
+            $event->setCompany($helper->getCompany());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);

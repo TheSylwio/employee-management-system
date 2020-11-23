@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employee;
 use App\Form\EmployeeType;
+use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,16 +30,19 @@ class EmployeeController extends AbstractController
 
     /**
      * @Route("/employees/add", name="employees_add")
-     * @param $request
+     * @param Request $request
+     * @param Helper $helper
      * @return Response
      */
-    public function add(Request $request): Response
+    public function add(Request $request, Helper $helper): Response
     {
         $employee = new Employee();
         $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $employee->setCompany($helper->getCompany());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
             $em->flush();
