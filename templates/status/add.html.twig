@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodawanie statusu{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.category) }}
+    {{ form_row(form.name) }}
+    <button type="submit" class="btn btn-primary">Dodaj Status</button>
+    <a href="{{ path('status') }}" class="btn btn-secondary">Wróć do listy statusów</a>
+    {{ form_end(form) }}
+{% endblock %}
+
+
+
