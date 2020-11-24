@@ -27,7 +27,8 @@ class EmployeeType extends AbstractType
                 ]
             ])
             ->add('dateOfBirth', DateType::class, [
-                'years' => range(date('Y')-100, date('Y')-10)
+                'widget' => 'single_text',
+                'attr'=> ['class' => 'birthPicker'],
             ])
             ->add('pesel', TextType::class, [
                 'attr' => [

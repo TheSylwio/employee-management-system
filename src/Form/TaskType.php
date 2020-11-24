@@ -17,6 +17,8 @@ class TaskType extends AbstractType
             ])
             ->add('deadline', null, [
                 'label' => 'Termin realizacji',
+                'widget' => 'single_text',
+                'attr'=> ['class' => 'picker']
             ])
             ->add('description', null, [
                 'label' => 'Opis zadania',

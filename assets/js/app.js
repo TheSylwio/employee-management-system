@@ -6,6 +6,10 @@ const today = document.getElementsByName("today");
 const others = document.getElementsByName("others");
 const sevenDays = document.getElementsByName("sevenDays");
 const elements = document.getElementsByClassName("eventRow");
+require("flatpickr");
+
+
+
 
 if (firstButton) {
   firstButton.addEventListener("click", () => {
@@ -42,3 +46,9 @@ if (thirdButton) {
     }
   })
 }
+const picker = document.querySelectorAll(".picker");
+const birthPicker = document.querySelectorAll(".birthPicker");
+$(picker).flatpickr({
+  enableTime: true,
+});
+$(birthPicker).flatpickr();

@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Wydarzenia{% endblock %}
-
 {% block body %}
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -62,5 +60,4 @@
     {% if is_granted('ROLE_EMPLOYER') %}
         <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
     {% endif %}
-    <a href="{{ path('index') }}" class="btn btn-secondary">Wróć na stronę główną</a>
 {% endblock %}
