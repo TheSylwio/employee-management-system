@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Status;
 use App\Entity\Task;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,9 +23,10 @@ class TaskType extends AbstractType
             ->add('description', null, [
                 'label' => 'Opis zadania',
             ])
-            ->add('status',StatusType::class, [
-                'label'=>'Status zadania'
-                ]);
+            ->add('status', EntityType::class, [
+                'label' => 'Status zadania',
+                'class' => Status::class,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -15,17 +15,20 @@
                     <th scope="col">Kategoria</th>
                     <th scope="col">Nazwa statusu</th>
                 </tr>
-                {% for status in status %}
+                {% for st in status %}
                     <tr>
-                        <td>{{ status.category }}</td>
-                        <td>{{ status.name }}</td>
-
+                        {% if st.category == 'done' %}
+                            <td>Zrobione</td>
+                        {% elseif st.category == 'in_progress' %}
+                            <td>W realizacji</td>
+                        {% else %}
+                            <td>Niezrobione</td>
+                        {% endif %}
+                        <td>{{ st.name }}</td>
                     </tr>
                 {% endfor %}
             </table>
-            {% if is_granted('ROLE_EMPLOYER') %}
-                <a href="{{ path('status_add') }}" class="btn btn-primary">Dodaj status</a>
-            {% endif %}
+            <a href="{{ path('status_add') }}" class="btn btn-primary">Dodaj status</a>
         </div>
     </div>
 {% endblock %}

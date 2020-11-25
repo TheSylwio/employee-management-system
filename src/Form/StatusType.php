@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Status;
-use phpDocumentor\Reflection\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,15 +13,15 @@ class StatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category',ChoiceType::class,[
-                'choices'=>[
-                    'Zrobione'=>'Zrobione',
-                    'W realizacji'=>'W realizacji',
-                    'Nie zrobione'=>'Nie zrobione',
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'Zrobione' => 'done',
+                    'W realizacji' => 'in_progress',
+                    'Niezrobione' => 'not_done',
                 ],
             ])
-            ->add('name', null,[
-                'label'=>'Nazwa statusu'
+            ->add('name', null, [
+                'label' => 'Nazwa statusu'
             ]);
     }
 

@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_EMPLOYER")
+ */
 class StatusController extends AbstractController
 {
     /**
@@ -25,7 +28,6 @@ class StatusController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/status/add", name="status_add")
      * @param Request $request
      * @param Helper $helper
@@ -37,18 +39,20 @@ class StatusController extends AbstractController
         $status = new Status();
         $form = $this->createForm(StatusType::class, $status);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $status->setCompany($helper->getCompany());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($status);
             $em->flush();
-            $this->addFlash('succes', 'Pomyślnie dodano status');
+
+            $this->addFlash('success', 'Pomyślnie dodano status');
             return $this->redirectToRoute('status');
         }
+
         return $this->render('status/add.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
-
 }
