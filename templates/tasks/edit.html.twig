@@ -7,6 +7,7 @@
     {{ form_row((form.employee)) }}
     {{ form_row((form.deadline)) }}
     {{ form_row((form.description)) }}
+    {{ form_row(form.status) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
     <a href="{{ path('tasks') }}" class="btn btn-secondary">Wróć do listy zadań</a>
     {{ form_end(form) }}

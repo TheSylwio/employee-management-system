@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statusy zadań{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Nazwa statusu</th>
+                </tr>
+                {% for st in status %}
+                    <tr>
+                        {% if st.category == 'done' %}
+                            <td>Zrobione</td>
+                        {% elseif st.category == 'in_progress' %}
+                            <td>W realizacji</td>
+                        {% else %}
+                            <td>Niezrobione</td>
+                        {% endif %}
+                        <td>{{ st.name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ path('status_add') }}" class="btn btn-primary">Dodaj status</a>
+        </div>
+    </div>
+{% endblock %}
