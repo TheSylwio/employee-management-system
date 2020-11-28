@@ -13,10 +13,14 @@ class EventType extends AbstractType
     {
         $builder
             ->add('startDate', null, [
-                'label' => 'Data rozpoczęcia'
+                'label' => 'Data rozpoczęcia',
+                'widget' => 'single_text',
+                'attr'=> ['class' => 'picker']
             ])
             ->add('endDate', null, [
-                'label' => 'Data zakończenia'
+                'label' => 'Data zakończenia',
+                'widget' => 'single_text',
+                'attr'=> ['class' => 'picker']
             ])
             ->add('description', null, [
                 'label' => 'Opis'

@@ -3,6 +3,8 @@
         "@symfony/webpack-encore": "^0.30.0",
         "bootstrap": "^4.5.3",
         "core-js": "^3.0.0",
+        "flatpickr": "^4.6.6",
+        "jquery": "^3.5.1",
         "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^8.0.0",

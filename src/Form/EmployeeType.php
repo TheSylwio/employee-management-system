@@ -15,33 +15,38 @@ class EmployeeType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
+                'label' => 'Imię',
                 'attr' => [
                     'placeholder' => 'np. Jan',
-                    'class' => 'custom_class'
                 ]
             ])
             ->add('surname', TextType::class, [
+                'label' => 'Nazwisko',
                 'attr' => [
                     'placeholder' => 'np. Kowalski',
-                    'class' => 'custom_class'
                 ]
             ])
             ->add('dateOfBirth', DateType::class, [
-                'years' => range(date('Y')-100, date('Y')-10)
+                'label' => 'Data urodzenia',
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'birthPicker'
+                ],
             ])
             ->add('pesel', TextType::class, [
+                'label' => 'PESEL',
                 'attr' => [
                     'placeholder' => 'np. 012345678901',
-                    'class' => 'custom_class'
                 ]
             ])
             ->add('address', TextType::class, [
+                'label' => 'Adres zamieszkania',
                 'attr' => [
                     'placeholder' => 'np. ul. Przykładowa 15, Katowice',
-                    'class' => 'custom_class'
                 ]
             ]);
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
