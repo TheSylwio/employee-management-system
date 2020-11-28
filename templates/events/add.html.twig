@@ -3,8 +3,8 @@
 {% block title %}Dodawanie wydarzenia{% endblock %}
 
 {% block body %}
-    {{  form_start(form) }}
-    {{ form_row (form.startDate) }}
+    {{ form_start(form) }}
+    {{ form_row(form.startDate) }}
     {{ form_row(form.endDate) }}
     {{ form_row(form.description) }}
     <button type="submit" class="btn btn-dark">Dodaj</button>
