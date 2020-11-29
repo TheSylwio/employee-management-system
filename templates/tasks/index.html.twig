@@ -19,7 +19,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">kamień milowy</th>
                     {% if is_granted('ROLE_EMPLOYER') %}
-                        <th></th>
+                        <th>Edytuj</th>
                     {% endif %}
                 </tr>
                 {% for task in tasks %}

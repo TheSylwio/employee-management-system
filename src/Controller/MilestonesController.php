@@ -52,7 +52,6 @@ class MilestonesController extends AbstractController
     }
 
     /**
-     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/milestones/description/{milestone}", name="milestone_description")
      * @param Request $request
      * @param Milestones $milestone
@@ -64,9 +63,10 @@ class MilestonesController extends AbstractController
         $repo2 = $this->getDoctrine()->getRepository(Task::class);
         return $this->render('milestones/description.html.twig', [
             'milestone' => $repo->find($milestone),
-            'tasks' => $repo2->findBy(['milestone'=>$milestone]),
+            'tasks' => $repo2->findBy(['milestone' => $milestone]),
         ]);
     }
+
     /**
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/milestones/edit/{milestone}", name="milestone_edit")
@@ -76,7 +76,7 @@ class MilestonesController extends AbstractController
      */
     public function edit(Request $request, Milestones $milestone)
     {
-        $form = $this->createForm(MilestonesType::class,$milestone);
+        $form = $this->createForm(MilestonesType::class, $milestone);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

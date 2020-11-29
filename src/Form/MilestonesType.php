@@ -19,9 +19,10 @@ class MilestonesType extends AbstractType
                 'label' => 'Opis'
             ])
             ->add('realizationTime', null, [
-                'label' => 'czas realizacji'
-            ]);
-        ;
+                'label' => 'czas realizacji',
+                'widget' => 'single_text',
+                'attr' => ['class' => 'picker']
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

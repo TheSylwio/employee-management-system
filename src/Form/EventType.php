@@ -20,7 +20,7 @@ class EventType extends AbstractType
             ->add('endDate', null, [
                 'label' => 'Data zakończenia',
                 'widget' => 'single_text',
-                'attr'=> ['class' => 'picker']
+                'attr' => ['class' => 'picker']
             ])
             ->add('description', null, [
                 'label' => 'Opis'

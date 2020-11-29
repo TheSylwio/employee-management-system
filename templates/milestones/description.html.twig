@@ -4,15 +4,17 @@
 
 {% block body %}
     <table class="table table-striped">
+        <tr>
         <th scope="col">Nazwa</th>
         <th scope="col">Czas realizacji</th>
         <th scope="col">Opis</th>
         <th scope="col">Zadania</th>
-            <tr class="eventRow" name="today">
-                <td>{{ milestone.name }}</td>
-                <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
-                <td>{{ milestone.description }}</td>
-            </tr>
+        </tr>
+        <tr class="eventRow" name="today">
+            <td>{{ milestone.name }}</td>
+            <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
+            <td>{{ milestone.description }}</td>
+        </tr>
     </table>
     <h1>Zadania</h1>
     <table class="table table-striped">
@@ -20,22 +22,22 @@
         <th scope="col">Czas realizacji</th>
         {% for task in tasks %}
             {% if task.status.category =="in_progress" %}
-            <tr>
-            <td >{{ task.description }}</td>
-            <td >{{ task.deadline|date('d.m.Y') }}</td>
-            </tr>
+                <tr class="table-warning">
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.deadline|date('d.m.Y') }}</td>
+                </tr>
             {% endif %}
             {% if task.status.category=="done" %}
-                <tr>
+                <tr class="table-success">
                     <td>{{ task.description }}</td>
                     <td>{{ task.deadline|date('d.m.Y') }}</td>
                 </tr>
             {% endif %}{% if task.status.category=="not_done" %}
-                <tr>
-                    <td>{{ task.description }}</td>
-                    <td>{{ task.deadline|date('d.m.Y') }}</td>
-                </tr>
-            {% endif %}
+            <tr class="table-danger">
+                <td>{{ task.description }}</td>
+                <td>{{ task.deadline|date('d.m.Y') }}</td>
+            </tr>
+        {% endif %}
 
         {% endfor %}
     </table>
