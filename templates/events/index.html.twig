@@ -17,7 +17,7 @@
             <th scope="col">Data zakończenia wydarzenia</th>
             <th scope="col">Opis</th>
             {% if is_granted('ROLE_EMPLOYER') %}
-                <th scope="col"></th>
+                <th scope="col">Edytuj</th>
             {% endif %}
         </tr>
         {% for event in events %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kamienie Milowe{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <th scope="col">Nazwa</th>
+        <th scope="col">Czas realizacji</th>
+        <th scope="col">Opis</th>
+        <th scope="col">Zadania</th>
+            <tr class="eventRow" name="today">
+                <td>{{ milestone.name }}</td>
+                <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
+                <td>{{ milestone.description }}</td>
+            </tr>
+    </table>
+    <h1>Zadania</h1>
+    <table class="table table-striped">
+        <th scope="col">Opis</th>
+        <th scope="col">Czas realizacji</th>
+        {% for task in tasks %}
+            {% if task.status.category =="in_progress" %}
+            <tr>
+            <td >{{ task.description }}</td>
+            <td >{{ task.deadline|date('d.m.Y') }}</td>
+            </tr>
+            {% endif %}
+            {% if task.status.category=="done" %}
+                <tr>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.deadline|date('d.m.Y') }}</td>
+                </tr>
+            {% endif %}{% if task.status.category=="not_done" %}
+                <tr>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.deadline|date('d.m.Y') }}</td>
+                </tr>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+{% endblock %}
