@@ -21,7 +21,7 @@ class Helper
     /**
      * @return object|null
      */
-    public function getCompany(): ?object
+    public function getCompany(): ?Company
     {
         if (!$this->session->has('company')) return null;
 
@@ -32,7 +32,7 @@ class Helper
     /**
      * @return object|null
      */
-    public function getEmployee(): ?object
+    public function getEmployee(): ?Employee
     {
         if (!$this->session->has('employee')) return null;
 

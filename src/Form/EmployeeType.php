@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Employee;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,6 +25,15 @@ class EmployeeType extends AbstractType
                 'label' => 'Nazwisko',
                 'attr' => [
                     'placeholder' => 'np. Kowalski',
+                ]
+            ])
+            ->add('role', ChoiceType::class, [
+                'mapped' => false,
+                'label' => 'Rola',
+                'choices' => [
+                    'Pracownik' => 'ROLE_EMPLOYEE',
+                    'Asystent' => 'ROLE_ASSISTANT',
+                    'Księgowy' => 'ROLE_ACCOUNTANT'
                 ]
             ])
             ->add('dateOfBirth', DateType::class, [

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Employee;
+use App\Entity\User;
 use App\Form\EmployeeType;
 use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @IsGranted("ROLE_EMPLOYER")
@@ -32,9 +34,10 @@ class EmployeeController extends AbstractController
      * @Route("/employees/add", name="employees_add")
      * @param Request $request
      * @param Helper $helper
+     * @param UserPasswordEncoderInterface $encoder
      * @return Response
      */
-    public function add(Request $request, Helper $helper): Response
+    public function add(Request $request, Helper $helper, UserPasswordEncoderInterface $encoder): Response
     {
         $employee = new Employee();
         $form = $this->createForm(EmployeeType::class, $employee);
@@ -43,8 +46,16 @@ class EmployeeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $employee->setCompany($helper->getCompany());
 
+            $user = new User();
+            $user
+                ->setEmployee($employee)
+                ->setEmail(strtolower($form->get('firstName')->getData()) . '.' . strtolower($form->get('surname')->getData()) . '@emp.pl')
+                ->setPassword($encoder->encodePassword($user, 'admin123'))
+                ->setRoles([$form->get('role')->getData()]);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
+            $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('employees');
         }
