@@ -49,7 +49,7 @@ class EmployeeController extends AbstractController
             $user = new User();
             $user
                 ->setEmployee($employee)
-                ->setEmail(strtolower($form->get('surname')->getData()) . '@emp.pl')
+                ->setEmail(strtolower($form->get('firstName')->getData()) . '.' . strtolower($form->get('surname')->getData()) . '@emp.pl')
                 ->setPassword($encoder->encodePassword($user, 'admin123'))
                 ->setRoles([$form->get('role')->getData()]);
 
