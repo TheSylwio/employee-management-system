@@ -21,7 +21,7 @@
                 <td>{{ milestone.name }}</td>
                 <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
                 <td>{{ milestone.description }}</td>
-                <td><a href="{{ path('milestone_description', {milestone: milestone.id}) }}" class="btn btn-primary">Opis</a>
+                <td><a href="{{ path('milestone_show', {milestone: milestone.id}) }}" class="btn btn-primary">Opis</a>
                 </td>
                 {% if is_granted('ROLE_EMPLOYER') %}
                     <td>
