@@ -21,7 +21,7 @@ class TaskType extends AbstractType
             ->add('deadline', null, [
                 'label' => 'Termin realizacji',
                 'widget' => 'single_text',
-                'attr'=> ['class' => 'picker']
+                'attr' => ['class' => 'picker']
             ])
             ->add('description', null, [
                 'label' => 'Opis zadania',
@@ -30,10 +30,10 @@ class TaskType extends AbstractType
                 'label' => 'Status zadania',
                 'class' => Status::class,
             ])
-            ->add('milestone', EntityType::class,[
-                'label'=>'kamień milowy',
-                'class'=> Milestone::class,
-                ]);
+            ->add('milestone', EntityType::class, [
+                'label' => 'Kamień milowy',
+                'class' => Milestone::class,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

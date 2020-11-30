@@ -31,7 +31,7 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
                 ->setTeam($this->getReference('team_1'));
 
             $manager->persist($employee);
-            $this->addReference('employee_'.$i++.'', $employee);
+            $this->addReference('employee_' . $i++, $employee);
         }
 
         $manager->flush();

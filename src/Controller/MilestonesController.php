@@ -42,7 +42,7 @@ class MilestonesController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($milestone);
             $em->flush();
-            $this->addFlash('success', 'Pomyślnie dodano wydarzenie');
+            $this->addFlash('success', 'Pomyślnie dodano kamień milowy');
 
             return $this->redirectToRoute('milestones');
         }

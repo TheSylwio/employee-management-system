@@ -12,14 +12,14 @@ class MilestonesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Name', null, [
-                'label' => 'nazwa'
+            ->add('name', null, [
+                'label' => 'Nazwa'
             ])
             ->add('description', null, [
                 'label' => 'Opis'
             ])
             ->add('realizationTime', null, [
-                'label' => 'czas realizacji',
+                'label' => 'Czas realizacji',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'picker']
             ]);;

@@ -15,7 +15,7 @@ class EventType extends AbstractType
             ->add('startDate', null, [
                 'label' => 'Data rozpoczęcia',
                 'widget' => 'single_text',
-                'attr'=> ['class' => 'picker']
+                'attr' => ['class' => 'picker']
             ])
             ->add('endDate', null, [
                 'label' => 'Data zakończenia',

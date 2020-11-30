@@ -17,7 +17,7 @@
                     <th scope="col">Termin realizacji</th>
                     <th scope="col">Opis</th>
                     <th scope="col">Status</th>
-                    <th scope="col">kamień milowy</th>
+                    <th scope="col">Kamień milowy</th>
                     {% if is_granted('ROLE_EMPLOYER') %}
                         <th>Edytuj</th>
                     {% endif %}
@@ -29,7 +29,7 @@
                         <td>{{ task.deadline |date('d.m.Y H:i') }}</td>
                         <td>{{ task.description }}</td>
                         <td>{{ task.status }}</td>
-                        <td>{{ task.milestone.name }}</td>
+                        <td>{{ task.milestone }}</td>
                         {% if is_granted('ROLE_EMPLOYER') %}
                             <td>
                                 <a href="{{ path('task_edit', {task: task.id}) }}" class="btn btn-primary">Edytuj</a>
