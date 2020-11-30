@@ -57,11 +57,9 @@ class MilestonesController extends AbstractController
      */
     public function show(Milestone $milestone)
     {
-        $repo = $this->getDoctrine()->getRepository(Milestone::class);
-        $repo2 = $this->getDoctrine()->getRepository(Task::class);
         return $this->render('milestones/description.html.twig', [
-            'milestone' => $repo->find($milestone),
-            'tasks' => $repo2->findBy(['milestone' => $milestone]),
+            'tasks' => $milestone->getTasks(),
+            'milestone' => $milestone,
         ]);
     }
 
