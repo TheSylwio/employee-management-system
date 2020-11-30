@@ -45,7 +45,7 @@ class Task
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Milestone::class, inversedBy="task")
+     * @ORM\ManyToOne(targetEntity=Milestone::class, inversedBy="tasks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $milestone;
