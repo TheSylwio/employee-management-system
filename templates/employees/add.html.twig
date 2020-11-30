@@ -3,6 +3,7 @@
 {% block title %}Dodawanie pracownika{% endblock %}
 
 {% block body %}
+    <h1 class="my-4">Dodawanie pracownika</h1>
     {{ form_start(form) }}
     {{ form_row(form.firstName) }}
     {{ form_row(form.surname) }}
@@ -10,7 +11,7 @@
     {{ form_row(form.dateOfBirth) }}
     {{ form_row(form.pesel) }}
     {{ form_row(form.address) }}
-    <button type="submit" class="btn btn-primary">Dodaj Pracownika</button>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
     <a href="{{ path('employees') }}" class="btn btn-secondary">Wróć do listy pracowników</a>
     {{ form_end(form) }}
 {% endblock %}

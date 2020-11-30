@@ -3,10 +3,12 @@
 {% block title %}Dodawanie postu{% endblock %}
 
 {% block body %}
+     <h1 class="my-4">Dodawanie posta</h1>
      {{ form_start(form) }}
      {{ form_row(form.topic) }}
      {{ form_row(form.content) }}
      <button type="submit" class="btn btn-primary">Dodaj</button>
+     <a href="{{ path('index') }}" class="btn btn-secondary">Wróć do panelu głównego</a>
      {{ form_end(form) }}
 
 {% endblock %}
