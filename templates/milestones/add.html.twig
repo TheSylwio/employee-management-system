@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodawanie Kamienia Milowego{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.realizationTime) }}
+    <button type="submit" class="btn btn-dark">Dodaj</button>
+    <a href="{{ path('milestones') }}" class="btn btn-secondary">Wróć do listy kamieni milowych</a>
+    {{ form_end(form) }}
+{% endblock %}

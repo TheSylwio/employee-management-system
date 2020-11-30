@@ -2,35 +2,33 @@
 
 namespace App\Form;
 
-use App\Entity\Event;
+use App\Entity\Milestone;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EventType extends AbstractType
+class MilestonesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDate', null, [
-                'label' => 'Data rozpoczęcia',
-                'widget' => 'single_text',
-                'attr' => ['class' => 'picker']
-            ])
-            ->add('endDate', null, [
-                'label' => 'Data zakończenia',
-                'widget' => 'single_text',
-                'attr' => ['class' => 'picker']
+            ->add('name', null, [
+                'label' => 'Nazwa'
             ])
             ->add('description', null, [
                 'label' => 'Opis'
-            ]);
+            ])
+            ->add('realizationTime', null, [
+                'label' => 'Czas realizacji',
+                'widget' => 'single_text',
+                'attr' => ['class' => 'picker']
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Event::class,
+            'data_class' => Milestone::class,
         ]);
     }
 }

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edycja Kamienia Milowego{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.realizationTime) }}
+    {{ form_row(form.description) }}
+    <button type="submit" class="btn btn-dark">Zapisz</button>
+    {{ form_end(form) }}
+{% endblock %}

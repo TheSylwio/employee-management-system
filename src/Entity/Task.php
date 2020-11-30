@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +44,12 @@ class Task
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Milestone::class, inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $milestone;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,24 +67,24 @@ class Task
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getCreationDate(): ?DateTimeInterface
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setCreationDate(DateTimeInterface $creationDate): self
     {
         $this->creationDate = $creationDate;
 
         return $this;
     }
 
-    public function getDeadline(): ?\DateTimeInterface
+    public function getDeadline(): ?DateTimeInterface
     {
         return $this->deadline;
     }
 
-    public function setDeadline(\DateTimeInterface $deadline): self
+    public function setDeadline(DateTimeInterface $deadline): self
     {
         $this->deadline = $deadline;
 
@@ -104,6 +111,18 @@ class Task
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getMilestone(): ?Milestone
+    {
+        return $this->milestone;
+    }
+
+    public function setMilestone(?Milestone $milestone): self
+    {
+        $this->milestone = $milestone;
 
         return $this;
     }

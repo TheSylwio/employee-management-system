@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kamienie Milowe{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <table class="table table-striped">
+        <th scope="col">Nazwa</th>
+        <th scope="col">Czas realizacji</th>
+        <th scope="col">Opis</th>
+        <th>Szczegóły</th>
+        {% if is_granted('ROLE_EMPLOYER') %}
+            <th>Edytuj</th>
+        {% endif %}
+        {% for milestone in milestones %}
+            <tr class="eventRow" name="today">
+                <td>{{ milestone.name }}</td>
+                <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
+                <td>{{ milestone.description }}</td>
+                <td><a href="{{ path('milestone_show', {milestone: milestone.id}) }}" class="btn btn-primary">Opis</a>
+                </td>
+                {% if is_granted('ROLE_EMPLOYER') %}
+                    <td>
+                        <a href="{{ path('milestone_edit', {milestone: milestone.id}) }}"
+                           class="btn btn-primary">Edytuj</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <a href="{{ path('milestone_add') }}" class="btn btn-primary">Dodaj kamień milowy</a>
+    {% endif %}
+{% endblock %}

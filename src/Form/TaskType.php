@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Milestone;
 use App\Entity\Status;
 use App\Entity\Task;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -20,7 +21,7 @@ class TaskType extends AbstractType
             ->add('deadline', null, [
                 'label' => 'Termin realizacji',
                 'widget' => 'single_text',
-                'attr'=> ['class' => 'picker']
+                'attr' => ['class' => 'picker']
             ])
             ->add('description', null, [
                 'label' => 'Opis zadania',
@@ -28,6 +29,10 @@ class TaskType extends AbstractType
             ->add('status', EntityType::class, [
                 'label' => 'Status zadania',
                 'class' => Status::class,
+            ])
+            ->add('milestone', EntityType::class, [
+                'label' => 'Kamień milowy',
+                'class' => Milestone::class,
             ]);
     }
 

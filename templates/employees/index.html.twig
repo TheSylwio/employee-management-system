@@ -17,7 +17,9 @@
                     <th scope="col">PESEL</th>
                     <th scope="col">Adres</th>
                     <th scope="col">Data urodzenia</th>
-                    <th scope="col"></th>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <th scope="col">Edytuj</th>
+                    {% endif %}
                 </tr>
                 {% for employee in employees %}
                     <tr>
@@ -26,9 +28,11 @@
                         <td>{{ employee.pesel }}</td>
                         <td>{{ employee.address }}</td>
                         <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
-                        <td>
-                            <a href="{{ path('employee_edit', {employee: employee.id}) }}" class="btn btn-primary">Edytuj</a>
-                        </td>
+                        {% if is_granted('ROLE_EMPLOYER') %}
+                            <td>
+                                <a href="{{ path('employee_edit', {employee: employee.id}) }}" class="btn btn-primary">Edytuj</a>
+                            </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
