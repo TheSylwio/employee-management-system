@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Milestone;
-use App\Entity\Task;
 use App\Form\MilestonesType;
+use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,15 +28,17 @@ class MilestonesController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/milestones/add", name="milestone_add")
      * @param Request $request
+     * @param Helper $helper
      * @return Response
      */
-    public function add(Request $request)
+    public function add(Request $request, Helper $helper)
     {
         $milestone = new Milestone();
         $form = $this->createForm(MilestonesType::class, $milestone);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $milestone->setCompany($helper->getCompany());
             $em = $this->getDoctrine()->getManager();
             $em->persist($milestone);
             $em->flush();
@@ -65,7 +67,7 @@ class MilestonesController extends AbstractController
 
     /**
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/milestones/edit/{milestone}", name="milestone_edit")
+     * @Route("/milestones/{milestone}/edit", name="milestone_edit")
      * @param Request $request
      * @param Milestone $milestone
      * @return Response
