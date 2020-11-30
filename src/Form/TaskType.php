@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Milestones;
+use App\Entity\Milestone;
 use App\Entity\Status;
 use App\Entity\Task;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,7 +32,7 @@ class TaskType extends AbstractType
             ])
             ->add('milestone', EntityType::class,[
                 'label'=>'kamień milowy',
-                'class'=> Milestones::class,
+                'class'=> Milestone::class,
                 ]);
     }
 

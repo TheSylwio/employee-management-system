@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Milestones;
+use App\Entity\Milestone;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -13,7 +13,7 @@ class MilestoneFixtures extends Fixture
     {
         $i=1;
         foreach ($this->getMilestoneData() as [$Name, $description,$realizationTime]) {
-            $milestone =new Milestones();
+            $milestone =new Milestone();
             $milestone
                 ->setName($Name)
                 ->setDescription($description)

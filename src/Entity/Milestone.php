@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\MilestonesRepository;
+use App\Repository\MilestoneRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=MilestonesRepository::class)
+ * @ORM\Entity(repositoryClass=MilestoneRepository::class)
  */
-class Milestones
+class Milestone
 {
     /**
      * @ORM\Id
@@ -23,7 +23,7 @@ class Milestones
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -38,11 +38,11 @@ class Milestones
     /**
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="milestone")
      */
-    private $taskid;
+    private $tasks;
 
     public function __construct()
     {
-        $this->taskid = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,12 +52,12 @@ class Milestones
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
@@ -89,34 +89,34 @@ class Milestones
     /**
      * @return Collection|task[]
      */
-    public function getTaskid(): Collection
+    public function getTasks(): Collection
     {
-        return $this->taskid;
+        return $this->tasks;
     }
 
-    public function addTaskid(task $taskid): self
+    public function addTask(task $task): self
     {
-        if (!$this->taskid->contains($taskid)) {
-            $this->taskid[] = $taskid;
-            $taskid->setMilestone($this);
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setMilestone($this);
         }
 
         return $this;
     }
 
-    public function removeTaskid(task $taskid): self
+    public function removeTask(task $task): self
     {
-        if ($this->taskid->removeElement($taskid)) {
+        if ($this->tasks->removeElement($task)) {
             // set the owning side to null (unless already changed)
-            if ($taskid->getMilestone() === $this) {
-                $taskid->setMilestone(null);
+            if ($task->getMilestone() === $this) {
+                $task->setMilestone(null);
             }
         }
 
         return $this;
     }
-    public function __toString(){
-        return $this->Name .'';
-    }
 
+    public function __toString(){
+        return $this->name;
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Milestones;
+use App\Entity\Milestone;
 use App\Entity\Task;
 use App\Form\MilestonesType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -18,7 +18,7 @@ class MilestonesController extends AbstractController
      */
     public function index(): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Milestones::class);
+        $repo = $this->getDoctrine()->getRepository(Milestone::class);
         return $this->render('milestones/index.html.twig', [
             'milestones' => $repo->findAll(),
         ]);
@@ -32,12 +32,11 @@ class MilestonesController extends AbstractController
      */
     public function add(Request $request)
     {
-        $milestone = new Milestones();
+        $milestone = new Milestone();
         $form = $this->createForm(MilestonesType::class, $milestone);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($milestone);
             $em->flush();
@@ -52,14 +51,13 @@ class MilestonesController extends AbstractController
     }
 
     /**
-     * @Route("/milestones/description/{milestone}", name="milestone_description")
-     * @param Request $request
-     * @param Milestones $milestone
+     * @Route("/milestones/{milestone}", name="milestone_show")
+     * @param Milestone $milestone
      * @return Response
      */
-    public function show(Request $request, Milestones $milestone)
+    public function show(Milestone $milestone)
     {
-        $repo = $this->getDoctrine()->getRepository(Milestones::class);
+        $repo = $this->getDoctrine()->getRepository(Milestone::class);
         $repo2 = $this->getDoctrine()->getRepository(Task::class);
         return $this->render('milestones/description.html.twig', [
             'milestone' => $repo->find($milestone),
@@ -71,10 +69,10 @@ class MilestonesController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/milestones/edit/{milestone}", name="milestone_edit")
      * @param Request $request
-     * @param Milestones $milestone
+     * @param Milestone $milestone
      * @return Response
      */
-    public function edit(Request $request, Milestones $milestone)
+    public function edit(Request $request, Milestone $milestone)
     {
         $form = $this->createForm(MilestonesType::class, $milestone);
         $form->handleRequest($request);

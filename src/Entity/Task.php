@@ -45,7 +45,7 @@ class Task
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Milestones::class, inversedBy="taskid")
+     * @ORM\ManyToOne(targetEntity=Milestone::class, inversedBy="task")
      * @ORM\JoinColumn(nullable=false)
      */
     private $milestone;
@@ -115,12 +115,12 @@ class Task
         return $this;
     }
 
-    public function getMilestone(): ?Milestones
+    public function getMilestone(): ?Milestone
     {
         return $this->milestone;
     }
 
-    public function setMilestone(?Milestones $milestone): self
+    public function setMilestone(?Milestone $milestone): self
     {
         $this->milestone = $milestone;
 

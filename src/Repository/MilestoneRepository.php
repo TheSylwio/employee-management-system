@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Milestones;
+use App\Entity\Milestone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Milestones|null find($id, $lockMode = null, $lockVersion = null)
- * @method Milestones|null findOneBy(array $criteria, array $orderBy = null)
- * @method Milestones[]    findAll()
- * @method Milestones[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Milestone|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Milestone|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Milestone[]    findAll()
+ * @method Milestone[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MilestonesRepository extends ServiceEntityRepository
+class MilestoneRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Milestones::class);
+        parent::__construct($registry, Milestone::class);
     }
 
     // /**
-    //  * @return Milestones[] Returns an array of Milestones objects
+    //  * @return Milestone[] Returns an array of Milestone objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MilestonesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Milestones
+    public function findOneBySomeField($value): ?Milestone
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
