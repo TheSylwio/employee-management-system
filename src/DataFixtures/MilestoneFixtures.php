@@ -17,6 +17,7 @@ class MilestoneFixtures extends Fixture
             $milestone
                 ->setName($Name)
                 ->setDescription($description)
+                ->setCompany($this->getReference('company_1'))
                 ->setRealizationTime($realizationTime);
             $manager->persist($milestone);
             $this->addReference('milestone_'.$i++.'', $milestone);

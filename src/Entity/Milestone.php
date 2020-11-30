@@ -40,6 +40,12 @@ class Milestone
      */
     private $tasks;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="milestones")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -118,5 +124,17 @@ class Milestone
 
     public function __toString(){
         return $this->name;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
     }
 }
