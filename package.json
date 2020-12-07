@@ -19,5 +19,7 @@
         "build": "encore production --progress",
         "server": "symfony serve"
     },
-    "dependencies": {}
+    "dependencies": {
+        "jquerry": "^2.0.0"
+    }
 }

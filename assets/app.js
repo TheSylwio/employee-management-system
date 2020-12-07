@@ -9,6 +9,9 @@
 import './styles/app.scss';
 import './js/flatpickr.js';
 import './js/toggleEvents.js';
+import './styles/sidebar.css';
+import './js/slidebar.js';
+
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
