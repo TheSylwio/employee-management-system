@@ -3,34 +3,34 @@
     <nav id="sidebar">
         <div class="sidebar-header">
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-            <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('app_logout') }}">Wyloguj</a>
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
         {% else %}
-            <a class="btn btn-outline-primary my-2 my-sm-0 ml-auto" href="{{ path('app_login') }}">Zaloguj</a>
+            <a class="btn btn-outline-primary my-2 my-sm-0 ml-auto" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i> Zaloguj</a>
             {% endif %}
         </div>
         <ul class="lisst-unstyled components">
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                        <a href="{{ path('events') }}" class="nav-link">Wydarzenia</a>
+                        <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('events') }}" class="nav-link"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
                     </li>
                     {% if is_granted("ROLE_EMPLOYER") %}
                         <li class="nav-item">
-                            <a href="{{ path('employees') }}" class="nav-link">Pracownicy</a>
+                            <a href="{{ path('employees') }}" class="nav-link"><i class="fas fa-user-friends"></i> Pracownicy</a>
                         </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a href="{{ path('tasks') }}" class="nav-link">Zadania</a>
+                        <a href="{{ path('tasks') }}" class="nav-link"><i class="fas fa-tasks"></i> Zadania</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('milestones') }}" class="nav-link">Kamienie Milowe</a>
+                        <a href="{{ path('milestones') }}" class="nav-link"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
                     </li>
                 </ul>
+            {% endif %}
         </ul>
     </nav>
-    <div id="content">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>M</span>
-        </button>
-    </div>
+
 </div>

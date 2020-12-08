@@ -17,7 +17,7 @@ a:focus{
 #sidebar{
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #171920;
     color: #fff;
     transition: all 0.3s;
 }
@@ -25,11 +25,10 @@ a:focus{
 
 #sidebar .sidebar-header{
     padding: 20px;
-    background: #6d7fcc;
+    background:#171920;
 }
 #sidebar ul.components{
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul p{
@@ -39,13 +38,13 @@ a:focus{
 
 #sidebar ul li a{
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 14px;
     display: block;
 }
 
 #sidebar ul li a:hover{
-    color: #7386D5;
-    background: #fff;
+    color: #111318;
+    background: #FFFFFF;
 }
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
@@ -55,6 +54,7 @@ a[aria-expanded="true"] {
 
 a[data-toggle="collapse"]{
     position: relative;
+    height: 20px;
 }
 
 .dropdown-toggle::after{
@@ -65,9 +65,11 @@ a[data-toggle="collapse"]{
     transform: translateY(-50%);
 }
 ul ul a{
-    font-size: 0.9em !important;
+    font-size: 16px !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #111318;
+    border-bottom: 1px solid #535867;
+    border-top: 1px solid #535867;
 }
 
 #content{
@@ -79,8 +81,14 @@ ul ul a{
     display: flex;
 }
 #menu{
-    padding-top: 20px;
-    border:1px;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+#sidebarCollapse {
+    margin-top: 10px;
+    margin-left: -20px;
+    width: auto;
+    height: 40px;
 }

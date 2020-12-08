@@ -11,6 +11,10 @@
     <div id="container">
     {{ include('layouts/slidebar.html.twig') }}
     <div id="menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-dark">
+            <i class="fas fa-bars"></i>
+            <span></span>
+        </button>
         {% block body %}{% endblock %}
     </div>
     </div>
