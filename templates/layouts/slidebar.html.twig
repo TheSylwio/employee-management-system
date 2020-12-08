@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            Menu
+        </div>
+        <ul class="lisst-unstyled components">
+            <li>
+                <a href="#">Base</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="content">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+        </button>
+    </div>
+    <div class="container">
+        {{ include('layouts/navbar.html.twig') }}
+    </div>
+    {{ encore_entry_script_tags('app') }}
+</div>
