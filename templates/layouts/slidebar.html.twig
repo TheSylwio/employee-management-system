@@ -1,22 +1,36 @@
 <div class="wrapper">
+    {{ encore_entry_script_tags('app') }}
     <nav id="sidebar">
         <div class="sidebar-header">
-            Menu
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="{{ path('app_logout') }}">Wyloguj</a>
+        {% else %}
+            <a class="btn btn-outline-primary my-2 my-sm-0 ml-auto" href="{{ path('app_login') }}">Zaloguj</a>
+            {% endif %}
         </div>
         <ul class="lisst-unstyled components">
-            <li>
-                <a href="#">Base</a>
-            </li>
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('events') }}" class="nav-link">Wydarzenia</a>
+                    </li>
+                    {% if is_granted("ROLE_EMPLOYER") %}
+                        <li class="nav-item">
+                            <a href="{{ path('employees') }}" class="nav-link">Pracownicy</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a href="{{ path('tasks') }}" class="nav-link">Zadania</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('milestones') }}" class="nav-link">Kamienie Milowe</a>
+                    </li>
+                </ul>
         </ul>
     </nav>
     <div id="content">
         <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
+            <span>M</span>
         </button>
     </div>
-    <div class="container">
-        {{ include('layouts/navbar.html.twig') }}
-    </div>
-    {{ encore_entry_script_tags('app') }}
 </div>

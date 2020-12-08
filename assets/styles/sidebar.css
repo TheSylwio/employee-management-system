@@ -5,11 +5,6 @@ a:focus{
     text-decoration: none;
     transition: all 0.3s;
 }
-
-/* Side Bar*/
-
-
-
 #sidebar.active {
     margin-left: -250px;
 }
@@ -76,21 +71,16 @@ ul ul a{
 }
 
 #content{
-    width: 100%;
-    padding: 20px;
+    padding-top: 10px;
     min-height: 100vh;
     transition: all 0.3s;
 }
-
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
+#container{
+    display: flex;
+}
+#menu{
+    padding-top: 20px;
+    border:1px;
+    width: 80%;
+    height: 80%;
 }
