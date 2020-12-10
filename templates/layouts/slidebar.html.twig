@@ -6,67 +6,70 @@
         </div>
         <ul class="lisst-unstyled components">
             {% if is_granted("IS_AUTHENTICATED_FULLY") and  is_granted("ROLE_EMPLOYER") %}
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                    <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
+                    <div class="dropdown-content">
+                        <a href="{{ path('events') }}">Lista Wydarzeń</a>
+                        <a href="{{ path('events_add') }}">Dodaj Wydarzenie</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user-friends"></i> Pracownicy</a>
+                    <div class="dropdown-content">
+                        <a href="{{ path('employees') }}">Lista Pracowników</a>
+                        <a href="{{ path('employees_add') }}">Dodaj Pracownika</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-tasks"></i> Zadania</a>
+                    <div class="dropdown-content">
+                        <a href="{{ path('tasks') }}">Lista Zadań</a>
+                        <a href="{{ path('tasks_add') }}">Dodaj Zadanie</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
+                    <div class="dropdown-content">
+                        <a href="{{ path('milestones') }}">Lista Kamieni milowych</a>
+                        <a href="{{ path('milestone_add') }}">Dodaj Kamień milowy</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="btn-danger" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>
+                        Wyloguj</a>
+                </li>
+                {% endif %}
+                {% if is_granted("IS_ANONYMOUS") %}
+                    <li class="nav-item">
+                        <a class="btn-success" href="{{ path('app_login') }}"><i class="fas fa-sign-out-alt"></i>
+                            Zaloguj</a>
+                    </li>
+                {% endif %}
+                {% if is_granted("IS_AUTHENTICATED_FULLY") and  is_granted("ROLE_EMPLOYEE") %}
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
                         <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
-                        <div class="dropdown-content">
-                            <a href="{{ path('events') }}">Lista Wydarzeń</a>
-                            <a href="{{path('events_add')}}">Dodaj Wydarzenie</a>
-                        </div>
+                    <li>
+                        <a href="{{ path('events') }}"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
                     </li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user-friends"></i> Pracownicy</a>
-                            <div class="dropdown-content">
-                                <a href="{{ path('employees') }}">Lista Pracowników</a>
-                                <a href="{{path('employees_add')}}">Dodaj Pracownika</a>
-                            </div>
-                        </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-tasks"></i> Zadania</a>
-                        <div class="dropdown-content">
-                            <a href="{{ path('tasks') }}">Lista Zadań</a>
-                            <a href="{{path('tasks_add')}}">Dodaj Zadanie</a>
-                        </div>
+                    <li>
+                        <a href="{{ path('tasks') }}"><i class="fas fa-tasks"></i> Zadania</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
-                        <div class="dropdown-content">
-                            <a href="{{ path('milestones') }}">Lista Kamieni milowych</a>
-                            <a href="{{path('milestone_add')}}">Dodaj Kamień milowy</a>
-                        </div>
+                    <li>
+                        <a href="{{ path('milestones') }}"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn-danger"  href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+                        <a class="btn-danger" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>
+                            Wyloguj</a>
                     </li>
                     {% endif %}
-                    {% if is_granted("IS_ANONYMOUS") %}
-                        <li class="nav-item">
-                            <a class="btn-success"  href="{{ path('app_login') }}"><i class="fas fa-sign-out-alt"></i> Zaloguj</a>
-                        </li>
-                    {% endif %}
-                    {% if is_granted("IS_AUTHENTICATED_FULLY") and  is_granted("ROLE_EMPLOYEE") %}
-                    <ul class="navbar-nav m-auto">
-                        <li class="nav-item">
-                            <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
-                        </li>
-                        <li>
-                                <a href="{{ path('events') }}"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
-                        </li>
-                        <li>
-                                <a href="{{ path('tasks') }}"><i class="fas fa-tasks"></i> Zadania</a>
-                        </li>
-                        <li>
-                                <a href="{{ path('milestones') }}"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn-danger"  href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
-                        </li>
-                        {% endif %}
-                    </ul>
                 </ul>
+            </ul>
         </ul>
     </nav>
 
