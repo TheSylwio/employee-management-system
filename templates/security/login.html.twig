@@ -24,7 +24,7 @@
                                    class="form-control" required>
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <input type="hidden" name="recaptchaResponse" id="recaptcha_response"/>
+                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse"/>
                         <button class="btn btn-lg btn-block btn-primary g-recaptcha" type="submit"
                                 data-callback='onSubmit' data-action='submit'
                                 data-sitekey="{{ recaptcha_key }}">Zaloguj
