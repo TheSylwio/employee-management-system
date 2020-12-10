@@ -7,7 +7,7 @@
         <div class="col-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" id="loginForm">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
@@ -24,11 +24,25 @@
                                    class="form-control" required>
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <button class="btn btn-lg btn-block btn-primary" type="submit">Zaloguj</button>
+                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse"/>
+                        <button class="btn btn-lg btn-block btn-primary g-recaptcha" type="submit"
+                                data-callback='onSubmit' data-action='submit'
+                                data-sitekey="{{ recaptcha_key }}">Zaloguj
+                        </button>
                         <a href="{{ path('index') }}" class="btn btn-block btn-link" type="submit">Wróć</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+      function onSubmit(token) {
+        document.querySelector("#recaptchaResponse").value = token;
+        document.querySelector("#loginForm").submit();
+      }
+    </script>
 {% endblock %}

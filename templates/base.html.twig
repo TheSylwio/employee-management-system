@@ -5,6 +5,7 @@
         <link rel="icon" href="{{ asset('favicon.ico') }}">
         <title>{% block title %}{% endblock %}</title>
         {{ encore_entry_link_tags('app') }}
+        {% block scripts %}{% endblock %}
     </head>
     <body>
         <div class="container">
