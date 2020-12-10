@@ -5,7 +5,7 @@
             <h1>EMS</h1>
         </div>
         <ul class="lisst-unstyled components">
-            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            {% if is_granted("IS_AUTHENTICATED_FULLY") and  is_granted("ROLE_EMPLOYER") %}
                 <ul class="navbar-nav m-auto">
                     <li class="nav-item">
                         <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
@@ -47,6 +47,25 @@
                             <a class="btn-success"  href="{{ path('app_login') }}"><i class="fas fa-sign-out-alt"></i> Zaloguj</a>
                         </li>
                     {% endif %}
+                    {% if is_granted("IS_AUTHENTICATED_FULLY") and  is_granted("ROLE_EMPLOYEE") %}
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a href="{{ path('index') }}" class="nav-link"><i class="fas fa-home"></i> Strona Główna</a>
+                        </li>
+                        <li>
+                                <a href="{{ path('events') }}"><i class="fas fa-calendar-week"></i> Wydarzenia</a>
+                        </li>
+                        <li>
+                                <a href="{{ path('tasks') }}"><i class="fas fa-tasks"></i> Zadania</a>
+                        </li>
+                        <li>
+                                <a href="{{ path('milestones') }}"><i class="fas fa-mountain"></i> Kamienie Milowe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn-danger"  href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </ul>
         </ul>
     </nav>

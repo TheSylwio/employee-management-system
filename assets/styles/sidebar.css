@@ -22,19 +22,10 @@ a:focus{
     transition: all 0.3s;
 }
 
-
-#sidebar .sidebar-header{
-    padding: 20px;
-    background:#1A1C23;
-}
 #sidebar ul.components{
     padding: 20px 0;
 }
 
-#sidebar ul p{
-    color: #fff;
-    padding: 10px;
-}
 
 #sidebar ul li a{
     padding: 15px;
@@ -52,8 +43,8 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 ul ul a{
-    font-size: 16px !important;
-    padding-left: 30px !important;
+    font-size: 16px;
+    padding-left: 30px;
     background: #0f1115;
     border-bottom: 1px solid #535867;
     border-top: 1px solid #535867;
@@ -62,12 +53,7 @@ ul ul a{
 #container{
     display: flex;
 }
-#menu{
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-}
+
 #sidebarCollapse {
     margin-top: 10px;
     margin-left: -20px;
@@ -75,13 +61,6 @@ ul ul a{
     height: 40px;
 }
 
-li a, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: left;
-    padding: 14px 16px;
-    text-decoration: none;
-}
 
 li.dropdown {
     display: inline-block;
