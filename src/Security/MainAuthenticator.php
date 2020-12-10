@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use ReCaptcha\ReCaptcha;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -51,6 +52,8 @@ class MainAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
             'email' => $request->request->get('email'),
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
+            'recaptcha_response' => $request->request->get('recaptcha_response'),
+            'remote_ip' => $request->getClientIp(),
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
@@ -63,15 +66,24 @@ class MainAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+        $recaptcha = new ReCaptcha($_ENV['RECAPTCHA_PRIVATE_KEY']);
+
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
+        }
+
+        $response = $recaptcha
+            ->setExpectedHostname('127.0.0.1')
+            ->verify($credentials['recaptcha_response'], $credentials['remote_ip']);
+
+        if (!$response->isSuccess()) {
+            throw new CustomUserMessageAuthenticationException('Wystąpił błąd. Spróbuj zalogować się ponownie.');
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
-            // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Nie znaleziono użytkownika o podanym adresie email');
         }
 
         return $user;
