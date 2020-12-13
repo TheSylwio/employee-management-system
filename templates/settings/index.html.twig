@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel ustawień użytkownika{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <h1 class="my-4">Panel ustawień</h1>
+        <a class="btn btn-primary" href="{{ path('settings_email') }}">Zmień email</a>
+        <a class="btn btn-primary" href="{{ path('settings_password') }}">Zmień hasło</a>
+    {% else %}
+        <a class="btn btn-outline-primary my-2 my-sm-0 ml-auto" href="{{ path('app_login') }}">Zaloguj</a>
+    {% endif %}
+{% endblock %}
