@@ -6,10 +6,6 @@ a:focus {
     transition: all 0.3s;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-}
-
 .wrapper {
     display: flex;
     text-decoration: none;
@@ -17,39 +13,39 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: #1A1C23;
-    color: #fff;
-    transition: all 0.3s;
+    min-width: 30vh;
+    max-width: 30vh;
+    background: #731522;
+    color: #F1F0CC;
 }
 
 
 #sidebar .sidebar-header {
-    padding: 10px;
+    padding-top: 10px;
+    text-align: center;
 }
 
+
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 20px;
 }
 
 #sidebar ul li a {
-    padding: 15px;
+    margin: 5px;
+    padding: 10px;
     font-size: 14px;
     display: block;
 }
 
 #sidebar ul li a:hover {
-    color: #0f1115;
-    background: #FFFFFF;
+    color: #731522;
+    background: #F1F0CC;
 }
 
 ul ul a {
-    font-size: 16px !important;
+    font-size: 15px !important;
     padding-left: 30px !important;
-    background: #0f1115;
-    border-bottom: 1px solid #535867;
-    border-top: 1px solid #535867;
+    border-radius: 5px;
 }
 
 #container {
@@ -63,12 +59,6 @@ ul ul a {
     transition: all 0.3s;
 }
 
-#sidebarCollapse {
-    margin-left: -20px;
-    width: auto;
-    height: 40px;
-
-}
 
 li.dropdown {
     display: inline-block;
@@ -80,22 +70,37 @@ li.dropdown {
 }
 
 .dropdown-content a {
-    color: #FFFFFF;
-    background: #1A1C23;
-    padding: 12px 16px;
+    color: #F1F0CC;
+    background: #8D192A;
     text-decoration: none;
     display: block;
-    text-align: center;
-}
-
-li .btn-danger {
-    border: none;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #F1F0CC;
+    color: #8D192A;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown.active .dropdown-content {
     display: block;
+}
+
+.dropdown .arrow {
+    float: right;
+    padding-top: 3px;
+}
+
+hr {
+    border: 1px solid #8D192A;
+}
+
+#sidebar ul li a.btn-log_in {
+    color: #731522;
+    background: #F1F0CC;
+}
+
+#sidebar ul li a.btn-log_in:hover {
+    color: #F1F0CC;
+    background: #731522;
+    border: 1px solid #F1F0CC;
 }
