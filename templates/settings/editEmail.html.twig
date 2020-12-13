@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SettingsController!{% endblock %}
+
+{% block body %}
+    <h1 class="my-4">Edycja emaila</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a href="{{ path('settings') }}" class="btn btn-secondary">Wróć do ustawień</a>
+    {{ form_end(form) }}
+{% endblock %}
