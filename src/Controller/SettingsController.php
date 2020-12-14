@@ -40,7 +40,8 @@ class SettingsController extends AbstractController
             $this->addFlash('success', 'Pomyślnie zaktualizowano email');
             return $this->redirectToRoute('settings');
         }
-        return $this->render('settings/editEmail.html.twig', [
+
+        return $this->render('settings/change_email.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -84,7 +85,8 @@ class SettingsController extends AbstractController
                 return $this->redirectToRoute('index');
             }
         }
-        return $this->render('settings/editPassword.html.twig', [
+
+        return $this->render('settings/change_password.html.twig', [
             'form' => $form->createView(),
         ]);
     }
