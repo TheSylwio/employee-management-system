@@ -16,7 +16,7 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Post::class);
 
@@ -32,7 +32,7 @@ class IndexController extends AbstractController
      * @param Helper $helper
      * @return Response
      */
-    public function addPost(Request $request, Helper $helper)
+    public function addPost(Request $request, Helper $helper): Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
