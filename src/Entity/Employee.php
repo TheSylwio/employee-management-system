@@ -6,6 +6,7 @@ use App\Repository\EmployeeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EmployeeRepository::class)
@@ -26,16 +27,20 @@ class Employee
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *
      */
     private $surname;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
      */
     private $dateOfBirth;
 
     /**
      * @ORM\Column(type="string", length=11)
+     * @Assert\Regex("/^\d{11}$/",message="Niepoprawny numer pesel")
      */
     private $pesel;
 
@@ -167,7 +172,8 @@ class Employee
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->firstName . ' ' . $this->surname;
     }
 

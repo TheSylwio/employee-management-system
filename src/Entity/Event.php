@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -25,6 +26,13 @@ class Event
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank(
+     *     message="Wpisz termin zakończenia wydarzenia"
+     * )
+     * @Assert\Expression(
+     *     "this.getEndDate()>=this.getStartDate()",
+     *     message="Podaj poprawną datę zakończenia wydarzenia"
+     * )
      */
     private $endDate;
 
