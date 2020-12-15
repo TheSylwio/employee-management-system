@@ -1,6 +1,7 @@
 $(document).ready(function (){
-    $("#sidebarCollapse").on('click',function (){
-        $("#sidebar").toggleClass('active')
+    $(".dropdown").on('click',function (){
+        console.log("JD");
+        $(this).toggleClass('active')
         $(this).find($(".fas")).toggleClass('fa-arrow-down').toggleClass('fa-arrow-up')
     })
 })
