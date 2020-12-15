@@ -7,10 +7,8 @@
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import './styles/app.scss';
-import './js/flatpickr.js';
-import './js/toggleEvents.js';
-import './styles/sidebar.css';
-import './js/slidebar.js';
+import './js/toggleEvents';
+import './js/slidebar';
 
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
