@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TaskRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TaskRepository::class)
@@ -36,6 +37,7 @@ class Task
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Wpisz opis zadania")
      */
     private $description;
 
@@ -126,4 +128,13 @@ class Task
 
         return $this;
     }
+
+    /**
+     * @Assert\IsTrue(message="Wpisz poprawny termin realizacji")
+     */
+    public function isDeadlineValid(){
+        return $this->deadline>$time=new \DateTime('now');
+    }
+
+
 }

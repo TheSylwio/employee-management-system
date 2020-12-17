@@ -7,6 +7,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MilestoneRepository::class)
@@ -22,11 +23,13 @@ class Milestone
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Wpisz nazwe kamienia milowego")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Wpisz opis kamienia milowego")
      */
     private $description;
 
@@ -90,6 +93,15 @@ class Milestone
         $this->realizationTime = $realizationTime;
 
         return $this;
+    }
+
+
+    /**
+     * @Assert\IsTrue(message="Podaj poprawny termin realizacji")
+     */
+
+    public function isRealizationTimeValid(){
+        return $this->realizationTime>=$time=new \DateTime('now');
     }
 
     /**
