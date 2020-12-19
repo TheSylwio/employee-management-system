@@ -55,7 +55,7 @@ $tertiaryColor: #1a2b81;
       .dropdown {
         display: inline-block;
 
-        &ó.active {
+        &.active {
           .dropdown__content {
             display: block;
           }
