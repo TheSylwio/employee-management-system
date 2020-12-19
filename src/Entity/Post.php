@@ -26,7 +26,7 @@ class Post
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Wpisz opis posta")
+     * @Assert\NotBlank(message="Wpisz zawartość posta")
      */
     private $content;
 

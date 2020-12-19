@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MilestoneRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,7 +24,7 @@ class Milestone
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="Wpisz nazwe kamienia milowego")
+     * @Assert\NotBlank(message="Wpisz nazwę kamienia milowego")
      */
     private $name;
 
@@ -95,24 +96,24 @@ class Milestone
         return $this;
     }
 
-
     /**
      * @Assert\IsTrue(message="Podaj poprawny termin realizacji")
      */
 
-    public function isRealizationTimeValid(){
-        return $this->realizationTime>=$time=new \DateTime('now');
+    public function isRealizationTimeValid(): bool
+    {
+        return $this->realizationTime >= new DateTime('now');
     }
 
     /**
-     * @return Collection|task[]
+     * @return Collection|Task[]
      */
     public function getTasks(): Collection
     {
         return $this->tasks;
     }
 
-    public function addTask(task $task): self
+    public function addTask(Task $task): self
     {
         if (!$this->tasks->contains($task)) {
             $this->tasks[] = $task;
@@ -122,7 +123,7 @@ class Milestone
         return $this;
     }
 
-    public function removeTask(task $task): self
+    public function removeTask(Task $task): self
     {
         if ($this->tasks->removeElement($task)) {
             // set the owning side to null (unless already changed)
@@ -134,7 +135,8 @@ class Milestone
         return $this;
     }
 
-    public function __toString(){
+    public function __toString(): string
+    {
         return $this->name;
     }
 

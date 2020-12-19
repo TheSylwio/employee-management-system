@@ -38,7 +38,7 @@ class Status
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Wpisz nazwe statusu")
+     * @Assert\NotBlank(message="Wpisz nazwę statusu")
      */
     private $name;
 
@@ -93,6 +93,7 @@ class Status
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->name;

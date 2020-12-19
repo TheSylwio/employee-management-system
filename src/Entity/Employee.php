@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,7 +42,7 @@ class Employee
     /**
      * @ORM\Column(type="string", length=11)
      * @Assert\NotBlank(message="Wpisz pesel pracownika")
-     * @Assert\Regex("/^\d{11}$/",message="Wpisz poprawny numer pesel")
+     * @Assert\Regex("/^\d{11}$/",message="Wpisz poprawny numer PESEL")
      */
     private $pesel;
 
@@ -106,12 +108,12 @@ class Employee
         return $this;
     }
 
-    public function getDateOfBirth(): ?\DateTimeInterface
+    public function getDateOfBirth(): ?DateTimeInterface
     {
         return $this->dateOfBirth;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
+    public function setDateOfBirth(DateTimeInterface $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 
@@ -145,9 +147,9 @@ class Employee
     /**
      * @Assert\IsTrue(message="Podaj poprawną datę urodzin")
      */
-
-    public function isDateOfBirthValid(){
-        return $this->dateOfBirth<$time=new \DateTime('now');
+    public function isDateOfBirthValid(): bool
+    {
+        return $this->dateOfBirth < new DateTime('now');
     }
 
     /**
@@ -180,7 +182,8 @@ class Employee
         return $this;
     }
 
-    public function __toString() {
+    public function __toString(): string
+    {
         return $this->firstName . ' ' . $this->surname;
     }
 
