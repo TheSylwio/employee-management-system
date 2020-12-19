@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\MilestoneRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MilestoneRepository::class)
@@ -22,11 +24,13 @@ class Milestone
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Wpisz nazwę kamienia milowego")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Wpisz opis kamienia milowego")
      */
     private $description;
 
@@ -93,14 +97,23 @@ class Milestone
     }
 
     /**
-     * @return Collection|task[]
+     * @Assert\IsTrue(message="Podaj poprawny termin realizacji")
+     */
+
+    public function isRealizationTimeValid(): bool
+    {
+        return $this->realizationTime >= new DateTime('now');
+    }
+
+    /**
+     * @return Collection|Task[]
      */
     public function getTasks(): Collection
     {
         return $this->tasks;
     }
 
-    public function addTask(task $task): self
+    public function addTask(Task $task): self
     {
         if (!$this->tasks->contains($task)) {
             $this->tasks[] = $task;
@@ -110,7 +123,7 @@ class Milestone
         return $this;
     }
 
-    public function removeTask(task $task): self
+    public function removeTask(Task $task): self
     {
         if ($this->tasks->removeElement($task)) {
             // set the owning side to null (unless already changed)
@@ -122,7 +135,8 @@ class Milestone
         return $this;
     }
 
-    public function __toString(){
+    public function __toString(): string
+    {
         return $this->name;
     }
 

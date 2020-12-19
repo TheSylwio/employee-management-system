@@ -6,6 +6,7 @@ use App\Repository\StatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StatusRepository::class)
@@ -37,6 +38,7 @@ class Status
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Wpisz nazwę statusu")
      */
     private $name;
 
@@ -91,6 +93,7 @@ class Status
 
         return $this;
     }
+
     public function __toString()
     {
         return $this->name;
