@@ -8,9 +8,9 @@
         {% block scripts %}{% endblock %}
     </head>
     <body>
-        <div id="container">
+        <div class="custom_container">
             {{ include('layouts/sidebar.html.twig') }}
-            <div id="content">
+            <div class="content">
                 {% block body %}{% endblock %}
             </div>
             {{ encore_entry_script_tags('app') }}
