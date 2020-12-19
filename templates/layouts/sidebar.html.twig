@@ -89,6 +89,11 @@
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                     <li class="nav-item">
+                        <a class="btn-log__out sidebar__component--link" href="{{ path('settings') }}">
+                            <i class="fas fa-cog"></i> Ustawienia
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="btn-log__out sidebar__component--link" href="{{ path('app_logout') }}">
                             <i class="fas fa-sign-out-alt"></i> Wyloguj
                         </a>
