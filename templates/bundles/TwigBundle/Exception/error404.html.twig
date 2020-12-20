@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col d-flex justify-content-center flex-column">
+                <div>
+                    <h1 class="display-3 text-left text-secondary">404</h1>
+                    <h2 class="h2 text-left font-weight-bold">Nie znaleziono</h2>
+                </div>
+                <p class="text-left">
+                    Strona nie mogła zostać zlokalizowana. Upewnij się czy nazwa nie zawiera błędów.
+                </p>
+                <div>
+                    <a href="{{ path('index') }}" class="btn btn-primary">Powrót do strony głównej</a>
+                    <a href=# class="btn btn-secondary">Powrót</a>
+                </div>
+            </div>
+            <div class="col">
+                <img src="{{ asset("images/404.svg") }}" class="img-fluid" alt="404">
+            </div>
+        </div>
+    </div>
+{% endblock %}
