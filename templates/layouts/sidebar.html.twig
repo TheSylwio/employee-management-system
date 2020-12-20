@@ -2,107 +2,57 @@
     <div class="sidebar__header">
         <h1>EMS</h1>
     </div>
-    <ul class="sidebar__components">
-        {% if is_granted("ROLE_EMPLOYER") %}
-        <ul class="navbar-nav m-auto">
+    <ul class="navbar-nav m-auto sidebar__components">
+        {% if is_granted("IS_ANONYMOUS") %}
+            <li class="nav-item">
+                <a class="sidebar__component--link btn-log__in" href="{{ path('app_login') }}">
+                    <i class="fas fa-sign-in-alt"></i> Zaloguj
+                </a>
+            </li>
+        {% else %}
             <li>
                 <a href="{{ path('index') }}" class="sidebar__component--link">
                     <i class="fas fa-home"></i> Strona Główna
                 </a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="sidebar__component--link">
+            <li>
+                <a href="{{ path('events') }}" class="sidebar__component--link">
                     <i class="fas fa-calendar-week"></i> Wydarzenia
-                    <i class="fas fa-arrow-down dropdown__arrow"></i>
                 </a>
-                <div class="dropdown__content">
-                    <a class="dropdown__content--link" href="{{ path('events') }}">Lista Wydarzeń</a>
-                    <a class="dropdown__content--link" href="{{ path('events_add') }}">Dodaj Wydarzenie</a>
-                </div>
             </li>
-            <li class="dropdown">
-                <a href="#" class="sidebar__component--link">
+            <li>
+                <a href="{{ path('employees') }}" class="sidebar__component--link">
                     <i class="fas fa-user-friends"></i> Pracownicy
-                    <i class="fas fa-arrow-down dropdown__arrow"></i>
                 </a>
-                <div class="dropdown__content">
-                    <a class="dropdown__content--link" href="{{ path('employees') }}">Lista Pracowników</a>
-                    <a class="dropdown__content--link" href="{{ path('employees_add') }}">Dodaj Pracownika</a>
-                </div>
             </li>
-            <li class="dropdown">
-                <a href="#" class="sidebar__component--link">
+            <li>
+                <a href="{{ path('tasks') }}" class="sidebar__component--link">
                     <i class="fas fa-tasks"></i> Zadania
-                    <i class="fas fa-arrow-down dropdown__arrow"></i>
                 </a>
-                <div class="dropdown__content">
-                    <a class="dropdown__content--link" href="{{ path('tasks') }}">Lista Zadań</a>
-                    <a class="dropdown__content--link" href="{{ path('tasks_add') }}">Dodaj Zadanie</a>
-                </div>
             </li>
-            <li class="dropdown">
-                <a href="#" class="sidebar__component--link">
+            <li>
+                <a href="{{ path('milestones') }}" class="sidebar__component--link">
                     <i class="fas fa-mountain"></i> Kamienie Milowe
-                    <i class="fas fa-arrow-down dropdown__arrow"></i>
                 </a>
-                <div class="dropdown__content">
-                    <a class="dropdown__content--link" href="{{ path('milestones') }}">Lista Kamieni milowych</a>
-                    <a class="dropdown__content--link" href="{{ path('milestone_add') }}">Dodaj Kamień milowy</a>
-                </div>
             </li>
-
-            {% elseif is_granted("IS_ANONYMOUS") %}
-            <ul class="navbar-nav m-auto">
-                <li class="nav-item">
-                    <a class="sidebar__component--link btn-log__in" href="{{ path('app_login') }}">
-                        <i class="fas fa-sign-in-alt"></i> Zaloguj
-                    </a>
-                </li>
-            </ul>
-            {% elseif is_granted("ROLE_EMPLOYEE") %}
-            <ul class="navbar-nav m-auto">
-                <li>
-                    <a href="{{ path('index') }}" class="sidebar__component--link">
-                        <i class="fas fa-home"></i> Strona Główna
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('events') }}" class="sidebar__component--link">
-                        <i class="fas fa-calendar-week"></i> Wydarzenia
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('tasks') }}" class="sidebar__component--link">
-                        <i class="fas fa-tasks"></i> Zadania
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('milestones') }}" class="sidebar__component--link">
-                        <i class="fas fa-mountain"></i> Kamienie Milowe
-                    </a>
-                </li>
-                {% endif %}
-                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                    <li class="nav-item">
-                        <a class="btn-log__out sidebar__component--link" href="{{ path('documents') }}">
-                            <i class="fas fa-file-alt"></i> Dokumenty
-                        </a>
-                    </li>
-                    <li>
-                        <hr>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn-log__out sidebar__component--link" href="{{ path('settings') }}">
-                            <i class="fas fa-cog"></i> Ustawienia
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn-log__out sidebar__component--link" href="{{ path('app_logout') }}">
-                            <i class="fas fa-sign-out-alt"></i> Wyloguj
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </ul>
+            <li class="nav-item">
+                <a class="btn-log__out sidebar__component--link" href="{{ path('documents') }}">
+                    <i class="fas fa-file-alt"></i> Dokumenty
+                </a>
+            </li>
+            <li>
+                <hr>
+            </li>
+            <li class="nav-item">
+                <a class="btn-log__out sidebar__component--link" href="{{ path('settings') }}">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="btn-log__out sidebar__component--link" href="{{ path('app_logout') }}">
+                    <i class="fas fa-sign-out-alt"></i> Wyloguj
+                </a>
+            </li>
+        {% endif %}
     </ul>
 </nav>

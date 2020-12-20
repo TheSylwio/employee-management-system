@@ -51,42 +51,6 @@ $tertiaryColor: #1a2b81;
           background: $secondaryColor;
         }
       }
-
-      .dropdown {
-        display: inline-block;
-
-        &.active {
-          .dropdown__content {
-            display: block;
-          }
-        }
-
-        &__content {
-          display: none;
-          position: relative;
-
-          &--link {
-            color: $secondaryColor;
-            background: $tertiaryColor;
-            text-decoration: none;
-            display: block;
-            margin: 5px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-
-            &:hover {
-              background-color: $secondaryColor;
-              color: $tertiaryColor;
-            }
-          }
-        }
-
-        &__arrow {
-          float: right;
-          padding-top: 3px;
-        }
-      }
     }
   }
 }
