@@ -8,6 +8,7 @@ use App\Service\FileUploader;
 use App\Service\Helper;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +27,7 @@ class DocumentsController extends AbstractController
      */
     public function index(Request $request, FileUploader $fileUploader, Helper $helper): Response
     {
+        $employee = $helper->getEmployee();
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
@@ -35,7 +37,7 @@ class DocumentsController extends AbstractController
             $documentFileName = $fileUploader->upload($documentFile);
 
             $document->setFilename($documentFileName);
-            $document->setEmployee($helper->getEmployee());
+            $document->setEmployee($employee);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($document);
@@ -46,7 +48,18 @@ class DocumentsController extends AbstractController
         }
 
         return $this->render('documents/index.html.twig', [
+            'documents' => $employee->getDocuments(),
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/documents/{filename}", name="documents_preview")
+     * @param $filename
+     * @return BinaryFileResponse
+     */
+    public function preview($filename): BinaryFileResponse
+    {
+        return new BinaryFileResponse("./uploads/documents/" . $filename);
     }
 }
