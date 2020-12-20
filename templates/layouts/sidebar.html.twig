@@ -50,9 +50,7 @@
                     <a class="dropdown__content--link" href="{{ path('milestone_add') }}">Dodaj Kamień milowy</a>
                 </div>
             </li>
-            <li>
-                <hr>
-            </li>
+
             {% elseif is_granted("IS_ANONYMOUS") %}
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
@@ -83,11 +81,16 @@
                         <i class="fas fa-mountain"></i> Kamienie Milowe
                     </a>
                 </li>
-                <li>
-                    <hr>
-                </li>
                 {% endif %}
                 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item">
+                        <a class="btn-log__out sidebar__component--link" href="{{ path('documents') }}">
+                            <i class="fas fa-file-alt"></i> Dokumenty
+                        </a>
+                    </li>
+                    <li>
+                        <hr>
+                    </li>
                     <li class="nav-item">
                         <a class="btn-log__out sidebar__component--link" href="{{ path('settings') }}">
                             <i class="fas fa-cog"></i> Ustawienia
