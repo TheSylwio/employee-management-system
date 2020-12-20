@@ -4,9 +4,30 @@
 
 {% block body %}
     <h1>Zarządzanie dokumentami</h1>
-    {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.filename) }}
-    <button type="submit" class="btn btn-primary">Dodaj dokument</button>
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-8">
+            <h2>Lista</h2>
+            {% if documents.count == 0 %}
+                <p>Brak dokumentów</p>
+            {% else %}
+                <ul class="list-group list-group-flush">
+                    {% for document in documents %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ document.name }}</span>
+                            <a href="{{ path('documents_preview', {filename: document.filename}) }}"
+                               class="btn btn-sm btn-link">Wyświetl</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="col-4">
+            <h2>Dodawanie</h2>
+            {{ form_start(form, {attr: {autocomplete: 'off'}}) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.filename) }}
+            <button type="submit" class="btn btn-primary">Dodaj dokument</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
