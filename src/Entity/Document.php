@@ -27,6 +27,12 @@ class Document
      */
     private $filename;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="documents")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $employee;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Document
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?Employee $employee): self
+    {
+        $this->employee = $employee;
 
         return $this;
     }
