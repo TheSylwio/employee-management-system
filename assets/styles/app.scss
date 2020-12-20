@@ -3,3 +3,9 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "./sidebar.scss";
+
+.fas {
+  width: 11px !important;
+  height: 11px !important;
+  margin-right: 8pt;
+}
