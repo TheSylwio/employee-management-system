@@ -20,7 +20,7 @@ $tertiaryColor: #1a2b81;
     color: $secondaryColor;
 
     .sidebar__header {
-      padding-top: 10px;
+      padding-top: 16pt;
       text-align: center;
     }
 
@@ -50,6 +50,11 @@ $tertiaryColor: #1a2b81;
           color: $primaryColor;
           background: $secondaryColor;
         }
+      }
+
+      .link--logout:hover {
+        background: #dc3545;
+        color: $secondaryColor;
       }
     }
   }

@@ -5,51 +5,51 @@
     <ul class="navbar-nav m-auto sidebar__components">
         {% if is_granted("IS_ANONYMOUS") %}
             <li class="nav-item">
-                <a class="sidebar__component--link btn-log__in" href="{{ path('app_login') }}">
+                <a href="{{ path('app_login') }}" class="sidebar__component--link">
                     <i class="fas fa-sign-in-alt"></i> Zaloguj
                 </a>
             </li>
         {% else %}
-            <li>
+            <li class="nav-item">
                 <a href="{{ path('index') }}" class="sidebar__component--link">
                     <i class="fas fa-home"></i> Strona Główna
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a href="{{ path('events') }}" class="sidebar__component--link">
                     <i class="fas fa-calendar-week"></i> Wydarzenia
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a href="{{ path('employees') }}" class="sidebar__component--link">
                     <i class="fas fa-user-friends"></i> Pracownicy
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a href="{{ path('tasks') }}" class="sidebar__component--link">
                     <i class="fas fa-tasks"></i> Zadania
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <a href="{{ path('milestones') }}" class="sidebar__component--link">
                     <i class="fas fa-mountain"></i> Kamienie Milowe
                 </a>
             </li>
             <li class="nav-item">
-                <a class="btn-log__out sidebar__component--link" href="{{ path('documents') }}">
+                <a href="{{ path('documents') }}" class="sidebar__component--link">
                     <i class="fas fa-file-alt"></i> Dokumenty
                 </a>
             </li>
-            <li>
+            <li class="nav-item">
                 <hr>
             </li>
             <li class="nav-item">
-                <a class="btn-log__out sidebar__component--link" href="{{ path('settings') }}">
+                <a href="{{ path('settings') }}" class="sidebar__component--link">
                     <i class="fas fa-cog"></i> Ustawienia
                 </a>
             </li>
             <li class="nav-item">
-                <a class="btn-log__out sidebar__component--link" href="{{ path('app_logout') }}">
+                <a href="{{ path('app_logout') }}" class="sidebar__component--link link--logout">
                     <i class="fas fa-sign-out-alt"></i> Wyloguj
                 </a>
             </li>
