@@ -34,18 +34,29 @@
         </div>
     {% else %}
         <div style="height:1000px;overflow:auto;">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <div class="col-6">
-                        <img src="{{ asset("images/outlinelogo.svg") }}" class="img-fluid justify-content-start" alt="">
-                        <h2 class="h2 text-left">Employee Managment System</h2>
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <div class="mr-5">
+                            <h1 class="text-primary">
+                                Zaloguj się do sytemu
+                            </h1>
+
+                            <a href="{{ path('app_login') }}" class="btn btn-primary btn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Zaloguj
+                            </a>
+                        </div>
+                        <img src="{{ asset("images/welcome.svg") }}" class="" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="h2 text-left text-primary">Employee Managment System</h2>
                         <p class="text-left">
-                            EMS to system stworzony, aby dać firmom możliwość łatwego zarządzania pracownikami.
+                            EMS to narzędzie stworzone, aby dać firmom możliwość łatwego zarządzania pracownikami.
                             Oferujemy między innymi:
                         </p>
-                    </div>
-                    <div class="col-6">
-                        <img src="{{ asset("images/welcome.svg") }}" class="img-fluid" alt="welcome.svg">
                     </div>
                 </div>
                 <div class="row">
@@ -83,8 +94,4 @@
             </div>
         </div>
     {% endif %}
-
-
-
-
 {% endblock %}
