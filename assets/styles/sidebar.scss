@@ -19,7 +19,7 @@ $tertiaryColor: #1a2b81;
     background: $primaryColor;
     color: $secondaryColor;
 
-    .sidebar__header {
+    &__header {
       padding-top: 16pt;
       text-align: center;
     }
@@ -39,7 +39,7 @@ $tertiaryColor: #1a2b81;
     .sidebar__components {
       padding: 20px;
 
-      .sidebar__component--link {
+      .sidebar__link {
         margin: 5px;
         padding: 10px;
         font-size: 16px;
@@ -50,11 +50,11 @@ $tertiaryColor: #1a2b81;
           color: $primaryColor;
           background: $secondaryColor;
         }
-      }
 
-      .link--logout:hover {
-        background: #dc3545;
-        color: $secondaryColor;
+        &--logout:hover {
+          background: #dc3545;
+          color: $secondaryColor;
+        }
       }
     }
   }
