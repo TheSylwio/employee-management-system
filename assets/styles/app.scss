@@ -21,6 +21,11 @@
   color: #2f49d0 !important;
 }
 
-body {
-  overflow: hidden;
+.container--full-page {
+  height: 100vh;
+}
+
+.content {
+  width: 100%;
+  padding: 16pt;
 }

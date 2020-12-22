@@ -1,9 +1,7 @@
 {% macro sidebar(activeTab) %}
-    <nav class="sidebar">
-        <div class="sidebar__header">
-            <h1>EMS</h1>
-        </div>
-        <ul class="navbar-nav m-auto sidebar__components">
+    <nav class="sidebar text-center">
+        <img src="{{ asset("images/logo.svg") }}" class="img-fluid w-50 my-3" alt="dokumenty.png">
+        <ul class="navbar-nav sidebar__components text-left">
             <li class="nav-item">
                 <a href="{{ path('index') }}"
                    class="sidebar__link {% if activeTab == "homepage" %}sidebar__link--active{% endif %}">

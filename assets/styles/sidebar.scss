@@ -8,11 +8,7 @@ $tertiaryColor: #1a2b81;
   min-height: 100vh;
   background: $primaryColor;
   color: $secondaryColor;
-
-  &__header {
-    padding-top: 16pt;
-    text-align: center;
-  }
+  overflow: hidden;
 
   hr {
     border: 1px solid $tertiaryColor;
@@ -27,7 +23,7 @@ $tertiaryColor: #1a2b81;
   }
 
   .sidebar__components {
-    padding: 20px;
+    padding: 0 20px;
 
     .sidebar__link {
       margin: 5px;

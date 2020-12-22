@@ -5,35 +5,36 @@
 {% block title %}Panel logowania{% endblock %}
 
 {% block body %}
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <form method="post" id="loginForm">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
-
-                        <h1 class="h3 mb-3 font-weight-normal text-center">Logowanie</h1>
-                        <div class="form-group">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" value="{{ last_username }}" placeholder="Wpisz email" name="email"
-                                   id="inputEmail" class="form-control" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword">Hasło</label>
-                            <input type="password" placeholder="Wpisz hasło" name="password" id="inputPassword"
-                                   class="form-control" required>
-                        </div>
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse"/>
-                        <button class="btn btn-lg btn-block btn-primary g-recaptcha" type="submit"
-                                data-callback='onSubmit' data-action='submit'
-                                data-sitekey="{{ recaptcha_key }}">Zaloguj
-                        </button>
-                        <a href="{{ path('index') }}" class="btn btn-block btn-link" type="submit">Wróć</a>
-                    </form>
-                </div>
+    <div class="container container--full-page">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-6 d-flex justify-content-center flex-column">
+                <form method="post" id="loginForm">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <h3 class="h3 mb-3 font-weight-normal text-left text-primary">Panel logowania</h3>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" placeholder="Wpisz email" name="email"
+                               id="inputEmail" class="form-control" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Hasło</label>
+                        <input type="password" placeholder="Wpisz hasło" name="password" id="inputPassword"
+                               class="form-control" required>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                    <input type="hidden" name="recaptcha_response" id="recaptchaResponse"/>
+                    <button class="btn btn-primary g-recaptcha" type="submit"
+                            data-callback='onSubmit' data-action='submit'
+                            data-sitekey="{{ recaptcha_key }}"><i class="fas fa-lock"></i>
+                        Zaloguj
+                    </button>
+                    <a href="{{ path('index') }}" class="btn btn-link" type="submit">Wróć</a>
+                </form>
+            </div>
+            <div class="col-6">
+                <img src="{{ asset("images/login.svg") }}" class="img-fluid" alt="">
             </div>
         </div>
     </div>
