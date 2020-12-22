@@ -1,3 +1,5 @@
+{% from "layouts/sidebar.html.twig" import sidebar %}
+
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -8,9 +10,11 @@
         {% block scripts %}{% endblock %}
     </head>
     <body>
-        <div class="custom_container">
-            {{ include('layouts/sidebar.html.twig') }}
-            <div class="content">
+        <div class="d-flex">
+            {% if sidebarVisible|default("true") == "true" %}
+                {{ sidebar(activeTab) }}
+            {% endif %}
+            <div class="p-4 w-100">
                 {% block body %}{% endblock %}
             </div>
             {{ encore_entry_script_tags('app') }}
