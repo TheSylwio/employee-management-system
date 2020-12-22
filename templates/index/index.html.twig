@@ -8,9 +8,9 @@
 {% block title %}Employee Management System{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <div class="row">
+            <div class="col">
                 <div class="d-flex align-items-center">
                     <h1 class="my-3">Posty</h1>
                     {% if is_granted("ROLE_EMPLOYER") %}
@@ -30,7 +30,7 @@
                 {% else %}
                     <p>👋 Brak postów na ten moment</p>
                 {% endif %}
-            {% endif %}
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
