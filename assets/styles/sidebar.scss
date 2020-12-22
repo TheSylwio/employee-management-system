@@ -9,11 +9,6 @@ $tertiaryColor: #1a2b81;
   background: $primaryColor;
   color: $secondaryColor;
 
-  &__header {
-    padding-top: 16pt;
-    text-align: center;
-  }
-
   hr {
     border: 1px solid $tertiaryColor;
   }
