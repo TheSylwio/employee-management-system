@@ -5,15 +5,14 @@
 {% block title %}Panel logowania{% endblock %}
 
 {% block body %}
-    <div class="container d-flex justify-content-center">
-        <div class="row justify-content-center align-items-center">
+    <div class="container container--full-page">
+        <div class="row h-100 justify-content-center align-items-center">
             <div class="col-6 d-flex justify-content-center flex-column">
                 <form method="post" id="loginForm">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
-
-                    <h1 class="h3 mb-3 font-weight-normal text-left text-primary">Logowanie</h1>
+                    <h3 class="h3 mb-3 font-weight-normal text-left text-primary">Panel logowania</h3>
                     <div class="form-group">
                         <label for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" placeholder="Wpisz email" name="email"
@@ -31,14 +30,11 @@
                             data-sitekey="{{ recaptcha_key }}"><i class="fas fa-sign-in-alt"></i>
                         Zaloguj
                     </button>
-                    <a href="{{ path('index') }}" class="btn btn-link" type="submit">
-                        <i class="fas fa-undo-alt"></i>
-                        Wróć
-                    </a>
+                    <a href="{{ path('index') }}" class="btn btn-link" type="submit">Wróć</a>
                 </form>
             </div>
-            <div class="col-6 mt-5">
-                <img src="{{ asset("images/login.svg") }}" class="login.svg">
+            <div class="col-6">
+                <img src="{{ asset("images/login.svg") }}" class="img-fluid" alt="">
             </div>
         </div>
     </div>
@@ -47,9 +43,9 @@
 {% block scripts %}
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-        function onSubmit(token) {
-            document.querySelector("#recaptchaResponse").value = token;
-            document.querySelector("#loginForm").submit();
-        }
+      function onSubmit(token) {
+        document.querySelector("#recaptchaResponse").value = token;
+        document.querySelector("#loginForm").submit();
+      }
     </script>
 {% endblock %}
