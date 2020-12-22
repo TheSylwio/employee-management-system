@@ -9,11 +9,13 @@
         {{ encore_entry_link_tags('app') }}
         {% block scripts %}{% endblock %}
     </head>
-    <body>
+    <body class="d-flex">
         {% if sidebarVisible|default("true") == "true" %}
             {{ sidebar(activeTab) }}
         {% endif %}
-        {% block body %}{% endblock %}
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
         {{ encore_entry_script_tags('app') }}
     </body>
 </html>

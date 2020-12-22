@@ -8,6 +8,7 @@ $tertiaryColor: #1a2b81;
   min-height: 100vh;
   background: $primaryColor;
   color: $secondaryColor;
+  overflow: hidden;
 
   hr {
     border: 1px solid $tertiaryColor;
