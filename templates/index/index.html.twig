@@ -36,52 +36,54 @@
 
     <div style="height:1000px;overflow:auto;">
         {% if not is_granted("IS_AUTHENTICATED_FULLY") %}
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col">
-                    <h1 class="display-3 text-left text-primary font-weight-bold">EMS</h1>
-                    <h2 class="h2 text-left">Employee Managment System</h2>
-                    <p class="text-left">
-                        EMS to system stworzony, aby dać firmom możliwość łatwego zarządzania pracownikami. Oferujemy
-                        między
-                        innymi:
-                    </p>
-                </div>
-                <div class="col">
-                    <img src="{{ asset("images/welcome.svg") }}" class="img-fluid" alt="image not loaded properly">
-                </div>
-                <div class="w-100"></div>
-                <div class="col">
-                    <img src="{{ asset("images/temporary/dokumenty.png") }}" class="img-thumbnail"
-                         alt="image not loaded properly">
-                    <p class="text-left">
-                        Łatwy dostęp do plików
-                    </p>
-                </div>
-                <div class="col">
-                    <img src="{{ asset("images/temporary/kamieniemilowe.png") }}" class="img-thumbnail"
-                         alt="image not loaded properly">
-                    <p class="text-left">
-                        Czytelna lista zadań i kamieni milowych
-                    </p>
-                </div>
-                <div class="w-100">
-                </div>
-                <div class="col">
-                    <img src="{{ asset("images/temporary/listapracownikow.png") }}" class="img-thumbnail"
-                         alt="image not loaded properly">
-                    <p class="text-left">
-                        Czytelna lista zadań i kamieni milowych
-                    </p>
-                </div>
-                <div class="col">
-                    <img src="{{ asset("images/temporary/wydarzenia.png") }}" class="img-thumbnail"
-                         alt="image not loaded properly">
-                    <p class="text-left">
-                        Czytelna lista zadań i kamieni milowych
-                    </p>
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                        <h1 class="display-3 text-left text-primary font-weight-bold">EMS</h1>
+                        <h2 class="h2 text-left">Employee Managment System</h2>
+                        <p class="text-left">
+                            EMS to system stworzony, aby dać firmom możliwość łatwego zarządzania pracownikami.
+                            Oferujemy
+                            między
+                            innymi:
+                        </p>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset("images/welcome.svg") }}" class="img-fluid" alt="image not loaded properly">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <img src="{{ asset("images/temporary/dokumenty.png") }}" class="img-thumbnail"
+                             alt="image not loaded properly">
+                        <p class="text-left">
+                            Łatwy dostęp do plików
+                        </p>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset("images/temporary/kamieniemilowe.png") }}" class="img-thumbnail"
+                             alt="image not loaded properly">
+                        <p class="text-left">
+                            Czytelna lista zadań i kamieni milowych
+                        </p>
+                    </div>
+                    <div class="w-100">
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset("images/temporary/listapracownikow.png") }}" class="img-thumbnail"
+                             alt="image not loaded properly">
+                        <p class="text-left">
+                            Czytelna lista zadań i kamieni milowych
+                        </p>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset("images/temporary/wydarzenia.png") }}" class="img-thumbnail"
+                             alt="image not loaded properly">
+                        <p class="text-left">
+                            Czytelna lista zadań i kamieni milowych
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 {% endblock %}
