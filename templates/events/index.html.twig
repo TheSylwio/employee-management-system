@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
+
+{% set activeTab = "events" %}
+
 {% block title %}Wydarzenia{% endblock %}
+
 {% block body %}
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">

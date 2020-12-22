@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% set activeTab = "homepage" %}
+{% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% set sidebarVisible = "false" %}
+{% endif %}
+
 {% block title %}Employee Management System{% endblock %}
 
 {% block body %}
