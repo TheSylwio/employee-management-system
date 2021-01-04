@@ -2,6 +2,7 @@
 @import "~flatpickr/dist/flatpickr";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~sweetalert2/src/sweetalert2.scss";
 @import "./sidebar.scss";
 
 .fas {
@@ -13,6 +14,7 @@
 .btn-primary {
   border: 1px solid #2f49d0 !important;
 }
+
 .bg-primary, .btn-primary {
   background: #2f49d0 !important;
 }

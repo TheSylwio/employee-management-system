@@ -18,44 +18,69 @@
     </div>
     <table class="table table-striped">
         <tr>
+            <th scope="col">Nazwa</th>
             <th scope="col">Data rozpoczęcia wydarzenia</th>
             <th scope="col">Data zakończenia wydarzenia</th>
             <th scope="col">Opis</th>
             {% if is_granted('ROLE_EMPLOYER') %}
-                <th scope="col">Edytuj</th>
+                <th scope="col">Działania</th>
             {% endif %}
         </tr>
         {% for event in events %}
             {% if "now"|date('d') == event.startDate|date('d') %}
                 <tr class="eventRow" name="today">
+                    <td>{{ event.name }}</td>
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
                     {% if is_granted('ROLE_EMPLOYER') %}
                         <td>
-                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                            <button data-path="{{ path('event_delete', {event: event.id}) }}"
+                                    data-name="{{ event.name }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
                         </td>
                     {% endif %}
                 </tr>
             {% elseif ("now"|date('d')-event.startDate|date('d')>=-7)and ("now"|date('d')-event.startDate|date('d')<=0) %}
                 <tr class="eventRow" name="sevenDays">
+                    <td>{{ event.name }}</td>
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
                     {% if is_granted('ROLE_EMPLOYER') %}
                         <td>
-                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                            <button data-path="{{ path('event_delete', {event: event.id}) }}"
+                                    data-name="{{ event.name }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
                         </td>
                     {% endif %}
                 </tr>
             {% else %}
                 <tr class="eventRow" name="others">
+                    <td>{{ event.name }}</td>
                     <td>{{ event.startDate|date('d.m.Y') }}</td>
                     <td>{{ event.endDate|date('d.m.Y') }}</td>
                     <td>{{ event.description }}</td>
                     {% if is_granted('ROLE_EMPLOYER') %}
                         <td>
-                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-primary">Edytuj</a>
+                            <a href="{{ path('event_edit', {event: event.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                            <button data-path="{{ path('event_delete', {event: event.id}) }}"
+                                    data-name="{{ event.name }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
                         </td>
                     {% endif %}
                 </tr>
