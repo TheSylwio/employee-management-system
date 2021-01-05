@@ -17,12 +17,13 @@ class EventsController extends AbstractController
 {
     /**
      * @Route("/events", name="events")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Event::class);
         return $this->render('events/index.html.twig', [
-            'events' => $repo->findAll(),
+            'events' => $helper->getCompany()->getEvents(),
         ]);
     }
 

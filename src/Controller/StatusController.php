@@ -20,12 +20,13 @@ class StatusController extends AbstractController
 {
     /**
      * @Route("/status", name="status")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Status::class);
         return $this->render('status/index.html.twig', [
-            'status' => $repo->findAll(),
+            'status' => $helper->getCompany()->getStatuses(),
         ]);
     }
 

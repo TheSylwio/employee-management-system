@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Service\Helper;
 use DateTime;
 use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -17,13 +18,13 @@ class TaskController extends AbstractController
 {
     /**
      * @Route("/tasks", name="tasks")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Task::class);
-
         return $this->render('tasks/index.html.twig', [
-            'tasks' => $repo->findAll(),
+            'tasks' => $helper->getEmployee()->getTasks(),
         ]);
     }
 

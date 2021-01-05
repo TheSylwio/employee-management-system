@@ -17,7 +17,7 @@
                         <a href="{{ path('post_add') }}" class="btn btn-primary btn-sm ml-2">Dodaj post</a>
                     {% endif %}
                 </div>
-                {% if posts %}
+                {% if posts.count > 0 %}
                     {% for post in posts %}
                         <div class="card">
                             <div class="card-body">
