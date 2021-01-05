@@ -3,6 +3,7 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~sweetalert2/src/sweetalert2.scss";
+@import "~toastr/toastr.scss";
 @import "./sidebar.scss";
 
 .fas {
@@ -30,4 +31,8 @@
 .content {
   width: 100%;
   padding: 16pt;
+}
+
+.toast {
+  font-family: inherit !important;
 }

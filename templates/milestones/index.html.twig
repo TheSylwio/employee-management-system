@@ -5,11 +5,6 @@
 {% block title %}Kamienie Milowe{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
     <h1 class="my-4">Lista kamieni milowych</h1>
     <table class="table table-striped">
         <th scope="col">Nazwa</th>

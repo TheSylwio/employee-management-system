@@ -5,11 +5,6 @@
 {% block title %}Pracownicy{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
     <div class="row">
         <div class="col">
             <h1 class="my-4">Lista pracowników</h1>

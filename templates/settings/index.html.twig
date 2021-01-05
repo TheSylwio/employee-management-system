@@ -5,11 +5,6 @@
 {% block title %}Panel ustawień użytkownika{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
     <h1 class="my-4">Panel ustawień</h1>
     <a class="btn btn-primary" href="{{ path('settings_email') }}">Zmień email</a>
     <a class="btn btn-primary" href="{{ path('settings_password') }}">Zmień hasło</a>
