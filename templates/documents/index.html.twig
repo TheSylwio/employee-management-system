@@ -16,8 +16,13 @@
                     {% for document in documents %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ document.name }}</span>
-                            <a href="{{ path('documents_preview', {filename: document.filename}) }}"
-                               class="btn btn-sm btn-link">Wyświetl</a>
+                            <div>
+                                <a href="{{ path('document_preview', {filename: document.filename}) }}"
+                                   class="btn btn-sm btn-link">Wyświetl</a>
+                                <button data-path="{{ path('document_delete', {document: document.id}) }}"
+                                        data-name="{{ document.name }}"
+                                        class="btn btn-sm btn-danger btn--delete">Usuń</button>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
