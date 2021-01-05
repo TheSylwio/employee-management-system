@@ -17,6 +17,7 @@
                 <tr>
                     <th scope="col">Kategoria</th>
                     <th scope="col">Nazwa statusu</th>
+                    <th scope="col">Operacje</th>
                 </tr>
                 {% for st in status %}
                     <tr>
@@ -28,6 +29,13 @@
                             <td>Niezrobione</td>
                         {% endif %}
                         <td>{{ st.name }}</td>
+                        <td>
+                            <button data-path="{{ path('status_delete', {status: st.id}) }}"
+                                    data-name="{{ st }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>

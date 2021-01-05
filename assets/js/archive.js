@@ -14,7 +14,7 @@ buttons.forEach(button => {
   button.addEventListener('click', function () {
     customSwal.fire({
       title: 'Usuwanie danych',
-      text: 'Czy na pewno chcesz usunąć dane?',
+      html: `Czy na pewno chcesz usunąć <strong>${this.dataset.name}</strong>?`,
       icon: 'error',
       showCancelButton: true,
       confirmButtonText: 'Tak, usuń',
