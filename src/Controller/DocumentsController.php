@@ -46,7 +46,7 @@ class DocumentsController extends AbstractController
             $em->persist($document);
             $em->flush();
 
-            $this->addFlash('success', 'Pomyślnie dodano dokument!');
+            $this->addFlash('success', 'Pomyślnie dodano dokument');
             return $this->redirectToRoute('documents');
         }
 
@@ -82,6 +82,7 @@ class DocumentsController extends AbstractController
             $em->remove($document);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania dokumentu');
             return new JsonResponse($exception->getMessage(), 500);
         }
 

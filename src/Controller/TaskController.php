@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use DateTime;
 use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +40,7 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $task->setCreationDate(new \DateTime());
+            $task->setCreationDate(new DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
@@ -93,6 +94,7 @@ class TaskController extends AbstractController
             $em->remove($task);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania zadania');
             return new JsonResponse($exception->getMessage(), 500);
         }
 

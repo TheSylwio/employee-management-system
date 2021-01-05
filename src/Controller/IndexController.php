@@ -48,6 +48,7 @@ class IndexController extends AbstractController
             $em->persist($post);
             $em->flush();
 
+            $this->addFlash('success', 'Pomyślnie dodano post');
             return $this->redirectToRoute('index');
         }
 
@@ -68,6 +69,7 @@ class IndexController extends AbstractController
             $em->remove($post);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania postu');
             return new JsonResponse($exception->getMessage(), 500);
         }
 
