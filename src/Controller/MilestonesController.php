@@ -17,12 +17,13 @@ class MilestonesController extends AbstractController
 {
     /**
      * @Route("/milestones", name="milestones")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Milestone::class);
         return $this->render('milestones/index.html.twig', [
-            'milestones' => $repo->findAll(),
+            'milestones' => $helper->getCompany()->getMilestones(),
         ]);
     }
 

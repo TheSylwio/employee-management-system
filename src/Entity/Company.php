@@ -49,12 +49,18 @@ class Company
      */
     private $milestones;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Status::class, mappedBy="company")
+     */
+    private $statuses;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->milestones = new ArrayCollection();
+        $this->statuses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +206,36 @@ class Company
             // set the owning side to null (unless already changed)
             if ($milestone->getCompany() === $this) {
                 $milestone->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Status[]
+     */
+    public function getStatuses(): Collection
+    {
+        return $this->statuses;
+    }
+
+    public function addStatus(Status $status): self
+    {
+        if (!$this->statuses->contains($status)) {
+            $this->statuses[] = $status;
+            $status->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(Status $status): self
+    {
+        if ($this->statuses->removeElement($status)) {
+            // set the owning side to null (unless already changed)
+            if ($status->getCompany() === $this) {
+                $status->setCompany(null);
             }
         }
 

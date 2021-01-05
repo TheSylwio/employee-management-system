@@ -17,13 +17,13 @@ class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Post::class);
-
         return $this->render('index/index.html.twig', [
-            'posts' => $repo->findAll(),
+            'posts' => $helper->getCompany()->getPosts(),
         ]);
     }
 

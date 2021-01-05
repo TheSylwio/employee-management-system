@@ -21,7 +21,7 @@ class Status
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Company::class)
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="statuses")
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
@@ -122,5 +122,4 @@ class Status
 
         return $this;
     }
-
 }
