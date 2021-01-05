@@ -6,8 +6,10 @@ use App\Entity\Employee;
 use App\Entity\User;
 use App\Form\EmployeeType;
 use App\Service\Helper;
+use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,7 +73,7 @@ class EmployeeController extends AbstractController
      * @param Employee $employee
      * @return Response
      */
-    public function edit(Request $request, Employee $employee)
+    public function edit(Request $request, Employee $employee): Response
     {
         $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
@@ -87,5 +89,25 @@ class EmployeeController extends AbstractController
         return $this->render('employees/edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_EMPLOYER")
+     * @Route("/employee/{employee}/delete", name="employee_delete", methods={"POST"})
+     * @param Employee $employee
+     * @return Response
+     */
+    public function delete(Employee $employee): Response
+    {
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($employee);
+            $em->flush();
+        } catch (Exception $exception) {
+            return new JsonResponse($exception->getMessage(), 500);
+        }
+
+        $this->addFlash('success', 'Pomyślnie usunięto pracownika');
+        return new JsonResponse('Pomyślnie usunięto pracownika', 200);
     }
 }
