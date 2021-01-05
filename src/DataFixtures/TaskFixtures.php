@@ -13,9 +13,10 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $i = 0;
-        foreach ($this->getTaskData() as [$description, $creationDate, $deadline]) {
+        foreach ($this->getTaskData() as [$name, $description, $creationDate, $deadline]) {
             $task = new Task();
             $task
+                ->setName($name)
                 ->setDescription($description)
                 ->setCreationDate($creationDate)
                 ->setDeadline($deadline)
@@ -28,16 +29,16 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    private function getTaskData()
+    private function getTaskData(): array
     {
         return [
-            ['opis1', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '11.12.2020')],
-            ['opis2', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '12.12.2020')],
-            ['opis3', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '13.12.2020')]
+            ['Zadanie 1', 'Opis 1', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '11.12.2020')],
+            ['Zadanie 2', 'Opis 2', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '12.12.2020')],
+            ['Zadanie 3', 'Opis 3', DateTime::createFromFormat('d.m.Y', '11.11.2020'), DateTime::createFromFormat('d.m.Y', '13.12.2020')]
         ];
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             StatusFixtures::class,
