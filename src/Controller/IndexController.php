@@ -22,8 +22,9 @@ class IndexController extends AbstractController
      */
     public function index(Helper $helper): Response
     {
+        $company = $helper->getCompany();
         return $this->render('index/index.html.twig', [
-            'posts' => $helper->getCompany()->getPosts(),
+            'posts' =>  $company !== null ? $company->getPosts() : [],
         ]);
     }
 
