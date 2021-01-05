@@ -16,6 +16,12 @@
         <div class="content">
             {% block body %}{% endblock %}
         </div>
+        {% for message in app.flashes('success') %}
+            <div class="d-none" id="successFlashMessage">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="d-none" id="errorFlashMessage">{{ message }}</div>
+        {% endfor %}
         {{ encore_entry_script_tags('app') }}
     </body>
 </html>

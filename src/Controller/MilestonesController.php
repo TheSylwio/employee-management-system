@@ -62,7 +62,6 @@ class MilestonesController extends AbstractController
     public function show(Milestone $milestone): Response
     {
         return $this->render('milestones/description.html.twig', [
-            'tasks' => $milestone->getTasks(),
             'milestone' => $milestone,
         ]);
     }
@@ -105,6 +104,7 @@ class MilestonesController extends AbstractController
             $em->remove($milestone);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania kamienia milowego');
             return new JsonResponse($exception->getMessage(), 500);
         }
 

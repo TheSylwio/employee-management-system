@@ -93,6 +93,7 @@ class EventsController extends AbstractController
             $em->remove($event);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania wydarzenia');
             return new JsonResponse($exception, 500);
         }
 

@@ -71,6 +71,7 @@ class StatusController extends AbstractController
             $em->remove($status);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania statusu');
             return new JsonResponse($exception->getMessage(), 500);
         }
 

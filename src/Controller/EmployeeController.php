@@ -59,6 +59,8 @@ class EmployeeController extends AbstractController
             $em->persist($employee);
             $em->persist($user);
             $em->flush();
+
+            $this->addFlash('success', 'Pomyślnie utworzono pracownika');
             return $this->redirectToRoute('employees');
         }
 
@@ -104,6 +106,7 @@ class EmployeeController extends AbstractController
             $em->remove($employee);
             $em->flush();
         } catch (Exception $exception) {
+            $this->addFlash('error', 'Wystąpił błąd podczas usuwania pracownika');
             return new JsonResponse($exception->getMessage(), 500);
         }
 

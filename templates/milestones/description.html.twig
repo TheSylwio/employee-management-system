@@ -11,7 +11,7 @@
         <th scope="col">Kategoria</th>
         <th scope="col">Opis</th>
         <th scope="col">Czas realizacji</th>
-        {% for task in tasks %}
+        {% for task in milestone.tasks %}
             {% if task.status.category =="in_progress" %}
                 <tr class="table-warning">
                     <td>W trakcie</td>
