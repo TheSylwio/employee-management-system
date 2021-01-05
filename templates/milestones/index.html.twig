@@ -15,21 +15,27 @@
         <th scope="col">Nazwa</th>
         <th scope="col">Czas realizacji</th>
         <th scope="col">Opis</th>
-        <th>Szczegóły</th>
         {% if is_granted('ROLE_EMPLOYER') %}
-            <th>Edytuj</th>
+            <th scope="col">Operacje</th>
         {% endif %}
         {% for milestone in milestones %}
-            <tr class="eventRow" name="today">
+            <tr>
                 <td>{{ milestone.name }}</td>
                 <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
                 <td>{{ milestone.description }}</td>
-                <td><a href="{{ path('milestone_show', {milestone: milestone.id}) }}" class="btn btn-primary">Opis</a>
-                </td>
                 {% if is_granted('ROLE_EMPLOYER') %}
                     <td>
-                        <a href="{{ path('milestone_edit', {milestone: milestone.id}) }}"
-                           class="btn btn-primary">Edytuj</a>
+                        <a href="{{ path('milestone_show', {milestone: milestone.id}) }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-info"></i>Opis
+                        </a>
+                        <a href="{{ path('milestone_edit', {milestone: milestone.id}) }}" class="btn btn-sm btn-primary mx-2">
+                            <i class="fas fa-pen"></i>Edytuj
+                        </a>
+                        <button data-path="{{ path('milestone_delete', {milestone: milestone.id}) }}"
+                                data-name="{{ milestone }}"
+                                class="btn btn-sm btn-danger btn--delete">
+                            <i class="fas fa-trash"></i>Usuń
+                        </button>
                     </td>
                 {% endif %}
             </tr>

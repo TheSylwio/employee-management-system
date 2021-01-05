@@ -40,7 +40,7 @@ class Milestone
     private $realizationTime;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="milestone")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="milestone", orphanRemoval=true)
      */
     private $tasks;
 
