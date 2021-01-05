@@ -1,12 +1,17 @@
 import toastr from 'toastr';
 
-const flashMessage = document.querySelector('#flashMessage');
+const successFlashMessage = document.querySelector('#successFlashMessage');
+const errorFlashMessage = document.querySelector('#errorFlashMessage');
 
-if (flashMessage) {
-  toastr.options = {
-    "progressBar": true,
-    "positionClass": "toast-bottom-right",
-  }
+toastr.options = {
+  "progressBar": true,
+  "positionClass": "toast-bottom-right",
+}
 
-  toastr.success(flashMessage.textContent)
+if (successFlashMessage) {
+   toastr.success(successFlashMessage.textContent)
+}
+
+if (errorFlashMessage) {
+  toastr.success(successFlashMessage.textContent)
 }
