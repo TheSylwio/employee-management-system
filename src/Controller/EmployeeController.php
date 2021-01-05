@@ -22,13 +22,13 @@ class EmployeeController extends AbstractController
 {
     /**
      * @Route("/employees", name="employees")
+     * @param Helper $helper
      * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Employee::class);
         return $this->render('employees/index.html.twig', [
-            'employees' => $repo->findAll(),
+            'employees' => $helper->getCompany()->getEmployees(),
         ]);
     }
 
