@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Entity\Status;
 use App\Form\StatusType;
 use App\Service\Helper;
+use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +36,7 @@ class StatusController extends AbstractController
      * @return Response
      */
 
-    public function add(Request $request, Helper $helper)
+    public function add(Request $request, Helper $helper): Response
     {
         $status = new Status();
         $form = $this->createForm(StatusType::class, $status);
@@ -54,5 +56,25 @@ class StatusController extends AbstractController
         return $this->render('status/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_EMPLOYER")
+     * @Route("/status/{status}/delete", name="status_delete", methods={"POST"})
+     * @param Status $status
+     * @return Response
+     */
+    public function delete(Status $status): Response
+    {
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($status);
+            $em->flush();
+        } catch (Exception $exception) {
+            return new JsonResponse($exception->getMessage(), 500);
+        }
+
+        $this->addFlash('success', 'Pomyślnie usunięto status');
+        return new JsonResponse('Pomyślnie usunięto status', 200);
     }
 }

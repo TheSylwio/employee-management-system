@@ -52,7 +52,7 @@ class Employee
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="employee")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="employee", orphanRemoval=true)
      */
     private $tasks;
 
@@ -69,12 +69,12 @@ class Employee
     private $team;
 
     /**
-     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="author")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="author", orphanRemoval=true)
      */
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="employee")
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="employee", orphanRemoval=true)
      */
     private $documents;
 

@@ -33,7 +33,14 @@
                         <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
                         {% if is_granted('ROLE_EMPLOYER') %}
                             <td>
-                                <a href="{{ path('employee_edit', {employee: employee.id}) }}" class="btn btn-primary">Edytuj</a>
+                                <a href="{{ path('employee_edit', {employee: employee.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                    <i class="fas fa-pen"></i>Edytuj
+                                </a>
+                                <button data-path="{{ path('employee_delete', {employee: employee.id}) }}"
+                                        data-name="{{ employee }}"
+                                        class="btn btn-sm btn-danger btn--delete">
+                                    <i class="fas fa-trash"></i>Usuń
+                                </button>
                             </td>
                         {% endif %}
                     </tr>

@@ -7,6 +7,7 @@
 {% block body %}
     <h1 class="my-4">Dodawanie wydarzenia</h1>
     {{ form_start(form) }}
+    {{ form_row(form.name) }}
     {{ form_row(form.startDate) }}
     {{ form_row(form.endDate) }}
     {{ form_row(form.description) }}

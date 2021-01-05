@@ -6,9 +6,12 @@ use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Service\FileUploader;
 use App\Service\Helper;
+use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,12 +57,35 @@ class DocumentsController extends AbstractController
     }
 
     /**
-     * @Route("/documents/{filename}", name="documents_preview")
+     * @Route("/document/{filename}", name="document_preview")
      * @param $filename
      * @return BinaryFileResponse
      */
     public function preview($filename): BinaryFileResponse
     {
         return new BinaryFileResponse("./uploads/documents/" . $filename);
+    }
+
+    /**
+     * @IsGranted("ROLE_EMPLOYER")
+     * @Route("/document/{document}/delete", name="document_delete", methods={"POST"})
+     * @param Document $document
+     * @return JsonResponse
+     */
+    public function delete(Document $document): JsonResponse
+    {
+        try {
+            $fs = new Filesystem();
+            $fs->remove("./uploads/documents/" . $document->getFilename());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($document);
+            $em->flush();
+        } catch (Exception $exception) {
+            return new JsonResponse($exception->getMessage(), 500);
+        }
+
+        $this->addFlash('success', 'Pomyślnie usunięto dokument');
+        return new JsonResponse('Pomyślnie usunięto dokument', 200);
     }
 }

@@ -21,7 +21,16 @@
                     {% for post in posts %}
                         <div class="card">
                             <div class="card-body">
-                                <header class="font-weight-bold">{{ post.topic }}</header>
+                                <div class="d-flex justify-content-between">
+                                    <header class="font-weight-bold">{{ post.topic }}</header>
+                                    {% if post.author == app.user.employee %}
+                                        <button type="button" class="btn btn-sm btn-danger btn--delete"
+                                                data-path="{{ path('post_delete', {post: post.id}) }}"
+                                                data-name="{{ post.topic }}">
+                                            <i class="fas fa-trash"></i> Usuń
+                                        </button>
+                                    {% endif %}
+                                </div>
                                 <small>{{ post.author }}</small>
                                 <p>{{ post.content }}</p>
                             </div>

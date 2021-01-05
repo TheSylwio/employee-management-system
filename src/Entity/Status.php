@@ -27,7 +27,7 @@ class Status
     private $company;
 
     /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="status")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="status", orphanRemoval=true)
      */
     private $task;
 

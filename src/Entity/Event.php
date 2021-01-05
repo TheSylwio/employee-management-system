@@ -20,6 +20,11 @@ class Event
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $startDate;
@@ -45,6 +50,18 @@ class Event
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getStartDate(): ?DateTimeInterface
@@ -93,5 +110,10 @@ class Event
         $this->company = $company;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

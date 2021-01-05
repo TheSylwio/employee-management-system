@@ -1,44 +1,51 @@
-// FIXME: Refactor
-const firstButton = document.querySelector("#today");
-const secondButton = document.querySelector("#sevenDays");
-const thirdButton = document.querySelector("#all");
-const today = document.getElementsByName("today");
-const others = document.getElementsByName("others");
-const sevenDays = document.getElementsByName("sevenDays");
-const elements = document.getElementsByClassName("eventRow");
+const todayEventsButton = document.querySelector('#todayEvents');
+const weekEventsButton = document.querySelector('#weekEvents');
+const allEventsButton = document.querySelector('#allEvents');
+const rows = document.querySelectorAll('.eventRow');
+const table = document.querySelector('#eventTable tbody');
 
-if (firstButton) {
-  firstButton.addEventListener("click", () => {
-    for (let i = 0; i < today.length; i++) {
-      today[i].style.visibility = 'visible';
-    }
-    for (let i = 0; i < sevenDays.length; i++) {
-      sevenDays[i].style.visibility = 'collapse';
-    }
-    for (let i = 0; i < others.length; i++) {
-      others[i].style.visibility = 'collapse';
-    }
-  })
+const getValidRows = date => {
+  const todayDate = new Date();
+  todayDate.setHours(0, 0, 0, 0);
+
+  return [...rows].map(row => {
+    const startDate = new Date(row.dataset.startdate);
+    startDate.setHours(0, 0, 0, 0)
+
+    return (todayDate.getTime() <= startDate.getTime() && startDate.getTime() <= date.getTime()) ? row : null;
+  }).filter(el => el !== null);
 }
 
-if (secondButton) {
-  secondButton.addEventListener("click", () => {
-    for (let i = 0; i < today.length; i++) {
-      today[i].style.visibility = 'visible';
-    }
-    for (let i = 0; i < sevenDays.length; i++) {
-      sevenDays[i].style.visibility = 'visible';
-    }
-    for (let i = 0; i < others.length; i++) {
-      others[i].style.visibility = 'collapse';
-    }
-  })
+const toggleVisibility = date => {
+  let validRows = rows;
+
+  if (date) validRows = getValidRows(date);
+
+  while (table.childNodes.length > 1) {
+    table.removeChild(table.lastChild);
+  }
+
+  for (let row of validRows) {
+    table.appendChild(row);
+  }
 }
 
-if (thirdButton) {
-  thirdButton.addEventListener("click", () => {
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].style.visibility = 'visible';
-    }
-  })
+if (todayEventsButton) {
+  todayEventsButton.addEventListener('click', () => {
+    const todayDate = new Date();
+    todayDate.setHours(0, 0, 0, 0);
+    toggleVisibility(todayDate);
+  });
+
+  weekEventsButton.addEventListener('click', () => {
+    const weekDate = new Date();
+    weekDate.setHours(0, 0, 0, 0);
+    weekDate.setDate(weekDate.getDate() + 7);
+
+    toggleVisibility(weekDate);
+  });
+
+  allEventsButton.addEventListener('click', () => {
+    toggleVisibility();
+  });
 }
