@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% set activeTab="team" %}
+
+{% block title %}Dodawanie zespołu{% endblock %}
+
+{% block body %}
+    <h1 class="my-4">Dodawanie zespołu</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.employees) }}
+    <button type="submit" class="btn btn-primary">Dodaj zespół</button>
+    <a href="{{ path('team') }}" class="btn btn-secondary">Wróć do listy zespołów</a>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+

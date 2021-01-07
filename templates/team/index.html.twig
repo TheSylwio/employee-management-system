@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% set activeTab="team" %}
+
+{% block title %}Zespoły pracowników{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Lista zespołów</h1>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">Nazwa zespołu</th>
+                    <th scope="col">Opis zespołu</th>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                    <th>Operacje</th>
+                    {% endif %}
+                </tr>
+                {%for t in team  %}
+                    <tr>
+                        <td>{{ t.name }}</td>
+                        <td>{{ t.description }}</td>
+                        {% if is_granted('ROLE_EMPLOYER') %}
+                            <td>
+                                <a href="{{ path('team_edit', {team: t.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                    <i class="fas fa-pen"></i>Edytuj</a>
+                                <button data-path="{{ path('team_delete', {team: t.id}) }}"
+                                        data-name="{{ t.name }}"
+                                        class="btn btn-sm btn-danger btn--delete">
+                                    <i class="fas fa-trash"></i>Usuń
+                                </button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ path('team_add') }}" class="btn btn-primary">Dodaj zespół</a>
+
+        </div>
+    </div>
+{% endblock %}
