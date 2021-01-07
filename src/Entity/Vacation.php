@@ -108,4 +108,5 @@ class Vacation
 
         return $this;
     }
+
 }

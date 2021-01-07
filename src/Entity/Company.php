@@ -290,4 +290,7 @@ class Company
     {
         return $this->vacations;
     }
+    public function __toString() {
+        return $this->name;
+    }
 }
