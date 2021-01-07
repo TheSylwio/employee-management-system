@@ -16,7 +16,7 @@
             </li>
             <li>
                 <a href="{{ path('team') }}"
-                   class="sidebar__link {%if activeTab=="team"%}sidebar__link-active{% endif %}">
+                   class="sidebar__link {% if activeTab== "team" %}sidebar__link--active{% endif %}">
                     <i class="fas fa-users"></i> Zespoły
                 </a>
             </li>

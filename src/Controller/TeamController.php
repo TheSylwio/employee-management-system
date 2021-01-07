@@ -39,7 +39,7 @@ class TeamController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($team);
             $em->flush();
-            $this->addFlash('succes','Pomyślnie dodano drużyne');
+            $this->addFlash('success','Pomyślnie dodano drużyne');
             return $this->redirectToRoute('team');
         }
 
@@ -62,7 +62,7 @@ class TeamController extends AbstractController
         if($form->isSubmitted()&&$form->isValid()){
             $entityManager=$this->getDoctrine()->getManager();
             $entityManager->flush();
-            $this->addFlash('succes','Pomyślnie zmieniono zespół');
+            $this->addFlash('success','Pomyślnie zmieniono zespół');
             return $this->redirectToRoute('team');
         }
 
@@ -87,7 +87,7 @@ class TeamController extends AbstractController
             $this->addFlash('error', 'Wystąpił błąd podczas usuwania zespołu');
             return new JsonResponse($exception->getMessage(),500);
         }
-        $this->addFlash('succes','Pomyślnie usunięto zespół');
+        $this->addFlash('success','Pomyślnie usunięto zespół');
         return new JsonResponse('Pomyślnie usunięto team',200);
 
 

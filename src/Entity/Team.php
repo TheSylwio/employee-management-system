@@ -34,17 +34,10 @@ class Team
      */
     private $employees;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="team")
-     */
-    private $task;
-
 
     public function __construct()
     {
         $this->employees = new ArrayCollection();
-        $this->Task = new ArrayCollection();
-        $this->task = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,9 +100,9 @@ class Team
         return $this;
     }
 
-    public function __toString() :string
+    public function __toString(): string
     {
-        if(is_null($this->name)){
+        if (is_null($this->name)) {
             return 'Brak drużyny';
         }
         return $this->name;
