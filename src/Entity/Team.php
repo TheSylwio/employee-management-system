@@ -30,7 +30,7 @@ class Team
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team")
+     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team", orphanRemoval=true)
      */
     private $employees;
 
@@ -74,7 +74,6 @@ class Team
 
         return $this;
     }
-
 
     /**
      * @return Collection|Employee[]
@@ -122,5 +121,4 @@ class Team
 
         return $this;
     }
-
 }
