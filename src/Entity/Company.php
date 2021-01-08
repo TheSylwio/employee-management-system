@@ -54,6 +54,11 @@ class Company
      */
     private $statuses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Team::class, mappedBy="company", orphanRemoval=true)
+     */
+    private $teams;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
@@ -61,6 +66,7 @@ class Company
         $this->posts = new ArrayCollection();
         $this->milestones = new ArrayCollection();
         $this->statuses = new ArrayCollection();
+        $this->teams = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -236,6 +242,36 @@ class Company
             // set the owning side to null (unless already changed)
             if ($status->getCompany() === $this) {
                 $status->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Team[]
+     */
+    public function getTeams(): Collection
+    {
+        return $this->teams;
+    }
+
+    public function addTeam(Team $team): self
+    {
+        if (!$this->teams->contains($team)) {
+            $this->teams[] = $team;
+            $team->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeam(Team $team): self
+    {
+        if ($this->teams->removeElement($team)) {
+            // set the owning side to null (unless already changed)
+            if ($team->getCompany() === $this) {
+                $team->setCompany(null);
             }
         }
 

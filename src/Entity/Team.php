@@ -30,9 +30,16 @@ class Team
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team")
+     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team", cascade="remove")
      */
     private $employees;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="teams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
+
 
     public function __construct()
     {
@@ -94,6 +101,23 @@ class Team
                 $employee->setTeam(null);
             }
         }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }

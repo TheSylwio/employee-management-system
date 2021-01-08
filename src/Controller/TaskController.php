@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Employee;
 use App\Entity\Task;
+use App\Entity\Team;
 use App\Form\TaskType;
 use App\Service\Helper;
 use DateTime;
@@ -42,9 +44,26 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task->setCreationDate(new DateTime());
+            $assignation = $form->get('assignation')->getData();
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($task);
+
+            if ($assignation instanceof Employee) {
+                $task->setEmployee($assignation);
+                $em->persist($task);
+            }
+
+            if ($assignation instanceof Team) {
+                $employees = $assignation->getEmployees();
+
+                foreach ($employees as $employee) {
+                    $newTask = clone $task;
+                    $newTask->setEmployee($employee);
+
+                    $em->persist($newTask);
+                }
+            }
+
             $em->flush();
             $this->addFlash('success', 'Pomyślnie dodano zadanie');
 

@@ -14,6 +14,12 @@
                     <i class="fas fa-calendar-week"></i> Wydarzenia
                 </a>
             </li>
+            <li>
+                <a href="{{ path('teams') }}"
+                   class="sidebar__link {% if activeTab== "team" %}sidebar__link--active{% endif %}">
+                    <i class="fas fa-users"></i> Zespoły
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{ path('employees') }}"
                    class="sidebar__link {% if activeTab == "employees" %}sidebar__link--active{% endif %}">
