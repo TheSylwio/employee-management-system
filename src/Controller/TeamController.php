@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
+use App\Service\Helper;
 use mysql_xdevapi\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,13 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class TeamController extends AbstractController
 {
     /**
-     * @Route("/team", name="team")
+     * @Route("/teams", name="teams")
+     * @param Helper $helper
+     * @return Response
      */
-    public function index(): Response
+    public function index(Helper $helper): Response
     {
-        $repo=$this->getDoctrine()->getRepository(Team::class);
         return $this->render('team/index.html.twig', [
-            'team' => $repo->findAll(),
+            'team' => $helper->getCompany()->getTeams(),
         ]);
     }
 
@@ -31,20 +33,23 @@ class TeamController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function add(Request $request): Response{
-        $team=new Team();
-        $form=$this->createForm(TeamType::class,$team);
+    public function add(Request $request): Response
+    {
+        $team = new Team();
+        $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
-        if($form->isSubmitted()&&$form->isValid()){
-            $em=$this->getDoctrine()->getManager();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $em->persist($team);
             $em->flush();
-            $this->addFlash('success','Pomyślnie dodano drużyne');
-            return $this->redirectToRoute('team');
+
+            $this->addFlash('success', 'Pomyślnie dodano drużynę');
+            return $this->redirectToRoute('teams');
         }
 
-        return $this->render('team/add.html.twig',[
-           'form'=>$form->createView(),
+        return $this->render('team/add.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
@@ -57,17 +62,19 @@ class TeamController extends AbstractController
      */
     public function edit(Request $request, Team $team): Response
     {
-        $form=$this->createForm(TeamType::class,$team);
+        $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
-        if($form->isSubmitted()&&$form->isValid()){
-            $entityManager=$this->getDoctrine()->getManager();
-            $entityManager->flush();
-            $this->addFlash('success','Pomyślnie zmieniono zespół');
-            return $this->redirectToRoute('team');
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('success', 'Pomyślnie zaktualizowano zespół');
+            return $this->redirectToRoute('teams');
         }
 
-        return $this->render('team/edit.html.twig',[
-            'form'=>$form->createView(),
+        return $this->render('team/edit.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
@@ -77,19 +84,18 @@ class TeamController extends AbstractController
      * @param Team $team
      * @return Response
      */
-    public function delete(Team $team):Response
+    public function delete(Team $team): Response
     {
-        try{
-            $em=$this->getDoctrine()->getManager();
+        try {
+            $em = $this->getDoctrine()->getManager();
             $em->remove($team);
             $em->flush();
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             $this->addFlash('error', 'Wystąpił błąd podczas usuwania zespołu');
-            return new JsonResponse($exception->getMessage(),500);
+            return new JsonResponse($exception->getMessage(), 500);
         }
-        $this->addFlash('success','Pomyślnie usunięto zespół');
-        return new JsonResponse('Pomyślnie usunięto team',200);
 
-
+        $this->addFlash('success', 'Pomyślnie usunięto zespół');
+        return new JsonResponse('Pomyślnie usunięto team', 200);
     }
 }
