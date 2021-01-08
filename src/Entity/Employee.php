@@ -276,4 +276,10 @@ class Employee
 
         return $this;
     }
+
+    // That's a workaround.
+    public function getName(): Employee
+    {
+        return $this;
+    }
 }
