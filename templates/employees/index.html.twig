@@ -15,7 +15,7 @@
                     <th scope="col">PESEL</th>
                     <th scope="col">Adres</th>
                     <th scope="col">Data urodzenia</th>
-                    <th scope="col">Drużyna</th>
+                    <th scope="col">Zespół</th>
                     {% if is_granted('ROLE_EMPLOYER') %}
                         <th scope="col">Edytuj</th>
                     {% endif %}
@@ -45,14 +45,15 @@
                     {% endif %}
                     <tr>
                         <td>{{ employee.firstName }}</td>
-                        <td>{{ employee.surname}}</td>
+                        <td>{{ employee.surname }}</td>
                         <td>{{ employee.pesel }}</td>
                         <td>{{ employee.address }}</td>
                         <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
                         <td>{{ employee.team }}</td>
                         {% if is_granted('ROLE_EMPLOYER') %}
                             <td>
-                                <a href="{{ path('employee_edit', {employee: employee.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                <a href="{{ path('employee_edit', {employee: employee.id}) }}"
+                                   class="btn btn-sm btn-primary mr-2">
                                     <i class="fas fa-pen"></i>Edytuj
                                 </a>
                                 <button data-path="{{ path('employee_delete', {employee: employee.id}) }}"

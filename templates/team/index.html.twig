@@ -5,7 +5,7 @@
 {% block title %}Zespoły pracowników{% endblock %}
 
 {% block body %}
-<h1 class="my-4">Lista zespołów</h1>
+    <h1 class="my-4">Lista zespołów</h1>
     <div class="row">
         <div class="col">
             <table class="table table-striped">
@@ -13,10 +13,10 @@
                     <th scope="col">Nazwa zespołu</th>
                     <th scope="col">Opis zespołu</th>
                     {% if is_granted('ROLE_EMPLOYER') %}
-                    <th>Operacje</th>
+                        <th>Operacje</th>
                     {% endif %}
                 </tr>
-                {%for t in team  %}
+                {% for t in teams %}
                     <tr>
                         <td>{{ t.name }}</td>
                         <td>{{ t.description }}</td>
@@ -35,7 +35,6 @@
                 {% endfor %}
             </table>
             <a href="{{ path('team_add') }}" class="btn btn-primary">Dodaj zespół</a>
-
         </div>
     </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Employee;
 use App\Entity\Team;
 use App\Form\TeamType;
 use App\Service\Helper;
@@ -23,7 +24,7 @@ class TeamController extends AbstractController
     public function index(Helper $helper): Response
     {
         return $this->render('team/index.html.twig', [
-            'team' => $helper->getCompany()->getTeams(),
+            'teams' => $helper->getCompany()->getTeams(),
         ]);
     }
 
@@ -55,18 +56,31 @@ class TeamController extends AbstractController
 
     /**
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/team/{team}/edit",name="team_edit")
+     * @Route("/team/{team}/edit", name="team_edit")
      * @param Request $request
      * @param Team $team
+     * @param Helper $helper
      * @return Response
      */
-    public function edit(Request $request, Team $team): Response
+    public function edit(Request $request, Team $team, Helper $helper): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $employees = $em->getRepository(Employee::class)->findBy(['company' => $helper->getCompany()]);
+
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            foreach ($employees as $employee) {
+                $employee->setTeam(null);
+                $em->persist($employee);
+            }
+
+            foreach ($team->getEmployees() as $employee) {
+                $employee->setTeam($team);
+                $em->persist($employee);
+            };
+
             $em->flush();
 
             $this->addFlash('success', 'Pomyślnie zaktualizowano zespół');

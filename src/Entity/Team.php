@@ -30,7 +30,7 @@ class Team
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Employee::class, mappedBy="team", cascade="remove")
      */
     private $employees;
 
