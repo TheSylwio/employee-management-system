@@ -34,6 +34,12 @@ class Team
      */
     private $employees;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="teams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
+
 
     public function __construct()
     {
@@ -106,6 +112,18 @@ class Team
             return 'Brak drużyny';
         }
         return $this->name;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
     }
 
 }
