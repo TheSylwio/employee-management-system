@@ -13,14 +13,13 @@ class VacationStatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('vacationStatus',ChoiceType::class,[
+            ->add('vacationStatus', ChoiceType::class, [
                 'choices' => [
                     'Zakceptowany' => 'accepted',
                     'Nie zakceptowany' => 'not_accepted',
                 ],
-                'label'=>"status",
-            ])
-        ;
+                'label' => "status",
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

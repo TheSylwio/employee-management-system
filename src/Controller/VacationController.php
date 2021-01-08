@@ -24,10 +24,11 @@ class VacationController extends AbstractController
     {
         return $this->render('vacation/index.html.twig', [
             'vacations' => $helper->getCompany()->getVacations(),
-            'employee'=>$helper->getEmployee(),
+            'employee' => $helper->getEmployee(),
         ]);
 
     }
+
     /**
      * @Route("/vacation/add", name="vacation_add")
      * @param Request $request
@@ -55,6 +56,7 @@ class VacationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/vacation/edit/{vacation}", name="vacation_edit")
@@ -64,7 +66,7 @@ class VacationController extends AbstractController
      */
     public function edit(Request $request, Vacation $vacation): Response
     {
-        $form = $this->createForm(VacationStatusType::class,$vacation);
+        $form = $this->createForm(VacationStatusType::class, $vacation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -76,11 +78,13 @@ class VacationController extends AbstractController
         }
 
         return $this->render('vacation/edit.html.twig', [
-            "vacation"=>$vacation,
+            "vacation" => $vacation,
             'form' => $form->createView(),
         ]);
     }
+
     /**
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/vacation/manage", name="vacation_manage")
      * @param Helper $helper
      * @return Response

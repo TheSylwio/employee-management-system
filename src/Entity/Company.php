@@ -283,6 +283,7 @@ class Company
 
         return $this;
     }
+
     /**
      * @return Collection|Vacation[]
      */
@@ -290,7 +291,9 @@ class Company
     {
         return $this->vacations;
     }
-    public function __toString() {
+
+    public function __toString()
+    {
         return $this->name;
     }
 }

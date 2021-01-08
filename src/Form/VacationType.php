@@ -21,8 +21,7 @@ class VacationType extends AbstractType
                 'label' => 'Koniec urlopu',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'vacationPicker']
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
