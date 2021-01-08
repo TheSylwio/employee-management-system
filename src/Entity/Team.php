@@ -108,9 +108,6 @@ class Team
 
     public function __toString(): string
     {
-        if (is_null($this->name)) {
-            return 'Brak drużyny';
-        }
         return $this->name;
     }
 
