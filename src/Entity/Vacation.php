@@ -28,13 +28,13 @@ class Vacation
     private $endingOfVacation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=company::class)
+     * @ORM\ManyToOne(targetEntity=Company::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
 
     /**
-     * @ORM\ManyToOne(targetEntity=employee::class)
+     * @ORM\ManyToOne(targetEntity=Employee::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $employee;
@@ -73,26 +73,26 @@ class Vacation
         return $this;
     }
 
-    public function getCompany(): ?company
+    public function getCompany(): ?Company
     {
         return $this->company;
     }
 
-    public function setCompany(?company $company): self
+    public function setCompany(?Company $Company): self
     {
-        $this->company = $company;
+        $this->company = $Company;
 
         return $this;
     }
 
-    public function getEmployee(): ?employee
+    public function getEmployee(): ?Employee
     {
         return $this->employee;
     }
 
-    public function setEmployee(?employee $employee): self
+    public function setEmployee(?Employee $Employee): self
     {
-        $this->employee = $employee;
+        $this->employee = $Employee;
 
         return $this;
     }
