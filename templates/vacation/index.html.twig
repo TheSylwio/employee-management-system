@@ -3,6 +3,7 @@
 {% block title %}Urlopy{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_EMPLOYER') %}
     <div class="row">
         <div class="col">
             <h1 class="my-4">Zatwierdzone Urlopy</h1>
@@ -26,4 +27,40 @@
             <a href="{{ path('vacation_manage') }}" class="btn btn-primary">Zarządzaj</a>
         </div>
     </div>
+    {% endif %}
+    {% if is_granted('ROLE_EMPLOYEE') %}
+        <div class="row">
+            <div class="col">
+                <h1 class="my-4">Zatwierdzone Urlopy</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Pracownik</th>
+                        <th scope="col">Początek Urlopu</th>
+                        <th scope="col">Koniec Urlopu</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    {% for vacation in vacations %}
+                        {%if vacation.employee==employee%}
+                            <tr>
+                                <td>{{ vacation.employee }}</td>
+                                <td>{{ vacation.beginningOfVacation|date('d.m.Y') }}</td>
+                                <td>{{ vacation.endingOfVacation|date('d.m.Y') }}</td>
+                                {%if vacation.vacationStatus=="waiting_for_accept" %}
+                                <td>Czeka na zatwierdzenie</td>
+                                {% endif %}
+                                {%if vacation.vacationStatus=="not_accepted" %}
+                                <td>Nie Zatwierdzony</td>
+                                {% endif %}
+                                {%if vacation.vacationStatus=="accepted" %}
+                                <td>Zatwierdzony</td>
+                                {% endif %}
+
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+                <a href="{{ path('vacation_add') }}" class="btn btn-primary">Dodaj Urop</a>
+            </div>
+        </div>
+    {% endif%}
 {% endblock %}

@@ -24,6 +24,7 @@ class VacationController extends AbstractController
     {
         return $this->render('vacation/index.html.twig', [
             'vacations' => $helper->getCompany()->getVacations(),
+            'employee'=>$helper->getEmployee(),
         ]);
 
     }
@@ -55,6 +56,7 @@ class VacationController extends AbstractController
         ]);
     }
     /**
+     * @IsGranted("ROLE_EMPLOYER")
      * @Route("/vacation/edit/{vacation}", name="vacation_edit")
      * @param Request $request
      * @param Vacation $vacation
