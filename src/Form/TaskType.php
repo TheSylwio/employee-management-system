@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TaskType extends AbstractType
 {
     /**
-     * @var Company|object|null
+     * @var Company
      */
     private $company;
 

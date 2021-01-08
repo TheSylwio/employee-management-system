@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Employee;
 use App\Entity\Team;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,17 +15,16 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Nazwa drużyny'
+                'label' => 'Nazwa zespołu',
             ])
             ->add('description', null, [
-                'label' => 'Opis zespołu'
-
+                'label' => 'Opis zespołu',
             ])
             ->add('employees', EntityType::class, [
                 'label' => 'Pracownicy',
                 'class' => Employee::class,
                 'expanded' => true,
-                'multiple' => true
+                'multiple' => true,
             ]);
     }
 
