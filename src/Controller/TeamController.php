@@ -32,17 +32,26 @@ class TeamController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @Route("/team/add", name="team_add")
      * @param Request $request
+     * @param Helper $helper
      * @return Response
      */
-    public function add(Request $request): Response
+    public function add(Request $request, Helper $helper): Response
     {
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $team->setCompany($helper->getCompany());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($team);
+
+            foreach ($form->get('employees')->getData() as $employee) {
+                $employee->setTeam($team);
+                $em->persist($employee);
+            }
+
             $em->flush();
 
             $this->addFlash('success', 'Pomyślnie dodano drużynę');
