@@ -28,7 +28,7 @@ class Vacation
     private $endingOfVacation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Company::class)
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="vacations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
