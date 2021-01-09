@@ -20,12 +20,12 @@ class Vacation
     /**
      * @ORM\Column(type="date")
      */
-    private $beginningOfVacation;
+    private $startDate;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $endingOfVacation;
+    private $endDate;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="vacations")
@@ -42,33 +42,33 @@ class Vacation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $vacationStatus;
+    private $status;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getBeginningOfVacation(): ?\DateTimeInterface
+    public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->beginningOfVacation;
+        return $this->startDate;
     }
 
-    public function setBeginningOfVacation(\DateTimeInterface $beginningOfVacation): self
+    public function setStartDate(\DateTimeInterface $startDate): self
     {
-        $this->beginningOfVacation = $beginningOfVacation;
+        $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndingOfVacation(): ?\DateTimeInterface
+    public function getEndDate(): ?\DateTimeInterface
     {
-        return $this->endingOfVacation;
+        return $this->endDate;
     }
 
-    public function setEndingOfVacation(\DateTimeInterface $endingOfVacation): self
+    public function setEndDate(\DateTimeInterface $endDate): self
     {
-        $this->endingOfVacation = $endingOfVacation;
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -97,16 +97,15 @@ class Vacation
         return $this;
     }
 
-    public function getVacationStatus(): ?string
+    public function getStatus(): ?string
     {
-        return $this->vacationStatus;
+        return $this->status;
     }
 
-    public function setVacationStatus(string $vacationStatus): self
+    public function setStatus(string $status): self
     {
-        $this->vacationStatus = $vacationStatus;
+        $this->status = $status;
 
         return $this;
     }
-
 }

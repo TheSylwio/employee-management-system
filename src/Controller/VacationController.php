@@ -18,15 +18,12 @@ class VacationController extends AbstractController
      * @Route("/vacation", name="vacation")
      * @param Helper $helper
      * @return Response
-     *
      */
     public function index(Helper $helper): Response
     {
         return $this->render('vacation/index.html.twig', [
             'vacations' => $helper->getCompany()->getVacations(),
-            'employee' => $helper->getEmployee(),
         ]);
-
     }
 
     /**
@@ -42,13 +39,16 @@ class VacationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $vacation->setCompany($helper->getCompany());
-            $vacation->setEmployee($helper->getEmployee());
-            $vacation->setVacationStatus("waiting_for_accept");
+            $vacation
+                ->setCompany($helper->getCompany())
+                ->setEmployee($helper->getEmployee())
+                ->setStatus("waiting_for_accept");
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($vacation);
             $em->flush();
-            $this->addFlash('success', 'Pomyślnie dodano urlop');
+
+            $this->addFlash('success', 'Pomyślnie złożono wniosek o urlop');
             return $this->redirectToRoute('vacation');
         }
 
@@ -59,7 +59,7 @@ class VacationController extends AbstractController
 
     /**
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/vacation/edit/{vacation}", name="vacation_edit")
+     * @Route("/vacation/{vacation}/edit", name="vacation_edit")
      * @param Request $request
      * @param Vacation $vacation
      * @return Response
@@ -78,7 +78,7 @@ class VacationController extends AbstractController
         }
 
         return $this->render('vacation/edit.html.twig', [
-            "vacation" => $vacation,
+            'vacation' => $vacation,
             'form' => $form->createView(),
         ]);
     }
@@ -88,7 +88,6 @@ class VacationController extends AbstractController
      * @Route("/vacation/manage", name="vacation_manage")
      * @param Helper $helper
      * @return Response
-     *
      */
     public function manage(Helper $helper): Response
     {

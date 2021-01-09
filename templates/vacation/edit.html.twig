@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% set activeTab = "vacation    " %}
+{% set activeTab = "vacation" %}
 
 {% block title %}Edycja zadania{% endblock %}
 
 {% block body %}
     <h1 class="my-4">Edycja zadania</h1>
     <p>Pracownik : {{ vacation.employee }}</p>
-    <p>Początek urlopu : {{ vacation.beginningOfVacation|date('d.m.Y') }}</p>
-    <p>Koniec urlopu : {{ vacation.endingOfVacation|date('d.m.Y') }}</p>
+    <p>Początek urlopu : {{ vacation.startDate|date('d.m.Y') }}</p>
+    <p>Koniec urlopu : {{ vacation.endDate|date('d.m.Y') }}</p>
     {{ form_start(form) }}
-    {{ form_row((form.vacationStatus)) }}
+    {{ form_row((form.status)) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
     <a href="{{ path('vacation_manage') }}" class="btn btn-secondary">Wróć do listy</a>
     {{ form_end(form) }}
