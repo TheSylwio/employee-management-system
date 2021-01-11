@@ -21,8 +21,13 @@ class VacationController extends AbstractController
      */
     public function index(Helper $helper): Response
     {
+        $vacations = $helper->getCompany()->getVacations();
+
         return $this->render('vacation/index.html.twig', [
-            'vacations' => $helper->getCompany()->getVacations(),
+            'vacations' => $vacations,
+            'acceptedVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'accepted'),
+            'waitingVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'waiting_for_accept'),
+            'rejectedVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'rejected'),
         ]);
     }
 
@@ -70,6 +75,9 @@ class VacationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $vacation->setStartDate($vacation->getStartDate());
+            $vacation->setEndDate($vacation->getEndDate());
+
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $this->addFlash('success', 'Pomyślnie zmieniono dane');
@@ -85,15 +93,37 @@ class VacationController extends AbstractController
 
     /**
      * @IsGranted("ROLE_EMPLOYER")
-     * @Route("/vacation/manage", name="vacation_manage")
-     * @param Helper $helper
+     * @Route("/vacation/{vacation}/confirm", name="vacation_confirm")
+     * @param Vacation $vacation
      * @return Response
      */
-    public function manage(Helper $helper): Response
+    public function confirm(Vacation $vacation): Response
     {
-        return $this->render('vacation/manage.html.twig', [
-            'vacations' => $helper->getCompany()->getVacations(),
-        ]);
+        $vacation->setStatus('accepted');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($vacation);
+        $em->flush();
+
+        $this->addFlash('success', 'Pomyślnie zatwierdzono wniosek o urlop');
+        return $this->redirectToRoute('vacation');
     }
 
+    /**
+     * @IsGranted("ROLE_EMPLOYER")
+     * @Route("/vacation/{vacation}/reject", name="vacation_reject")
+     * @param Vacation $vacation
+     * @return Response
+     */
+    public function reject(Vacation $vacation): Response
+    {
+        $vacation->setStatus('rejected');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($vacation);
+        $em->flush();
+
+        $this->addFlash('success', 'Pomyślnie odrzucono wniosek o urlop');
+        return $this->redirectToRoute('vacation');
+    }
 }

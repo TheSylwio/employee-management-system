@@ -2,16 +2,16 @@
 
 {% set activeTab = "vacation" %}
 
-{% block title %}Edycja zadania{% endblock %}
+{% block title %}Edycja wniosku o urlop{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edycja zadania</h1>
-    <p>Pracownik : {{ vacation.employee }}</p>
+    <h1 class="my-4">Edycja wniosku o urlop</h1>
+    <strong>{{ vacation.employee }}</strong>
     <p>Początek urlopu : {{ vacation.startDate|date('d.m.Y') }}</p>
     <p>Koniec urlopu : {{ vacation.endDate|date('d.m.Y') }}</p>
     {{ form_start(form) }}
-    {{ form_row((form.status)) }}
+    {{ form_row(form.status) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="{{ path('vacation_manage') }}" class="btn btn-secondary">Wróć do listy</a>
+    <a href="{{ path('vacation') }}" class="btn btn-secondary">Wróć do listy</a>
     {{ form_end(form) }}
 {% endblock %}

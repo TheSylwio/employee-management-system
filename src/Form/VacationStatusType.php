@@ -14,11 +14,11 @@ class VacationStatusType extends AbstractType
     {
         $builder
             ->add('status', ChoiceType::class, [
+                'label' => "Status",
                 'choices' => [
                     'Zakceptowany' => 'accepted',
-                    'Nie zakceptowany' => 'not_accepted',
+                    'Odrzucony' => 'rejected',
                 ],
-                'label' => "status",
             ]);
     }
 
