@@ -78,11 +78,17 @@ class Employee
      */
     private $documents;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Vacation::class, mappedBy="employee")
+     */
+    private $vacations;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->vacations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,6 +277,36 @@ class Employee
             // set the owning side to null (unless already changed)
             if ($document->getEmployee() === $this) {
                 $document->setEmployee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vacation[]
+     */
+    public function getVacations(): Collection
+    {
+        return $this->vacations;
+    }
+
+    public function addVacation(Vacation $vacation): self
+    {
+        if (!$this->vacations->contains($vacation)) {
+            $this->vacations[] = $vacation;
+            $vacation->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVacation(Vacation $vacation): self
+    {
+        if ($this->vacations->removeElement($vacation)) {
+            // set the owning side to null (unless already changed)
+            if ($vacation->getEmployee() === $this) {
+                $vacation->setEmployee(null);
             }
         }
 

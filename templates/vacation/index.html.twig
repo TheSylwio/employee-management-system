@@ -103,20 +103,18 @@
                         <th scope="col">Koniec Urlopu</th>
                         <th scope="col">Status</th>
                     </tr>
-                    {% for vacation in vacations %}
-                        {% if vacation.employee == app.user.employee %}
-                            <tr>
-                                <td>{{ vacation.startDate|date('d.m.Y') }}</td>
-                                <td>{{ vacation.endDate|date('d.m.Y') }}</td>
-                                {% if vacation.status == "waiting_for_accept" %}
-                                    <td>Czeka na zatwierdzenie</td>
-                                {% elseif vacation.status == "rejected" %}
-                                    <td>Odrzucony</td>
-                                {% elseif vacation.status == "accepted" %}
-                                    <td>Zatwierdzony</td>
-                                {% endif %}
-                            </tr>
-                        {% endif %}
+                    {% for vacation in app.user.employee.vacations %}
+                        <tr>
+                            <td>{{ vacation.startDate|date('d.m.Y') }}</td>
+                            <td>{{ vacation.endDate|date('d.m.Y') }}</td>
+                            {% if vacation.status == "waiting_for_accept" %}
+                                <td>Czeka na zatwierdzenie</td>
+                            {% elseif vacation.status == "rejected" %}
+                                <td>Odrzucony</td>
+                            {% elseif vacation.status == "accepted" %}
+                                <td>Zatwierdzony</td>
+                            {% endif %}
+                        </tr>
                     {% endfor %}
                 </table>
                 <a href="{{ path('vacation_add') }}" class="btn btn-primary">Złóż wniosek</a>

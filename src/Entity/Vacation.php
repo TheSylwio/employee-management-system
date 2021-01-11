@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VacationRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,7 +35,7 @@ class Vacation
     private $company;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Employee::class)
+     * @ORM\ManyToOne(targetEntity=Employee::class, inversedBy="vacations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $employee;
@@ -49,24 +50,24 @@ class Vacation
         return $this->id;
     }
 
-    public function getStartDate(): ?\DateTimeInterface
+    public function getStartDate(): ?DateTimeInterface
     {
         return $this->startDate;
     }
 
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function setStartDate(DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getEndDate(): ?DateTimeInterface
     {
         return $this->endDate;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setEndDate(DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
 
@@ -78,9 +79,9 @@ class Vacation
         return $this->company;
     }
 
-    public function setCompany(?Company $Company): self
+    public function setCompany(?Company $company): self
     {
-        $this->company = $Company;
+        $this->company = $company;
 
         return $this;
     }
@@ -90,9 +91,9 @@ class Vacation
         return $this->employee;
     }
 
-    public function setEmployee(?Employee $Employee): self
+    public function setEmployee(?Employee $employee): self
     {
-        $this->employee = $Employee;
+        $this->employee = $employee;
 
         return $this;
     }

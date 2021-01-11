@@ -24,7 +24,6 @@ class VacationController extends AbstractController
         $vacations = $helper->getCompany()->getVacations();
 
         return $this->render('vacation/index.html.twig', [
-            'vacations' => $vacations,
             'acceptedVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'accepted'),
             'waitingVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'waiting_for_accept'),
             'rejectedVacations' => $vacations->filter(fn(Vacation $vacation) => $vacation->getStatus() === 'rejected'),
