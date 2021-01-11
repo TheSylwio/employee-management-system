@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% set activeTab = "vacation" %}
+{% block title %}Urlopy{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <h1 class="mb-3">Urlopy</h1>
+        <div class="row">
+            <div class="col">
+                <h2>Zaakceptowane</h2>
+                {% if acceptedVacations.count > 0 %}
+                    <table class="table table-striped">
+                        <tr>
+                            <th scope="col">Pracownik</th>
+                            <th scope="col">Początek Urlopu</th>
+                            <th scope="col">Koniec Urlopu</th>
+                            <th scope="col">Opcje</th>
+                        </tr>
+                        {% for vacation in acceptedVacations %}
+                            <tr>
+                                <td>{{ vacation.employee }}</td>
+                                <td>{{ vacation.startDate|date('d.m.Y') }}</td>
+                                <td>{{ vacation.endDate|date('d.m.Y') }}</td>
+                                <td>
+                                    <a href="{{ path('vacation_edit', {vacation: vacation.id}) }}"
+                                       class="btn btn-primary">Edytuj</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>Brak aktywnych urlopów</p>
+                {% endif %}
+                <a href="{{ path('vacation_add') }}" class="btn btn-primary">Złóź wniosek</a>
+            </div>
+            <div class="col">
+                <h2>Oczekujące</h2>
+                {% if waitingVacations.count > 0 %}
+                    <table class="table table-striped">
+                        <tr>
+                            <th scope="col">Pracownik</th>
+                            <th scope="col">Początek Urlopu</th>
+                            <th scope="col">Koniec Urlopu</th>
+                            <th scope="col">Opcje</th>
+                        </tr>
+                        {% for vacation in waitingVacations %}
+                            <tr>
+                                <td>{{ vacation.employee }}</td>
+                                <td>{{ vacation.startDate|date('d.m.Y') }}</td>
+                                <td>{{ vacation.endDate|date('d.m.Y') }}</td>
+                                <td>
+                                    <a href="{{ path('vacation_confirm', {vacation: vacation.id}) }}"
+                                       class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="{{ path('vacation_reject', {vacation: vacation.id}) }}"
+                                       class="btn btn-sm btn-danger">
+                                        <i class="fas fa-ban"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>Brak oczekującuch wniosków o urlop</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                <h2>Odrzucone</h2>
+                {% if rejectedVacations.count > 0 %}
+                    <table class="table table-striped">
+                        <tr>
+                            <th scope="col">Pracownik</th>
+                            <th scope="col">Początek Urlopu</th>
+                            <th scope="col">Koniec Urlopu</th>
+                            <th scope="col">Opcje</th>
+                        </tr>
+                        {% for vacation in rejectedVacations %}
+                            <tr>
+                                <td>{{ vacation.employee }}</td>
+                                <td>{{ vacation.startDate|date('d.m.Y') }}</td>
+                                <td>{{ vacation.endDate|date('d.m.Y') }}</td>
+                                <td>
+                                    <a href="{{ path('vacation_edit', {vacation: vacation.id}) }}"
+                                       class="btn btn-primary">Edytuj</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>Brak odrzuconych wniosków o urlop</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_EMPLOYEE') %}
+        <div class="row">
+            <div class="col">
+                <h1 class="my-4">Urlopy</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Początek Urlopu</th>
+                        <th scope="col">Koniec Urlopu</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    {% for vacation in app.user.employee.vacations %}
+                        <tr>
+                            <td>{{ vacation.startDate|date('d.m.Y') }}</td>
+                            <td>{{ vacation.endDate|date('d.m.Y') }}</td>
+                            {% if vacation.status == "waiting_for_accept" %}
+                                <td>Czeka na zatwierdzenie</td>
+                            {% elseif vacation.status == "rejected" %}
+                                <td>Odrzucony</td>
+                            {% elseif vacation.status == "accepted" %}
+                                <td>Zatwierdzony</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <a href="{{ path('vacation_add') }}" class="btn btn-primary">Złóż wniosek</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
