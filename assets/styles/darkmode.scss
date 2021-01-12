@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+body {
+  color: #222222;
+  background: #ededee;
+}
+a {
+  color: #0033cc;
+}
+body.dark-mode {
+  color: #e0e0e0;
+  background: #121212;
+  a {
+    color: #809fff;
+  }
+}
+
