@@ -1,33 +1,65 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-$primaryColor: #2f49d0;
-$secondaryColor: #f3f3f3;
-$tertiaryColor: #1a2b81;
+$primaryDMColor: #253aa6;
+$secondaryDMColor: #f7f7f7;
+$tertiaryDMColor: #121e5a;
+
+$red: #ff0000;
+
 body {
   color: #000000;
   background: #FFFFFF;
 }
+
 a {
   color: #000000;
 }
+
 th {
   color: #222222;
 }
+
 td {
   color: #222222;
 }
+
 body.dark-mode {
   color: #ededee;
   background: #2f2f2f;
+
   a {
     color: #ededee;
   }
+
   th {
     color: #ededee;
   }
+
   td {
     color: #ededee;
+  }
+
+  .sidebar {
+    background: $primaryDMColor;
+
+    .sidebar__components {
+      .sidebar__link {
+
+        &--active {
+          background: $tertiaryDMColor;
+          color: $secondaryDMColor;
+        }
+        &:hover {
+          background: #f7f7f7;
+          color: $primaryDMColor;
+        }
+        &--logout:hover {
+          background: #841f29;
+          color: $secondaryDMColor;
+        }
+      }
+    }
   }
 }
 
