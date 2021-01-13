@@ -1,9 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-$primaryDMColor: #253aa6;
+$primaryDMColor: #1f1f1f;
 $secondaryDMColor: #f7f7f7;
-$tertiaryDMColor: #121e5a;
+$tertiaryDMColor: #525252;
 
 $red: #ff0000;
 
@@ -39,7 +39,16 @@ body.dark-mode {
   td {
     color: #cccccc;
   }
-
+  hr {
+    border: 1px solid $tertiaryDMColor;
+  }
+  .btn-primary {
+    border: 1px solid $primaryDMColor !important;
+    background: $primaryDMColor !important;
+  }
+  .dark--logo {
+    fill: #000000;
+  }
   .sidebar {
     background: $primaryDMColor;
 
