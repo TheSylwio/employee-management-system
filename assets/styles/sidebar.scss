@@ -46,6 +46,11 @@ $tertiaryColor: #1a2b81;
         background: #dc3545;
         color: $secondaryColor;
       }
+
+      &--darkmode:hover {
+        background: #000000;
+        color: $secondaryColor;
+      }
     }
   }
 }
