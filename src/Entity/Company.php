@@ -64,6 +64,11 @@ class Company
      */
     private $vacations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Vacation::class, mappedBy="company")
+     */
+    private $overtimeDisposition;
+
     public function __construct()
     {
         $this->employees = new ArrayCollection();
@@ -73,6 +78,7 @@ class Company
         $this->statuses = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->vacations = new ArrayCollection();
+        $this->overtimeDisposition =new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -290,6 +296,14 @@ class Company
     public function getVacations(): Collection
     {
         return $this->vacations;
+    }
+
+    /**
+     * @return Collection|OvertimeDisposition[]
+     */
+    public function getOvertimeDisposition(): Collection
+    {
+        return $this->teams;
     }
 
     public function __toString()
