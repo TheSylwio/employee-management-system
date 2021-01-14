@@ -51,4 +51,30 @@ class OvertimeDispositionController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/overtime/disposition/{disposition}/edit", name="overtime_disposition_edit")
+     * @param Request $request
+     * @param OvertimeDisposition $disposition
+     * @return Response
+     */
+    public function edit(Request $request, OvertimeDisposition $disposition): Response
+    {
+        $form = $this->createForm(OvertimeDispositionType::class,$disposition);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $disposition->setStartDate($disposition->getStartDate());
+            $disposition->setEndDate($disposition->getEndDate());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash('success', 'Pomyślnie zmieniono dane');
+
+            return $this->redirectToRoute('overtime_disposition');
+        }
+
+        return $this->render('overtime_disposition/edit.html.twig', [
+            'disposition' => $disposition,
+            'form' => $form->createView(),
+        ]);
+    }
 }
