@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 
 const picker = document.querySelectorAll(".picker");
-const vacationPicker = document.querySelectorAll(".vacationPicker");
+const datePicker = document.querySelectorAll(".datePicker");
 const birthPicker = document.querySelectorAll(".birthPicker");
 const timePicker = document.querySelectorAll(".timePicker");
 
@@ -11,7 +11,7 @@ flatpickr(picker, {
 
 flatpickr(birthPicker);
 
-flatpickr(vacationPicker, {
+flatpickr(datePicker, {
     enableTime: false,
 });
 

@@ -16,12 +16,12 @@ class OvertimeStatusType extends AbstractType
             ->add('startDate', null, [
                 'label' => 'Początek nadgodzin',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'vacationPicker']
+                'attr' => ['class' => 'datePicker']
             ])
             ->add('endDate', null, [
                 'label' => 'Koniec nadgodzin',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'vacationPicker']
+                'attr' => ['class' => 'datePicker']
             ])
             ->add('beginHour', null, [
                 'label' => 'Początkowa godzina',
