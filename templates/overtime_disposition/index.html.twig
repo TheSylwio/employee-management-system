@@ -28,19 +28,19 @@
                 </tr>
             {% endfor %}
         </table>
+            <a href="{{ path('overtime') }}" class="btn btn-primary">Wróć do listy nagodzin</a>
             <a href="{{ path('overtime_disposition_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
         {% endif %}
         {% if is_granted('ROLE_EMPLOYEE') %}
         <table class="table table-striped">
             <tr>
-                <th scope="col">Pracownik</th>
                 <th scope="col">Początek dyspozycji</th>
                 <th scope="col">Koniec dyspozycji</th>
+                <th scope="col">Godziny</th>
             </tr>
             {% for disposition in overtimeDisposition %}
                 {% if employee==disposition.employee %}
                 <tr>
-                    <td>{{ disposition.employee }}</td>
                     <td>{{ disposition.startDate|date('d.m.Y') }}</td>
                     <td>{{ disposition.endDate|date('d.m.Y') }}</td>
                     <td>{{ disposition.startDate|date('H.i') }} - {{ disposition.endDate|date('H.i') }}</td>
@@ -48,6 +48,7 @@
                 {% endif %}
             {% endfor %}
         </table>
+            <a href="{{ path('overtime') }}" class="btn btn-primary">Wróć do listy nagodzin</a>
             <a href="{{ path('overtime_disposition_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
         {% endif %}
     </div>
