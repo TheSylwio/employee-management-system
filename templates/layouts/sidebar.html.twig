@@ -1,6 +1,6 @@
 {% macro sidebar(activeTab) %}
     <nav class="sidebar text-center">
-        <img src="{{ asset("images/logo.svg") }}" class="dark-logo img-fluid w-50 my-3" alt="dokumenty.png">
+        <img src="{{ asset("images/logo.svg") }}" class="img-fluid w-50 my-3" alt="logo" id="dark-logo">
         <ul class="navbar-nav sidebar__components text-left">
             <li class="nav-item">
                 <a href="{{ path('index') }}"
@@ -71,9 +71,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="sidebar__link sidebar__link--darkmode btn-toggle" >
-                    <i class="fas fa-moon"></i> Zmień Motyw
-                </a>
+                <button class="sidebar__link" id="btn-toggle">
+                    <i class="fas fa-moon"></i> Zmień motyw
+                </button>
             </li>
         </ul>
     </nav>
