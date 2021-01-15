@@ -6,10 +6,11 @@
 
 {% block body %}
     <h1 class="my-4">Edycja kamienia milowego</h1>
+    <div class="header"></div>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.realizationTime) }}
     {{ form_row(form.description) }}
-    <button type="submit" class="btn btn-dark">Zapisz</button>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
     {{ form_end(form) }}
 {% endblock %}

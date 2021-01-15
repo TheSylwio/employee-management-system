@@ -6,13 +6,20 @@
 
 {% block body %}
     <h1 class="my-4">Lista kamieni milowych</h1>
-    <table class="table table-striped">
+    <div class="header"></div>
+    <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
         <th scope="col">Nazwa</th>
         <th scope="col">Czas realizacji</th>
         <th scope="col">Opis</th>
         {% if is_granted('ROLE_EMPLOYER') %}
             <th scope="col">Operacje</th>
         {% endif %}
+        </tr>
+        </thead>
+        <tbody>
         {% for milestone in milestones %}
             <tr>
                 <td>{{ milestone.name }}</td>
@@ -35,8 +42,10 @@
                 {% endif %}
             </tr>
         {% endfor %}
+        </tbody>
     </table>
+    </div>
     {% if is_granted('ROLE_EMPLOYER') %}
-        <a href="{{ path('milestone_add') }}" class="btn btn-primary">Dodaj kamień milowy</a>
+        <a href="{{ path('milestone_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Dodaj kamień milowy</a>
     {% endif %}
 {% endblock %}

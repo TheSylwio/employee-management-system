@@ -5,17 +5,20 @@
 {% block body %}
     {% if is_granted('ROLE_EMPLOYER') %}
         <h1 class="mb-3">Urlopy</h1>
-        <div class="row">
-            <div class="col">
-                <h2>Zaakceptowane</h2>
+        <div class="header"></div>
+        <h4 class="vacationHeader">Zaakceptowane</h4>
+            <div class="table-responsive" style="max-height: 22%">
                 {% if acceptedVacations.count > 0 %}
-                    <table class="table table-striped">
+                    <table class="table table-hover table-bordered">
+                        <thead>
                         <tr>
                             <th scope="col">Pracownik</th>
                             <th scope="col">Początek Urlopu</th>
                             <th scope="col">Koniec Urlopu</th>
                             <th scope="col">Opcje</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {% for vacation in acceptedVacations %}
                             <tr>
                                 <td>{{ vacation.employee }}</td>
@@ -23,26 +26,32 @@
                                 <td>{{ vacation.endDate|date('d.m.Y') }}</td>
                                 <td>
                                     <a href="{{ path('vacation_edit', {vacation: vacation.id}) }}"
-                                       class="btn btn-primary">Edytuj</a>
+                                       class="btn btn-primary"><i class="fas fa-pen"></i>Edytuj</a>
                                 </td>
                             </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
                 {% else %}
                     <p>Brak aktywnych urlopów</p>
                 {% endif %}
-                <a href="{{ path('vacation_add') }}" class="btn btn-primary">Złóź wniosek</a>
             </div>
-            <div class="col">
-                <h2>Oczekujące</h2>
+        <a href="{{ path('vacation_add') }}" class="btn btn-primary" style="position: absolute; top: 30px; right: 16pt;">Złóź wniosek</a>
+
+
+        <h4 class="vacationHeader">Oczekujące</h4>
+            <div class="table-responsive" style="max-height: 22%">
                 {% if waitingVacations.count > 0 %}
-                    <table class="table table-striped">
+                    <table class="table table-hover table-bordered" >
+                        <thead>
                         <tr>
                             <th scope="col">Pracownik</th>
                             <th scope="col">Początek Urlopu</th>
                             <th scope="col">Koniec Urlopu</th>
                             <th scope="col">Opcje</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {% for vacation in waitingVacations %}
                             <tr>
                                 <td>{{ vacation.employee }}</td>
@@ -60,21 +69,26 @@
                                 </td>
                             </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
                 {% else %}
                     <p>Brak oczekującuch wniosków o urlop</p>
                 {% endif %}
             </div>
-            <div class="col">
-                <h2>Odrzucone</h2>
+
+    <h4 class="vacationHeader">Odrzucone</h4>
+            <div class="table-responsive" style="max-height: 22%">
                 {% if rejectedVacations.count > 0 %}
-                    <table class="table table-striped">
+                    <table class="table table-hover table-bordered">
+                        <thead>
                         <tr>
                             <th scope="col">Pracownik</th>
                             <th scope="col">Początek Urlopu</th>
                             <th scope="col">Koniec Urlopu</th>
                             <th scope="col">Opcje</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {% for vacation in rejectedVacations %}
                             <tr>
                                 <td>{{ vacation.employee }}</td>
@@ -82,27 +96,32 @@
                                 <td>{{ vacation.endDate|date('d.m.Y') }}</td>
                                 <td>
                                     <a href="{{ path('vacation_edit', {vacation: vacation.id}) }}"
-                                       class="btn btn-primary">Edytuj</a>
+                                       class="btn btn-primary"><i class="fas fa-pen"></i>Edytuj</a>
                                 </td>
                             </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
                 {% else %}
                     <p>Brak odrzuconych wniosków o urlop</p>
                 {% endif %}
             </div>
-        </div>
+
+
     {% endif %}
     {% if is_granted('ROLE_EMPLOYEE') %}
-        <div class="row">
-            <div class="col">
-                <h1 class="my-4">Urlopy</h1>
-                <table class="table table-striped">
+        <h1 class="my-4">Urlopy</h1>
+        <div class="header"></div>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
                     <tr>
                         <th scope="col">Początek Urlopu</th>
                         <th scope="col">Koniec Urlopu</th>
                         <th scope="col">Status</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     {% for vacation in app.user.employee.vacations %}
                         <tr>
                             <td>{{ vacation.startDate|date('d.m.Y') }}</td>
@@ -116,9 +135,9 @@
                             {% endif %}
                         </tr>
                     {% endfor %}
+                    </tbody>
                 </table>
-                <a href="{{ path('vacation_add') }}" class="btn btn-primary">Złóż wniosek</a>
             </div>
-        </div>
+                <a href="{{ path('vacation_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Złóż wniosek</a>
     {% endif %}
 {% endblock %}

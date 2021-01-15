@@ -5,6 +5,7 @@
 @import "~sweetalert2/src/sweetalert2.scss";
 @import "~toastr/toastr.scss";
 @import "./sidebar.scss";
+@import "subpage";
 
 .fas {
   width: 11px !important;
@@ -17,7 +18,7 @@
 }
 
 .bg-primary, .btn-primary {
-  background: #2f49d0 !important;
+  background: #1a2b81 !important;
 }
 
 .text-primary {

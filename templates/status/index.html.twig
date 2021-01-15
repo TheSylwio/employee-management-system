@@ -6,14 +6,17 @@
 
 {% block body %}
     <h1 class="my-4">Statusy zadań</h1>
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped">
+    <div class="header"></div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
                 <tr>
                     <th scope="col">Kategoria</th>
                     <th scope="col">Nazwa statusu</th>
                     <th scope="col">Operacje</th>
                 </tr>
+                </thead>
+                <tbody>
                 {% for st in status %}
                     <tr>
                         {% if st.category == 'done' %}
@@ -33,8 +36,8 @@
                         </td>
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
-            <a href="{{ path('status_add') }}" class="btn btn-primary">Dodaj status</a>
         </div>
-    </div>
+    <a href="{{ path('status_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Dodaj status</a>
 {% endblock %}

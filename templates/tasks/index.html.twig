@@ -5,10 +5,11 @@
 {% block title %}Zadania{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Lista zadań</h1>
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped">
+    <h1 class="my-4">LISTA ZADAŃ</h1>
+    <div class="header"></div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
                 <tr>
                     <th scope="col">Nazwa</th>
                     <th scope="col">Pracownik</th>
@@ -21,6 +22,8 @@
                         <th>Operacje</th>
                     {% endif %}
                 </tr>
+                </thead>
+                <tbody>
                 {% for task in tasks %}
                     <tr>
                         <td>{{ task.name }}</td>
@@ -44,12 +47,11 @@
                         {% endif %}
                     </tr>
                 {% endfor %}
+                </tbody>
             </table>
-            {% if is_granted('ROLE_EMPLOYER') %}
-                <a href="{{ path('tasks_add') }}" class="btn btn-primary">Dodaj zadanie</a>
-                <a href="{{ path('status') }}" class="btn btn-primary">Lista statusów</a>
-            {% endif %}
-
         </div>
-    </div>
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <a href="{{ path('tasks_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 130pt;" >Dodaj zadanie</a>
+        <a href="{{ path('status') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Lista statusów</a>
+    {% endif %}
 {% endblock %}

@@ -5,10 +5,11 @@
 {% block title %}Pracownicy{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            <h1 class="my-4">Lista pracowników</h1>
-            <table class="table table-striped">
+    <h1 class="my-4">Lista pracowników</h1>
+    <div class="header"></div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
                 <tr>
                     <th scope="col">Imię</th>
                     <th scope="col">Nazwisko</th>
@@ -20,6 +21,8 @@
                         <th scope="col">Edytuj</th>
                     {% endif %}
                 </tr>
+                </thead>
+                <tbody>
                 {% for employee in employees %}
                     {% if employee != app.user.employee %}
                         <tr>
@@ -45,8 +48,8 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
+                </tbody>
             </table>
-            <a href="{{ path('employees_add') }}" class="btn btn-primary">Dodaj pracownika</a>
         </div>
-    </div>
+    <a href="{{ path('employees_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Dodaj pracownika</a>
 {% endblock %}
