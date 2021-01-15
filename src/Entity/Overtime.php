@@ -30,12 +30,12 @@ class Overtime
     private $company;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $startDate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $endDate;
 
@@ -43,6 +43,21 @@ class Overtime
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $beginHour;
+
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $endHour;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $status;
 
     public function getId(): ?int
     {
@@ -105,6 +120,42 @@ class Overtime
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBeginHour(): ?\DateTimeInterface
+    {
+        return $this->beginHour;
+    }
+
+    public function setBeginHour(\DateTimeInterface $beginHour): self
+    {
+        $this->beginHour = $beginHour;
+
+        return $this;
+    }
+
+    public function getEndHour(): ?\DateTimeInterface
+    {
+        return $this->endHour;
+    }
+
+    public function setEndHour(\DateTimeInterface $endHour): self
+    {
+        $this->endHour = $endHour;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

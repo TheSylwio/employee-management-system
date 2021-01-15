@@ -2,53 +2,58 @@
 {% set activeTab = "overtime" %}
 {% block title %}Nadgodziny{% endblock %}
 {% block body %}
-    <h1 class="mb-3">Nadgodziny</h1>
+    <h1 class="mb-3">Dyspozycje</h1>
     <div class="example-wrapper">
         {% if is_granted('ROLE_EMPLOYER') %}
             <table class="table table-striped">
                 <tr>
                     <th scope="col">Pracownik</th>
-                    <th scope="col">Początek nadgodzin</th>
-                    <th scope="col">Koniec nadgodzin</th>
+                    <th scope="col">Początek dyspozycji</th>
+                    <th scope="col">Koniec dyspozycji</th>
                     <th scope="col">Godziny</th>
                     <th scope="col">Dodatkowe informacje</th>
+                    <th scope="col">Operacje</th>
+
                 </tr>
                 {% for overtime in overtime %}
-                    {% if overtime.status=="overtime" %}
+                    {% if overtime.status=="disposition" %}
                     <tr>
                         <td>{{ overtime.employee }}</td>
                         <td>{{ overtime.startDate|date('d.m.Y') }}</td>
                         <td>{{ overtime.endDate|date('d.m.Y') }}</td>
                         <td>{{ overtime.beginHour|date('H.i') }} - {{ overtime.endHour|date('H.i') }}</td>
                         <td>{{ overtime.description }}</td>
+                        <td>
+                            <a href="{{ path('overtime_edit', {overtime: overtime.id}) }}" class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                        </td>
                     </tr>
                     {% endif %}
                 {% endfor %}
             </table>
-            <a href="{{ path('disposition') }}" class="btn btn-primary">Dyspozycje</a>
+            <a href="{{ path('overtime') }}" class="btn btn-primary"></i>Nadgodziny</a>
         {% endif %}
         {% if is_granted('ROLE_EMPLOYEE') %}
             <table class="table table-striped">
                 <tr>
-                    <th scope="col">Początek nadgodzin</th>
-                    <th scope="col">Koniec nadgodzin</th>
+                    <th scope="col">Początek dyspozycji</th>
+                    <th scope="col">Koniec dyspozycji</th>
                     <th scope="col">Godziny</th>
                     <th scope="col">Dodatkowe informacje</th>
-
                 </tr>
                 {% for overtime in overtime %}
-                    {% if employee==overtime.employee and overtime.status=="overtime" %}
+                    {% if employee==overtime.employee and overtime.status=="disposition" %}
                         <tr>
                             <td>{{ overtime.startDate|date('d.m.Y') }}</td>
                             <td>{{ overtime.endDate|date('d.m.Y') }}</td>
-                            <td>{{ overtime.beginHour|date('H.i') }} - {{ overtime.endHour|date('H.i') }}</td>
+                            <td>{{ overtime.startDate|date('H.i') }} - {{ overtime.endDate|date('H.i') }}</td>
                             <td>{{ overtime.description }}</td>
-
                         </tr>
                     {% endif %}
                 {% endfor %}
             </table>
-            <a href="{{ path('disposition') }}" class="btn btn-primary">Dyspozycje</a>
+            <a href="{{ path('overtime') }}" class="btn btn-primary"></i>Nadgodziny</a>
             <a href="{{ path('overtime_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
         {% endif %}
     </div>
