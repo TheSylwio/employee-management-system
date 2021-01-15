@@ -1,11 +1,17 @@
 const btn = document.querySelector("#btn-toggle");
-let switched = false;
+const logo = document.querySelector('#dark-logo');
+const currentTheme = localStorage.getItem("mode");
+
+if (currentTheme === "dark") {
+  document.body.classList.add("dark-mode");
+  logo.src = 'https://127.0.0.1:8000/images/logo_white.svg';
+}
 
 btn.addEventListener("click", () => {
-  const logo = document.querySelector('#dark-logo');
-
-  logo.src = switched ? 'https://127.0.0.1:8000/images/logo.svg' : 'https://127.0.0.1:8000/images/logo_white.svg';
-  switched = !switched;
+  logo.src = (currentTheme === 'dark') ? 'https://127.0.0.1:8000/images/logo.svg' : 'https://127.0.0.1:8000/images/logo_white.svg';
 
   document.body.classList.toggle("dark-mode");
+  
+  const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+  localStorage.setItem("mode", theme);
 });
