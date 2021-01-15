@@ -1,28 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-$primaryDMColor: #1f1f1f;
-$secondaryDMColor: #f7f7f7;
-$tertiaryDMColor: #525252;
 
-$red: #ff0000;
-
-body {
-  color: #000000;
-  background: #FFFFFF;
-}
-
-a {
-  color: #000000;
-}
-
-th {
-  color: #222222;
-}
-
-td {
-  color: #222222;
-}
+$primary: #1f1f1f;
+$secondary: #f7f7f7;
+$accent: #525252;
 
 body.dark-mode {
   color: #ededee;
@@ -39,35 +21,38 @@ body.dark-mode {
   td {
     color: #cccccc;
   }
+
   hr {
-    border: 1px solid $tertiaryDMColor;
+    border: 1px solid $accent;
   }
+
   .btn-primary {
-    border: 1px solid $primaryDMColor !important;
-    background: $primaryDMColor !important;
+    border: 1px solid $primary !important;
+    background: $primary !important;
   }
-  .dark-logo {
-    path {
+
+  .sidebar {
+    background: $primary;
+
+    svg g path {
       fill: #000000;
     }
-  }
-  .sidebar {
-    background: $primaryDMColor;
 
     .sidebar__components {
       .sidebar__link {
-
         &--active {
-          background: $tertiaryDMColor;
-          color: $secondaryDMColor;
+          background: $accent;
+          color: $secondary;
         }
+
         &:hover {
           background: #f7f7f7;
-          color: $primaryDMColor;
+          color: $primary;
         }
+
         &--logout:hover {
           background: #841f29;
-          color: $secondaryDMColor;
+          color: $secondary;
         }
       }
     }
