@@ -40,8 +40,7 @@ class OvertimeStatusType extends AbstractType
                     'Zaakceptuj' => 'overtime',
                     'Odrzuć' => 'dispositionRejected',
                 ],
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

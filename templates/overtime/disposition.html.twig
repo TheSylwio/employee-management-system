@@ -17,22 +17,23 @@
                 </tr>
                 {% for overtime in overtime %}
                     {% if overtime.status=="disposition" %}
-                    <tr>
-                        <td>{{ overtime.employee }}</td>
-                        <td>{{ overtime.startDate|date('d.m.Y') }}</td>
-                        <td>{{ overtime.endDate|date('d.m.Y') }}</td>
-                        <td>{{ overtime.beginHour|date('H.i') }} - {{ overtime.endHour|date('H.i') }}</td>
-                        <td>{{ overtime.description }}</td>
-                        <td>
-                            <a href="{{ path('overtime_edit', {overtime: overtime.id}) }}" class="btn btn-sm btn-primary mr-2">
-                                <i class="fas fa-pen"></i>Edytuj
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ overtime.employee }}</td>
+                            <td>{{ overtime.startDate|date('d.m.Y') }}</td>
+                            <td>{{ overtime.endDate|date('d.m.Y') }}</td>
+                            <td>{{ overtime.beginHour|date('H.i') }} - {{ overtime.endHour|date('H.i') }}</td>
+                            <td>{{ overtime.description }}</td>
+                            <td>
+                                <a href="{{ path('overtime_edit', {overtime: overtime.id}) }}"
+                                   class="btn btn-sm btn-primary mr-2">
+                                    <i class="fas fa-pen"></i>Edytuj
+                                </a>
+                            </td>
+                        </tr>
                     {% endif %}
                 {% endfor %}
             </table>
-            <a href="{{ path('overtime') }}" class="btn btn-primary"></i>Nadgodziny</a>
+            <a href="{{ path('overtime') }}" class="btn btn-primary">Nadgodziny</a>
         {% endif %}
         {% if is_granted('ROLE_EMPLOYEE') %}
             <table class="table table-striped">
@@ -53,7 +54,7 @@
                     {% endif %}
                 {% endfor %}
             </table>
-            <a href="{{ path('overtime') }}" class="btn btn-primary"></i>Nadgodziny</a>
+            <a href="{{ path('overtime') }}" class="btn btn-primary">Nadgodziny</a>
             <a href="{{ path('overtime_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
         {% endif %}
     </div>
