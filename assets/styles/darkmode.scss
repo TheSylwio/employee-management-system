@@ -47,7 +47,9 @@ body.dark-mode {
     background: $primaryDMColor !important;
   }
   .dark-logo {
-    fill: #000000;
+    path {
+      fill: #000000;
+    }
   }
   .sidebar {
     background: $primaryDMColor;
