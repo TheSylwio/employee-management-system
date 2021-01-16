@@ -5,57 +5,55 @@
 {% block title %}Wydarzenia{% endblock %}
 
 {% block body %}
-
-    <h1 class="my-4">LISTA WYDARZEŃ</h1>
-    <div class="header"></div>
-    <div class="btn-group btn-group" style="position: absolute; top: 50px; right: 150pt;" role="group" aria-label="eventsFilter">
-        <button id="todayEvents" class="btn btn-dark"><i class="fas fa-calendar-day"></i></button>
-        <button id="weekEvents" class="btn btn-dark"><i class="fas fa-calendar-week"></i></button>
-        <button id="allEvents" class="btn btn-dark"><i class="fas fa-calendar-alt"></i></button>
-    </div>
-
-    <div class="table-responsive">
-    <table class="table table-hover table-bordered" id="eventTable">
-        <thead>
-        <tr>
-            <th scope="col" >Nazwa</th>
-            <th scope="col">Data rozpoczęcia wydarzenia</th>
-            <th scope="col">Data zakończenia wydarzenia</th>
-            <th scope="col">Opis</th>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>LISTA WYDARZEŃ</h1>
+        <div>
+            <div class="btn-group btn-group mr-4" role="group" aria-label="eventsFilter">
+                <button id="todayEvents" class="btn btn-primary"><i class="fas fa-calendar-day"></i></button>
+                <button id="weekEvents" class="btn btn-primary"><i class="fas fa-calendar-week"></i></button>
+                <button id="allEvents" class="btn btn-primary"><i class="fas fa-calendar-alt"></i></button>
+            </div>
             {% if is_granted('ROLE_EMPLOYER') %}
-                <th scope="col">Działania</th>
+                <a href="{{ path('events_add') }}" class="btn btn-primary">Dodaj wydarzenie</a>
             {% endif %}
-        </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr class="eventRow" data-startdate="{{ event.startDate|date('M d, Y') }}">
-                <td>{{ event.name }}</td>
-                <td>{{ event.startDate|date('d.m.Y') }}</td>
-                <td>{{ event.endDate|date('d.m.Y') }}</td>
-                <td>{{ event.description }}</td>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" id="eventTable">
+            <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Data rozpoczęcia wydarzenia</th>
+                <th scope="col">Data zakończenia wydarzenia</th>
+                <th scope="col">Opis</th>
                 {% if is_granted('ROLE_EMPLOYER') %}
-                    <td>
-                        <a href="{{ path('event_edit', {event: event.id}) }}"
-                           class="btn btn-sm btn-primary mr-2">
-                            <i class="fas fa-pen"></i>Edytuj
-                        </a>
-                        <button data-path="{{ path('event_delete', {event: event.id}) }}"
-                                data-name="{{ event.name }}"
-                                class="btn btn-sm btn-danger btn--delete">
-                            <i class="fas fa-trash"></i>Usuń
-                        </button>
-                    </td>
+                    <th scope="col">Działania</th>
                 {% endif %}
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr class="eventRow" data-startdate="{{ event.startDate|date('M d, Y') }}">
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.startDate|date('d.m.Y') }}</td>
+                    <td>{{ event.endDate|date('d.m.Y') }}</td>
+                    <td>{{ event.description }}</td>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <td>
+                            <a href="{{ path('event_edit', {event: event.id}) }}"
+                               class="btn btn-sm btn-primary mr-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                            <button data-path="{{ path('event_delete', {event: event.id}) }}"
+                                    data-name="{{ event.name }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-
-
-    {% if is_granted('ROLE_EMPLOYER') %}
-        <a href="{{ path('events_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Dodaj wydarzenie</a>
-    {% endif %}
-
 {% endblock %}

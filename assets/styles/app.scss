@@ -5,20 +5,20 @@
 @import "~sweetalert2/src/sweetalert2.scss";
 @import "~toastr/toastr.scss";
 @import "./sidebar.scss";
-@import "subpage";
+@import "./subpage.scss";
 
-.fas {
-  width: 11px !important;
-  height: 11px !important;
-  margin-right: 8pt;
-}
+//.fas {
+//  width: 11px !important;
+//  height: 11px !important;
+//  margin-right: 8pt;
+//}
 
 .btn-primary {
   border: 1px solid #2f49d0 !important;
 }
 
 .bg-primary, .btn-primary {
-  background: #1a2b81 !important;
+  background: #2f49d0 !important;
 }
 
 .text-primary {

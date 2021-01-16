@@ -5,40 +5,41 @@
 {% block title %}Kamienie Milowe{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">{{ milestone }}</h1>
-    <div class="header"></div>
+    <div class="header">
+        <h1>{{ milestone }}</h1>
+    </div>
     <div class="table-responsive">
-    <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-        <th scope="col">Kategoria</th>
-        <th scope="col">Opis</th>
-        <th scope="col">Czas realizacji</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for task in milestone.tasks %}
-            {% if task.status.category =="in_progress" %}
-                <tr class="table-warning">
-                    <td>W trakcie</td>
-                    <td>{{ task.description }}</td>
-                    <td>{{ task.deadline|date('d.m.Y') }}</td>
-                </tr>
-            {% elseif task.status.category=="done" %}
-                <tr class="table-success">
-                    <td>Zrobione</td>
-                    <td>{{ task.description }}</td>
-                    <td>{{ task.deadline|date('d.m.Y') }}</td>
-                </tr>
-            {% elseif task.status.category=="not_done" %}
-                <tr class="table-danger">
-                    <td>Niezrobione</td>
-                    <td>{{ task.description }}</td>
-                    <td>{{ task.deadline|date('d.m.Y') }}</td>
-                </tr>
-            {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Kategoria</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Czas realizacji</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in milestone.tasks %}
+                {% if task.status.category =="in_progress" %}
+                    <tr class="table-warning">
+                        <td>W trakcie</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.deadline|date('d.m.Y') }}</td>
+                    </tr>
+                {% elseif task.status.category=="done" %}
+                    <tr class="table-success">
+                        <td>Zrobione</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.deadline|date('d.m.Y') }}</td>
+                    </tr>
+                {% elseif task.status.category=="not_done" %}
+                    <tr class="table-danger">
+                        <td>Niezrobione</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.deadline|date('d.m.Y') }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

@@ -5,8 +5,9 @@
 {% block title %}Dodawanie zadania{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Dodawanie zadania</h1>
-    <div class="header"></div>
+    <div class="header">
+        <h1>Dodawanie zadania</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row((form.name)) }}
     {{ form_row(form.assignation) }}
@@ -15,7 +16,7 @@
     {{ form_row(form.status) }}
     {{ form_row(form.milestone) }}
     <button type="submit" class="btn btn-primary">Dodaj zadanie</button>
-    <a href="{{ path('tasks') }}" class="btn btn-secondary">Wróć do listy zadań</a>
+    <a href="{{ path('tasks') }}" class="btn btn-link">Wróć do listy zadań</a>
     {{ form_end(form) }}
 {% endblock %}
 

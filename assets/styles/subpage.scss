@@ -1,55 +1,48 @@
-.content{
-  height: 100vh;
-  background-color: #EEEEEE;
+.content {
+  background: #EEEEEE;
 }
 
-thead th{
-  background-color: #1a2b81;
+thead th {
+  background: #1a2b81;
   color: #DDDDDD;
-  position:sticky;
-  top:-1px;
+  position: sticky;
+  top: -1px;
 }
-tbody td{
+
+tbody td {
   background-color: whitesmoke;
 }
 
-.table-responsive{
+.table-responsive {
   max-height: 60%;
-  overflow:auto;
+  overflow: auto;
 }
 
-.header{
-  margin-bottom: 40px;
+.header {
+  //display: flex;
+  //justify-content: space-between;
+  //align-items: center;
+  padding: 8pt 0;
+  margin-bottom: 12pt;
   width: 100%;
-  height: 5px;
-  background-color: #2f49d0;
+  border-bottom: 5px solid #2f49d0;
 }
 
-h1{
+h1 {
   letter-spacing: 3px;
   color: #273CA8;
   text-transform: uppercase;
 }
 
-.btn-primary{
-  letter-spacing: 1px;
-}
-
-.vacationHeader{
-  color:#273CA8;
-  margin-top:15px !important;
-  text-transform: uppercase;
-}
-.documentHeader{
+.heading {
   color: #273CA8;
-  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.list-group{
+.list-group {
   max-height: 60vh;
   margin-bottom: 10px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 

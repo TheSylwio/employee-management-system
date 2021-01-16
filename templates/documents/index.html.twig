@@ -5,11 +5,12 @@
 {% block title %}Zarządzanie dokumentami{% endblock %}
 
 {% block body %}
-    <h1>Zarządzanie dokumentami</h1>
-    <div class="header"></div>
+    <div class="header">
+        <h1>Zarządzanie dokumentami</h1>
+    </div>
     <div class="row">
         <div class="col-8">
-            <h2 class="documentHeader">Lista Dokumentów</h2>
+            <h4 class="heading">Lista Dokumentów</h4>
             {% if documents.count == 0 %}
                 <p>Brak dokumentów</p>
             {% else %}
@@ -30,7 +31,7 @@
             {% endif %}
         </div>
         <div class="col-4">
-            <h2 class="documentHeader">Dodaj Dokument</h2>
+            <h4 class="heading">Dodaj Dokument</h4>
             {{ form_start(form, {attr: {autocomplete: 'off'}}) }}
             {{ form_row(form.name) }}
             {{ form_row(form.filename) }}

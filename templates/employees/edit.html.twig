@@ -5,8 +5,9 @@
 {% block title %}Edycja pracownika{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edycja pracownika</h1>
-    <div class="header"></div>
+    <div class="header">
+        <h1>Edycja pracownika</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.firstName) }}
     {{ form_row(form.surname) }}
@@ -15,6 +16,6 @@
     {{ form_row(form.pesel) }}
     {{ form_row(form.address) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="{{ path('employees') }}" class="btn btn-secondary">Wróć do listy pracowników</a>
+    <a href="{{ path('employees') }}" class="btn btn-link">Wróć do listy pracowników</a>
     {{ form_end(form) }}
 {% endblock %}

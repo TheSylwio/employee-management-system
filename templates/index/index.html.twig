@@ -9,17 +9,14 @@
 
 {% block body %}
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        <h1 class="my-4">POSTY</h1>
-        <div class="header"></div>
-        {% if is_granted("ROLE_EMPLOYER") %}
-            <a href="{{ path('post_add') }}" class="btn btn-primary" style="position: absolute; top: 50px; right: 16pt;">Dodaj post</a>
-        {% endif %}
+        <div class="header d-flex justify-content-between align-items-center">
+            <h1>POSTY</h1>
+            {% if is_granted("ROLE_EMPLOYER") %}
+                <a href="{{ path('post_add') }}" class="btn btn-primary">Dodaj post</a>
+            {% endif %}
+        </div>
         <div class="row">
             <div class="col">
-                <div class="d-flex align-items-center">
-
-
-                </div>
                 {% if posts.count > 0 %}
                     {% for post in posts %}
                         <div class="card">

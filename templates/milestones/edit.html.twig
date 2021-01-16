@@ -5,12 +5,14 @@
 {% block title %}Edycja kamienia milowego{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edycja kamienia milowego</h1>
-    <div class="header"></div>
+    <div class="header">
+        <h1>Edycja kamienia milowego</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.realizationTime) }}
     {{ form_row(form.description) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a href="{{ path('milestones') }}" class="btn btn-link">Wróć do listy kamieni milowych</a>
     {{ form_end(form) }}
 {% endblock %}
