@@ -30,7 +30,7 @@
                             <td>{{ vacation.endDate|date('d.m.Y') }}</td>
                             <td>
                                 <a href="{{ path('vacation_edit', {vacation: vacation.id}) }}"
-                                   class="btn btn-primary"><i class="fas fa-pen"></i>Edytuj</a>
+                                   class="btn btn-sm btn-primary"><i class="fas fa-pen"></i>Edytuj</a>
                             </td>
                         </tr>
                     {% endfor %}
