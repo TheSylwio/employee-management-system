@@ -5,10 +5,12 @@
 {% block title %}Zmiana adresu email{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Zmiana adresu email</h1>
+    <div class="header">
+        <h1>Zmiana adresu email</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.email) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="{{ path('settings') }}" class="btn btn-secondary">Wróć do ustawień</a>
+    <a href="{{ path('settings') }}" class="btn btn-link">Wróć do ustawień</a>
     {{ form_end(form) }}
 {% endblock %}

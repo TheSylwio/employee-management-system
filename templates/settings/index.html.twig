@@ -5,7 +5,11 @@
 {% block title %}Panel ustawień użytkownika{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Panel ustawień</h1>
-    <a class="btn btn-primary" href="{{ path('settings_email') }}">Zmień email</a>
-    <a class="btn btn-primary" href="{{ path('settings_password') }}">Zmień hasło</a>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>Panel ustawień</h1>
+        <div>
+            <a class="btn btn-primary" href="{{ path('settings_email') }}">Zmień email</a>
+            <a class="btn btn-primary" href="{{ path('settings_password') }}">Zmień hasło</a>
+        </div>
+    </div>
 {% endblock %}

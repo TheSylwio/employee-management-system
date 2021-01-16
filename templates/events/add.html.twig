@@ -5,13 +5,15 @@
 {% block title %}Dodawanie wydarzenia{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Dodawanie wydarzenia</h1>
+    <div class="header">
+        <h1>Dodawanie wydarzenia</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.startDate) }}
     {{ form_row(form.endDate) }}
     {{ form_row(form.description) }}
-    <button type="submit" class="btn btn-dark">Dodaj</button>
-    <a href="{{ path('events') }}" class="btn btn-secondary">Wróć do listy wydarzeń</a>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <a href="{{ path('events') }}" class="btn btn-link">Wróć do listy wydarzeń</a>
     {{ form_end(form) }}
 {% endblock %}

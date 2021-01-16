@@ -5,38 +5,50 @@
 {% block title %}Kamienie Milowe{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Lista kamieni milowych</h1>
-    <table class="table table-striped">
-        <th scope="col">Nazwa</th>
-        <th scope="col">Czas realizacji</th>
-        <th scope="col">Opis</th>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>Lista kamieni milowych</h1>
         {% if is_granted('ROLE_EMPLOYER') %}
-            <th scope="col">Operacje</th>
+            <a href="{{ path('milestone_add') }}" class="btn btn-primary">Dodaj kamień milowy</a>
         {% endif %}
-        {% for milestone in milestones %}
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
             <tr>
-                <td>{{ milestone.name }}</td>
-                <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
-                <td>{{ milestone.description }}</td>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Czas realizacji</th>
+                <th scope="col">Opis</th>
                 {% if is_granted('ROLE_EMPLOYER') %}
-                    <td>
-                        <a href="{{ path('milestone_show', {milestone: milestone.id}) }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-info"></i>Opis
-                        </a>
-                        <a href="{{ path('milestone_edit', {milestone: milestone.id}) }}" class="btn btn-sm btn-primary mx-2">
-                            <i class="fas fa-pen"></i>Edytuj
-                        </a>
-                        <button data-path="{{ path('milestone_delete', {milestone: milestone.id}) }}"
-                                data-name="{{ milestone }}"
-                                class="btn btn-sm btn-danger btn--delete">
-                            <i class="fas fa-trash"></i>Usuń
-                        </button>
-                    </td>
+                    <th scope="col">Operacje</th>
                 {% endif %}
             </tr>
-        {% endfor %}
-    </table>
-    {% if is_granted('ROLE_EMPLOYER') %}
-        <a href="{{ path('milestone_add') }}" class="btn btn-primary">Dodaj kamień milowy</a>
-    {% endif %}
+            </thead>
+            <tbody>
+            {% for milestone in milestones %}
+                <tr>
+                    <td>{{ milestone.name }}</td>
+                    <td>{{ milestone.realizationTime|date('d.m.Y') }}</td>
+                    <td>{{ milestone.description }}</td>
+                    {% if is_granted('ROLE_EMPLOYER') %}
+                        <td>
+                            <a href="{{ path('milestone_show', {milestone: milestone.id}) }}"
+                               class="btn btn-sm btn-primary">
+                                <i class="fas fa-info"></i>Opis
+                            </a>
+                            <a href="{{ path('milestone_edit', {milestone: milestone.id}) }}"
+                               class="btn btn-sm btn-primary mx-2">
+                                <i class="fas fa-pen"></i>Edytuj
+                            </a>
+                            <button data-path="{{ path('milestone_delete', {milestone: milestone.id}) }}"
+                                    data-name="{{ milestone }}"
+                                    class="btn btn-sm btn-danger btn--delete">
+                                <i class="fas fa-trash"></i>Usuń
+                            </button>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

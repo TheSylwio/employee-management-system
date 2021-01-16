@@ -1,0 +1,50 @@
+$primaryColor: #2f49d0;
+$secondaryColor: #f3f3f3;
+$tertiaryColor: #1a2b81;
+
+.content {
+  background: #EEEEEE;
+}
+
+thead th {
+  background: $tertiaryColor;
+  color: $secondaryColor;
+  position: sticky;
+  top: -1px;
+}
+
+tbody td {
+  background-color: $secondaryColor;
+}
+
+.table-responsive {
+  max-height: 60%;
+  overflow: auto;
+}
+
+.header {
+  padding: 8pt 0;
+  margin-bottom: 12pt;
+  width: 100%;
+  border-bottom: 5px solid $primaryColor;
+
+  h1 {
+    letter-spacing: 3px;
+    color: $primaryColor;
+    text-transform: uppercase;
+  }
+}
+
+.heading {
+  color: $primaryColor;
+  text-transform: uppercase;
+}
+
+.list-group {
+  max-height: 60vh;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+

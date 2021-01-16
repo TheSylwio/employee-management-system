@@ -9,14 +9,14 @@
 
 {% block body %}
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <div class="header d-flex justify-content-between align-items-center">
+            <h1>POSTY</h1>
+            {% if is_granted("ROLE_EMPLOYER") %}
+                <a href="{{ path('post_add') }}" class="btn btn-primary">Dodaj post</a>
+            {% endif %}
+        </div>
         <div class="row">
             <div class="col">
-                <div class="d-flex align-items-center">
-                    <h1 class="my-3">Posty</h1>
-                    {% if is_granted("ROLE_EMPLOYER") %}
-                        <a href="{{ path('post_add') }}" class="btn btn-primary btn-sm ml-2">Dodaj post</a>
-                    {% endif %}
-                </div>
                 {% if posts.count > 0 %}
                     {% for post in posts %}
                         <div class="card">
@@ -59,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h2 class="h2 text-left text-primary">Employee Management System</h2>
+                    <h2 class="heading text-left text-primary">Employee Management System</h2>
                     <p class="text-left">
                         EMS to narzędzie stworzone, aby dać firmom możliwość łatwego zarządzania pracownikami.
                         Oferujemy między innymi:

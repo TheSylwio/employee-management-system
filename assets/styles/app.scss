@@ -5,11 +5,16 @@
 @import "~sweetalert2/src/sweetalert2.scss";
 @import "~toastr/toastr.scss";
 @import "./sidebar.scss";
+@import "./subpage.scss";
 
 .fas {
   width: 11px !important;
   height: 11px !important;
   margin-right: 8pt;
+}
+
+.btn-group .fas {
+  margin: 0;
 }
 
 .btn-primary {

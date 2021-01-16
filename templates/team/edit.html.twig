@@ -5,13 +5,15 @@
 {% block title %}Edycja zespołu{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edycja zespołu</h1>
-    {{form_start(form)}}
+    <div class="header">
+        <h1>Edycja zespołu</h1>
+    </div>
+    {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.description) }}
     {{ form_row(form.employees) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="{{ path('teams') }}" class="btn btn-secondary">Wróć do listy zespołów</a>
+    <a href="{{ path('teams') }}" class="btn btn-link">Wróć do listy zespołów</a>
     {{ form_end(form) }}
 
 {% endblock %}

@@ -5,48 +5,52 @@
 {% block title %}Pracownicy{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col">
-            <h1 class="my-4">Lista pracowników</h1>
-            <table class="table table-striped">
-                <tr>
-                    <th scope="col">Imię</th>
-                    <th scope="col">Nazwisko</th>
-                    <th scope="col">PESEL</th>
-                    <th scope="col">Adres</th>
-                    <th scope="col">Data urodzenia</th>
-                    <th scope="col">Zespół</th>
-                    {% if is_granted('ROLE_EMPLOYER') %}
-                        <th scope="col">Edytuj</th>
-                    {% endif %}
-                </tr>
-                {% for employee in employees %}
-                    {% if employee != app.user.employee %}
-                        <tr>
-                            <td>{{ employee.firstName }}</td>
-                            <td>{{ employee.surname }}</td>
-                            <td>{{ employee.pesel }}</td>
-                            <td>{{ employee.address }}</td>
-                            <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
-                            <td>{{ employee.team }}</td>
-                            {% if is_granted('ROLE_EMPLOYER') %}
-                                <td>
-                                    <a href="{{ path('employee_edit', {employee: employee.id}) }}"
-                                       class="btn btn-sm btn-primary mr-2">
-                                        <i class="fas fa-pen"></i>Edytuj
-                                    </a>
-                                    <button data-path="{{ path('employee_delete', {employee: employee.id}) }}"
-                                            data-name="{{ employee }}"
-                                            class="btn btn-sm btn-danger btn--delete">
-                                        <i class="fas fa-trash"></i>Usuń
-                                    </button>
-                                </td>
-                            {% endif %}
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-            <a href="{{ path('employees_add') }}" class="btn btn-primary">Dodaj pracownika</a>
-        </div>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>Lista pracowników</h1>
+        <a href="{{ path('employees_add') }}" class="btn btn-primary">Dodaj pracownika</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Imię</th>
+                <th scope="col">Nazwisko</th>
+                <th scope="col">PESEL</th>
+                <th scope="col">Adres</th>
+                <th scope="col">Data urodzenia</th>
+                <th scope="col">Zespół</th>
+                {% if is_granted('ROLE_EMPLOYER') %}
+                    <th scope="col">Edytuj</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+                {% if employee != app.user.employee %}
+                    <tr>
+                        <td>{{ employee.firstName }}</td>
+                        <td>{{ employee.surname }}</td>
+                        <td>{{ employee.pesel }}</td>
+                        <td>{{ employee.address }}</td>
+                        <td>{{ employee.dateOfBirth|date('d.m.Y') }}</td>
+                        <td>{{ employee.team }}</td>
+                        {% if is_granted('ROLE_EMPLOYER') %}
+                            <td>
+                                <a href="{{ path('employee_edit', {employee: employee.id}) }}"
+                                   class="btn btn-sm btn-primary mr-2">
+                                    <i class="fas fa-pen"></i>Edytuj
+                                </a>
+                                <button data-path="{{ path('employee_delete', {employee: employee.id}) }}"
+                                        data-name="{{ employee }}"
+                                        class="btn btn-sm btn-danger btn--delete">
+                                    <i class="fas fa-trash"></i>Usuń
+                                </button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

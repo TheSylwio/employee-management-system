@@ -5,12 +5,14 @@
 {% block title %}Wniosek o urlop{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Wniosek o urlop</h1>
+    <div class="header">
+        <h1>Wniosek o urlop</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row((form.startDate)) }}
     {{ form_row((form.endDate)) }}
     <button type="submit" class="btn btn-primary">Złóż wniosek</button>
-    <a href="{{ path('vacation') }}" class="btn btn-secondary">Wróć do listy urlopów</a>
+    <a href="{{ path('vacation') }}" class="btn btn-link">Wróć do listy urlopów</a>
     {{ form_end(form) }}
 {% endblock %}
 

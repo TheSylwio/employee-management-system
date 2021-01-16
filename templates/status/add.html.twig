@@ -5,12 +5,14 @@
 {% block title %}Dodawanie statusu zadania{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Dodawanie statusu zadania</h1>
+    <div class="header">
+        <h1>Dodawanie statusu zadania</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.category) }}
     {{ form_row(form.name) }}
-    <button type="submit" class="btn btn-primary">Dodaj Status</button>
-    <a href="{{ path('status') }}" class="btn btn-secondary">Wróć do listy statusów</a>
+    <button type="submit" class="btn btn-primary">Dodaj status</button>
+    <a href="{{ path('status') }}" class="btn btn-link">Wróć do listy statusów</a>
     {{ form_end(form) }}
 {% endblock %}
 

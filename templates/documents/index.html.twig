@@ -5,10 +5,12 @@
 {% block title %}Zarządzanie dokumentami{% endblock %}
 
 {% block body %}
-    <h1>Zarządzanie dokumentami</h1>
+    <div class="header">
+        <h1>Zarządzanie dokumentami</h1>
+    </div>
     <div class="row">
         <div class="col-8">
-            <h2>Lista</h2>
+            <h4 class="heading">Lista Dokumentów</h4>
             {% if documents.count == 0 %}
                 <p>Brak dokumentów</p>
             {% else %}
@@ -18,7 +20,7 @@
                             <span>{{ document.name }}</span>
                             <div>
                                 <a href="{{ path('document_preview', {filename: document.filename}) }}"
-                                   class="btn btn-sm btn-link">Wyświetl</a>
+                                   class="btn btn-sm btn-primary">Wyświetl</a>
                                 <button data-path="{{ path('document_delete', {document: document.id}) }}"
                                         data-name="{{ document.name }}"
                                         class="btn btn-sm btn-danger btn--delete">Usuń</button>
@@ -29,7 +31,7 @@
             {% endif %}
         </div>
         <div class="col-4">
-            <h2>Dodawanie</h2>
+            <h4 class="heading">Dodaj Dokument</h4>
             {{ form_start(form, {attr: {autocomplete: 'off'}}) }}
             {{ form_row(form.name) }}
             {{ form_row(form.filename) }}

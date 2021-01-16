@@ -5,12 +5,14 @@
 {% block title %}Dodawanie Kamienia Milowego{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Dodawanie kamienia milowego</h1>
+    <div class="header">
+        <h1>Dodawanie kamienia milowego</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.description) }}
     {{ form_row(form.realizationTime) }}
-    <button type="submit" class="btn btn-dark">Dodaj</button>
-    <a href="{{ path('milestones') }}" class="btn btn-secondary">Wróć do listy kamieni milowych</a>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <a href="{{ path('milestones') }}" class="btn btn-link">Wróć do listy kamieni milowych</a>
     {{ form_end(form) }}
 {% endblock %}

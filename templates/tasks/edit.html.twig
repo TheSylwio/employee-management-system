@@ -5,7 +5,9 @@
 {% block title %}Edycja zadania{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edycja zadania</h1>
+    <div class="header">
+        <h1>Edycja zadania</h1>
+    </div>
     {{ form_start(form) }}
     {{ form_row((form.name)) }}
     {{ form_row((form.assignation)) }}
@@ -14,6 +16,6 @@
     {{ form_row(form.status) }}
     {{ form_row(form.milestone) }}
     <button type="submit" class="btn btn-primary">Zapisz</button>
-    <a href="{{ path('tasks') }}" class="btn btn-secondary">Wróć do listy zadań</a>
+    <a href="{{ path('tasks') }}" class="btn btn-link">Wróć do listy zadań</a>
     {{ form_end(form) }}
 {% endblock %}
