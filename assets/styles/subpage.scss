@@ -7,14 +7,14 @@ $tertiaryColor: #1a2b81;
 }
 
 thead th {
-  background: #1a2b81;
-  color: #DDDDDD;
+  background: $tertiaryColor;
+  color: $secondaryColor;
   position: sticky;
   top: -1px;
 }
 
 tbody td {
-  background-color: whitesmoke;
+  background-color: $secondaryColor;
 }
 
 .table-responsive {
@@ -26,17 +26,17 @@ tbody td {
   padding: 8pt 0;
   margin-bottom: 12pt;
   width: 100%;
-  border-bottom: 5px solid #2f49d0;
-}
+  border-bottom: 5px solid $primaryColor;
 
-h1 {
-  letter-spacing: 3px;
-  color: #273CA8;
-  text-transform: uppercase;
+  h1 {
+    letter-spacing: 3px;
+    color: $primaryColor;
+    text-transform: uppercase;
+  }
 }
 
 .heading {
-  color: #273CA8;
+  color: $primaryColor;
   text-transform: uppercase;
 }
 
