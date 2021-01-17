@@ -20,12 +20,9 @@ class OvertimeController extends AbstractController
      */
     public function index(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Overtime::class);
-        $overtime = $repo->findAll();
-
         return $this->render('overtime/index.html.twig', [
             'employee' => $helper->getEmployee(),
-            'overtime' => $overtime
+            'overtimes' => $helper->getCompany()->getOvertimeDisposition(),
         ]);
     }
 
@@ -36,17 +33,14 @@ class OvertimeController extends AbstractController
      */
     public function disposition(Helper $helper): Response
     {
-        $repo = $this->getDoctrine()->getRepository(Overtime::class);
-        $overtime = $repo->findAll();
-
         return $this->render('overtime/disposition.html.twig', [
             'employee' => $helper->getEmployee(),
-            'overtime' => $overtime
+            'overtime' => $helper->getCompany()->getOvertimeDisposition(),
         ]);
     }
 
     /**
-     * @Route("/overtime/add}", name="overtime_add")
+     * @Route("/overtime/add", name="overtime_add")
      * @param Request $request
      * @param Helper $helper
      * @return Response
