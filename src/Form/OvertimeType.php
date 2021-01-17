@@ -26,21 +26,21 @@ class OvertimeType extends AbstractType
     {
         $builder
             ->add('startDate', null, [
-                'label' => 'Początek nadgodzin',
+                'label' => 'Początkowa data nadgodzin',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'datePicker']
             ])
             ->add('endDate', null, [
-                'label' => 'Koniec nadgodzin',
+                'label' => 'Końcowa data nadgodzin',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'datePicker']
             ])
             ->add('beginHour', null, [
-                'label' => 'Początkowa godzina',
+                'label' => 'Przedział godzinowy nadgodzin',
                 'attr' => ['class' => 'timePicker']
             ])
             ->add('endHour', null, [
-                'label' => 'Końcowa godzina',
+                'label' => false,
                 'attr' => ['class' => 'timePicker']
             ])
             ->add('description', null, [
