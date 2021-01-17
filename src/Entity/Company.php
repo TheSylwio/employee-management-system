@@ -299,11 +299,11 @@ class Company
     }
 
     /**
-     * @return Collection|OvertimeDisposition[]
+     * @return Collection|Overtime[]
      */
     public function getOvertimeDisposition(): Collection
     {
-        return $this->teams;
+        return $this->overtimeDisposition;
     }
 
     public function __toString()
