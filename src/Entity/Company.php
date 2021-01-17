@@ -65,7 +65,7 @@ class Company
     private $vacations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Vacation::class, mappedBy="company")
+     * @ORM\OneToMany(targetEntity=Overtime::class, mappedBy="company")
      */
     private $overtimeDisposition;
 
@@ -78,7 +78,7 @@ class Company
         $this->statuses = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->vacations = new ArrayCollection();
-        $this->overtimeDisposition =new ArrayCollection();
+        $this->overtimeDisposition = new ArrayCollection();
     }
 
     public function getId(): ?int

@@ -24,7 +24,7 @@ class Overtime
     private $employee;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Company::class)
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="overtimeDisposition")
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
