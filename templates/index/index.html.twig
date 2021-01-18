@@ -8,84 +8,36 @@
 {% block title %}Employee Management System{% endblock %}
 
 {% block body %}
-    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        <div class="header d-flex justify-content-between align-items-center">
-            <h1>POSTY</h1>
-            {% if is_granted("ROLE_EMPLOYER") %}
-                <a href="{{ path('post_add') }}" class="btn btn-primary">Dodaj post</a>
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>POSTY</h1>
+        {% if is_granted("ROLE_EMPLOYER") %}
+            <a href="{{ path('post_add') }}" class="btn btn-primary">Dodaj post</a>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col">
+            {% if posts.count > 0 %}
+                {% for post in posts %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <header class="font-weight-bold">{{ post.topic }}</header>
+                                {% if post.author == app.user.employee %}
+                                    <button type="button" class="btn btn-sm btn-danger btn--delete"
+                                            data-path="{{ path('post_delete', {post: post.id}) }}"
+                                            data-name="{{ post.topic }}">
+                                        <i class="fas fa-trash"></i> Usuń
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <small>{{ post.author }}</small>
+                            <p>{{ post.content }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>👋 Brak postów na ten moment</p>
             {% endif %}
         </div>
-        <div class="row">
-            <div class="col">
-                {% if posts.count > 0 %}
-                    {% for post in posts %}
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <header class="font-weight-bold">{{ post.topic }}</header>
-                                    {% if post.author == app.user.employee %}
-                                        <button type="button" class="btn btn-sm btn-danger btn--delete"
-                                                data-path="{{ path('post_delete', {post: post.id}) }}"
-                                                data-name="{{ post.topic }}">
-                                            <i class="fas fa-trash"></i> Usuń
-                                        </button>
-                                    {% endif %}
-                                </div>
-                                <small>{{ post.author }}</small>
-                                <p>{{ post.content }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>👋 Brak postów na ten moment</p>
-                {% endif %}
-            </div>
-        </div>
-    {% else %}
-        <div class="container">
-            <div class="row">
-                <div class="col d-flex justify-content-between align-items-center">
-                    <div>
-                        <h1 class="text-primary">Zaloguj się do systemu</h1>
-                        <p>Już dziś skorzystaj z systemu, który pomaga już tysiącom pracowników na całym
-                            świecie!</p>
-                        <a href="{{ path('app_login') }}" class="btn btn-primary btn">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Panel logowania
-                        </a>
-                    </div>
-                    <img src="{{ asset("images/welcome.svg") }}" class="img-fluid" alt="">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 class="heading text-left text-primary">Employee Management System</h2>
-                    <p class="text-left">
-                        EMS to narzędzie stworzone, aby dać firmom możliwość łatwego zarządzania pracownikami.
-                        Oferujemy między innymi:
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <img src="{{ asset("images/temporary/dokumenty.png") }}" class="img-thumbnail" alt="">
-                    <p class="text-left">Łatwy dostęp do plików</p>
-                </div>
-                <div class="col-6">
-                    <img src="{{ asset("images/temporary/kamieniemilowe.png") }}" class="img-thumbnail" alt="">
-                    <p class="text-left">Czytelna lista zadań i kamieni milowych</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <img src="{{ asset("images/temporary/listapracownikow.png") }}" class="img-thumbnail" alt="">
-                    <p class="text-left">Prosty system edycji pracowników</p>
-                </div>
-                <div class="col">
-                    <img src="{{ asset("images/temporary/wydarzenia.png") }}" class="img-thumbnail" alt="">
-                    <p class="text-left">Ułatwiona edycja wydarzeń</p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+    </div>
 {% endblock %}

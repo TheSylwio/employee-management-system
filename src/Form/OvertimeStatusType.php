@@ -28,7 +28,7 @@ class OvertimeStatusType extends AbstractType
                 'attr' => ['class' => 'timePicker']
             ])
             ->add('endHour', null, [
-                'label'=>false,
+                'label' => false,
                 'attr' => ['class' => 'timePicker']
             ])
             ->add('description', null, [

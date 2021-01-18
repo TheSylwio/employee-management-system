@@ -7,37 +7,7 @@
 @import "./sidebar.scss";
 @import  './darkmode.scss';
 @import "./subpage.scss";
-
-.fas {
-  width: 11px !important;
-  height: 11px !important;
-  margin-right: 8pt;
-}
-
-.btn-group .fas {
-  margin: 0;
-}
-
-.btn-primary {
-  border: 1px solid #2f49d0 !important;
-}
-
-.bg-primary, .btn-primary {
-  background: #2f49d0 !important;
-}
-
-.text-primary {
-  color: #2f49d0 !important;
-}
-
-.container--full-page {
-  height: 100vh;
-}
-
-.content {
-  width: 100%;
-  padding: 16pt;
-}
+@import "./shared.scss";
 
 .toast {
   font-family: inherit !important;

@@ -14,12 +14,19 @@ body.dark-mode {
     color: #ededee;
   }
 
-  th {
-    color: #e5e5e5;
+  .table-responsive {
+    border-collapse: collapse;
   }
 
-  td {
-    color: #cccccc;
+  thead th {
+    background: $primary;
+    border: 0;
+  }
+
+  tbody td {
+    background: $accent;
+    color:#ccc;
+    border: 1px solid $primary;
   }
 
   hr {
@@ -56,6 +63,18 @@ body.dark-mode {
         }
       }
     }
+  }
+
+  .header {
+    border-bottom: 5px solid $secondary;
+
+    & > h1 {
+      color: $secondary;
+    }
+  }
+
+  .heading {
+    color: $secondary;
   }
 }
 

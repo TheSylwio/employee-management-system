@@ -16,15 +16,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
+     * @Route("/", name="index_not_logged", priority=2)
+     * @return Response
+     */
+    public function indexNotLogged(): Response
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('index');
+        }
+        return $this->render('index/index.notlogged.html.twig');
+    }
+
+    /**
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     * @Route("/dashboard", name="index")
      * @param Helper $helper
      * @return Response
      */
     public function index(Helper $helper): Response
     {
-        $company = $helper->getCompany();
         return $this->render('index/index.html.twig', [
-            'posts' =>  $company !== null ? $company->getPosts() : [],
+            'posts' => $company = $helper->getCompany()->getPosts(),
         ]);
     }
 
