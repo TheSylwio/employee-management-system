@@ -1,6 +1,6 @@
 {% macro sidebar(activeTab) %}
     <nav class="sidebar text-center">
-        <img src="{{ asset("images/logo.svg") }}" class="img-fluid w-50 my-3" alt="dokumenty.png">
+        <img src="{{ asset("images/logo_white.svg") }}" class="img-fluid w-50 my-3" alt="logo" id="dark-logo">
         <ul class="navbar-nav sidebar__components text-left">
             <li class="nav-item">
                 <a href="{{ path('index') }}"
@@ -68,6 +68,11 @@
             <li class="nav-item">
                 <a href="{{ path('app_logout') }}" class="sidebar__link sidebar__link--logout">
                     <i class="fas fa-sign-out-alt"></i> Wyloguj
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="sidebar__link" id="btn-toggle">
+                    <i class="fas fa-moon"></i> Zmień motyw
                 </a>
             </li>
         </ul>

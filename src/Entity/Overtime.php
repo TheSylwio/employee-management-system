@@ -30,12 +30,12 @@ class Overtime
     private $company;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $startDate;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $endDate;
 
@@ -45,12 +45,12 @@ class Overtime
     private $description;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=false)
      */
     private $beginHour;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=false)
      */
     private $endHour;
 

@@ -1,0 +1,80 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+$primary: #1f1f1f;
+$secondary: #f7f7f7;
+$accent: #525252;
+
+body.dark-mode {
+  color: #ededee;
+  background: #2f2f2f;
+
+  a {
+    color: #ededee;
+  }
+
+  .table-responsive {
+    overflow: hidden;
+  }
+
+  thead th {
+    background: $primary;
+    border: 0;
+  }
+
+  tbody td {
+    background: $accent;
+    color:#ccc;
+    border: 1px solid $primary;
+  }
+
+  hr {
+    border: 1px solid $accent;
+  }
+
+  .btn-primary {
+    border: 1px solid $primary !important;
+    background: $primary !important;
+  }
+
+  .sidebar {
+    background: $primary;
+
+    svg g path {
+      fill: #000000;
+    }
+
+    .sidebar__components {
+      .sidebar__link {
+        &--active {
+          background: $accent;
+          color: $secondary;
+        }
+
+        &:hover {
+          background: #f7f7f7;
+          color: $primary;
+        }
+
+        &--logout:hover {
+          background: #841f29;
+          color: $secondary;
+        }
+      }
+    }
+  }
+
+  .header {
+    border-bottom: 5px solid $secondary;
+
+    & > h1 {
+      color: $secondary;
+    }
+  }
+
+  .heading {
+    color: $secondary;
+  }
+}
+

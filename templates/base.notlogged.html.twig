@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+        <title>{% block title %}{% endblock %}</title>
+        {{ encore_entry_link_tags('app_alt') }}
+        {% block scripts %}{% endblock %}
+    </head>
+    <body class="d-flex">
+        {% block body %}{% endblock %}
+    </body>
+</html>

@@ -9,6 +9,7 @@
 import './styles/app.scss';
 import './js/toggleEvents';
 import './js/flatpickr';
+import './js/darkmode'
 import './js/archive';
 import './js/toast';
 

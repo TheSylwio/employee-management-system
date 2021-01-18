@@ -5,23 +5,31 @@
 {% block title %}Nadgodziny{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Zatwierdzanie nadgodzin</h1>
-    <table class="table table-striped">
-        <tr>
-            <th scope="col">Pracownik</th>
-            <th scope="col">Początek nadgodzin</th>
-            <th scope="col">Koniec nadgodzin</th>
-            <th scope="col">Godziny</th>
-            <th scope="col">Dodatkowe informacje</th>
-        </tr>
-        <tr>
-            <td>{{ disposition.employee }}</td>
-            <td>{{ disposition.startDate|date('d.m.Y') }}</td>
-            <td>{{ disposition.endDate|date('d.m.Y') }}</td>
-            <td>{{ disposition.beginHour|date('H.i') }} - {{ disposition.endHour|date('H.i') }}</td>
-            <td>{{ disposition.description }}</td>
-        </tr>
-    </table>
+    <div class="header">
+        <h1>Zatwierdzanie nadgodzin</h1>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Pracownik</th>
+                <th scope="col">Początek nadgodzin</th>
+                <th scope="col">Koniec nadgodzin</th>
+                <th scope="col">Godziny</th>
+                <th scope="col">Dodatkowe informacje</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ disposition.employee }}</td>
+                <td>{{ disposition.startDate|date('d.m.Y') }}</td>
+                <td>{{ disposition.endDate|date('d.m.Y') }}</td>
+                <td>{{ disposition.beginHour|date('H.i') }} - {{ disposition.endHour|date('H.i') }}</td>
+                <td>{{ disposition.description }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     {{ form_start(form) }}
     {{ form_row(form.status) }}
     {{ form_row((form.startDate)) }}

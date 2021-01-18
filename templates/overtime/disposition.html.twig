@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
+
 {% set activeTab = "overtime" %}
+
 {% block title %}Dyspozycje{% endblock %}
+
 {% block body %}
-    <h1 class="mb-3">Dyspozycje</h1>
-    <div class="example-wrapper">
+    <div class="header d-flex justify-content-between align-items-center">
+        <h1>Dyspozycje</h1>
         {% if is_granted('ROLE_EMPLOYER') %}
+            <a href="{{ path('overtime') }}" class="btn btn-primary">Nadgodziny</a>
+        {% elseif is_granted("ROLE_EMPLOYEE") %}
+            <div>
+                <a href="{{ path('overtime') }}" class="btn btn-primary mr-4">Nadgodziny</a>
+                <a href="{{ path('overtime_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
+            </div>
+        {% endif %}
+    </div>
+    {% if is_granted('ROLE_EMPLOYER') %}
+        <div class="table-responsive">
             <table class="table table-striped">
+                <thead>
                 <tr>
                     <th scope="col">Pracownik</th>
                     <th scope="col">Początek dyspozycji</th>
@@ -13,8 +27,9 @@
                     <th scope="col">Godziny</th>
                     <th scope="col">Dodatkowe informacje</th>
                     <th scope="col">Operacje</th>
-
                 </tr>
+                </thead>
+                <tbody>
                 {% for overtime in overtime %}
                     {% if overtime.status=="disposition" %}
                         <tr>
@@ -32,17 +47,22 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
+                </tbody>
             </table>
-            <a href="{{ path('overtime') }}" class="btn btn-primary">Nadgodziny</a>
-        {% endif %}
-        {% if is_granted('ROLE_EMPLOYEE') %}
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_EMPLOYEE') %}
+        <div class="table-responsive">
             <table class="table table-striped">
+                <thead>
                 <tr>
                     <th scope="col">Początek dyspozycji</th>
                     <th scope="col">Koniec dyspozycji</th>
                     <th scope="col">Godziny</th>
                     <th scope="col">Dodatkowe informacje</th>
                 </tr>
+                </thead>
+                <tbody>
                 {% for overtime in overtime %}
                     {% if employee==overtime.employee and overtime.status=="disposition" %}
                         <tr>
@@ -53,9 +73,8 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
+                </tbody>
             </table>
-            <a href="{{ path('overtime') }}" class="btn btn-primary">Nadgodziny</a>
-            <a href="{{ path('overtime_add') }}" class="btn btn-primary">Dodaj dyspozycję</a>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 {% endblock %}
