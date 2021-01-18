@@ -14,9 +14,3 @@ flatpickr(birthPicker);
 flatpickr(datePicker, {
     enableTime: false,
 });
-
-flatpickr(timePicker, {
-    enableTime: true,
-    noCalendar: true,
-    dateFormat: "H:i",
-});
