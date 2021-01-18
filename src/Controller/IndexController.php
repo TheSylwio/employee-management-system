@@ -17,7 +17,7 @@ class IndexController extends AbstractController
 {
     /**
      * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
-     * @Route("/", name="index_not_logged", priority=2)
+     * @Route("/", name="index_not_logged")
      * @return Response
      */
     public function indexNotLogged(): Response
