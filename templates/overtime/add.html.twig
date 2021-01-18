@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% set activeTab = "overtime" %}
+{% block title %}Dyspozycje{% endblock %}
+{% block body %}
+    <h1 class="mb-3">Dodaj Dyspozycję</h1>
+    {{ form_start(form) }}
+    {{ form_row((form.startDate)) }}
+    {{ form_row((form.endDate)) }}
+    {{ form_row((form.beginHour)) }}
+    {{ form_row((form.endHour)) }}
+    {{ form_row((form.description)) }}
+    <button type="submit" class="btn btn-primary">Dodaj Dyspozycje</button>
+    <a href="{{ path('disposition') }}" class="btn btn-secondary">Wróć do listy dyspozycji</a>
+    {{ form_end(form) }}
+{% endblock %}

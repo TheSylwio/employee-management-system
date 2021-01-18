@@ -15,12 +15,12 @@ class VacationType extends AbstractType
             ->add('startDate', null, [
                 'label' => 'Początek urlopu',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'vacationPicker']
+                'attr' => ['class' => 'datePicker']
             ])
             ->add('endDate', null, [
                 'label' => 'Koniec urlopu',
                 'widget' => 'single_text',
-                'attr' => ['class' => 'vacationPicker']
+                'attr' => ['class' => 'datePicker']
             ]);
     }
 

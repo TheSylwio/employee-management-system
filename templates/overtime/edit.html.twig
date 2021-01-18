@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% set activeTab = "overtime" %}
+
+{% block title %}Nadgodziny{% endblock %}
+
+{% block body %}
+    <h1 class="my-4">Zatwierdzanie nadgodzin</h1>
+    <table class="table table-striped">
+        <tr>
+            <th scope="col">Pracownik</th>
+            <th scope="col">Początek nadgodzin</th>
+            <th scope="col">Koniec nadgodzin</th>
+            <th scope="col">Godziny</th>
+            <th scope="col">Dodatkowe informacje</th>
+        </tr>
+        <tr>
+            <td>{{ disposition.employee }}</td>
+            <td>{{ disposition.startDate|date('d.m.Y') }}</td>
+            <td>{{ disposition.endDate|date('d.m.Y') }}</td>
+            <td>{{ disposition.beginHour|date('H.i') }} - {{ disposition.endHour|date('H.i') }}</td>
+            <td>{{ disposition.description }}</td>
+        </tr>
+    </table>
+    {{ form_start(form) }}
+    {{ form_row(form.status) }}
+    {{ form_row((form.startDate)) }}
+    {{ form_row((form.endDate)) }}
+    {{ form_row((form.beginHour)) }}
+    {{ form_row((form.endHour)) }}
+    {{ form_row((form.description)) }}
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a href="{{ path('disposition') }}" class="btn btn-secondary">Wróć do listy</a>
+    {{ form_end(form) }}
+{% endblock %}
