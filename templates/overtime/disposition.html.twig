@@ -48,7 +48,7 @@
                         <tr>
                             <td>{{ overtime.startDate|date('d.m.Y') }}</td>
                             <td>{{ overtime.endDate|date('d.m.Y') }}</td>
-                            <td>{{ overtime.startDate|date('H.i') }} - {{ overtime.endDate|date('H.i') }}</td>
+                            <td>{{ overtime.beginHour|date('H.i') }} - {{ overtime.endHour|date('H.i') }}</td>
                             <td>{{ overtime.description }}</td>
                         </tr>
                     {% endif %}
